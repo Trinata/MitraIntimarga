@@ -1,0 +1,7 @@
+config/*
+cahce/*
+public_assets/*
+dashboard/*
+libs/*
+tmp/*
+logs/*
