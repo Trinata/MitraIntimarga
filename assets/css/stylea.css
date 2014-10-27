@@ -1,0 +1,84 @@
+/*------------------------- Fonts ------------------------*/
+@font-face {
+	font-family: 'anticregular';
+	src: url('../fonts/antic-regular-webfont.eot');
+	src: url('../fonts/antic-regular-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/antic-regular-webfont.woff') format('woff'),  url('../fonts/antic-regular-webfont.ttf') format('truetype'),  url('../fonts/antic-regular-webfont.svg#anticregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*------------------------- Header ------------------------*/
+
+#header {
+	background-color:#2A01FF;
+	height:166px;	width:763px;
+	padding:2px 2px 2px 2px;	border:1px solid #000;
+}
+
+/*------------------------- Menu ------------------------*/
+
+nav {
+  background-color:#2C5463; /*+*/
+  height:40px;
+  
+}
+ nav ul {
+  font-family: Arial, Verdana;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: block;
+  position: relative;
+  float: left;
+ 
+}
+nav li ul {
+  display: none;
+}
+nav ul li a {
+  color:#2A01FF;
+	display:block;
+	height:40px;
+	letter-spacing:.075em;
+	line-height:40px;
+	text-align:center;
+	text-decoration:none;
+	text-shadow:0 1px 0 #fff;
+	font-size:11px;
+	width:129px;
+	border-style: solid;
+    border-width: 3px;
+	border-color:#FFFFFF;
+	padding:2px 2px 2px 2px;
+	font-style: red;
+ 
+}
+nav ul li a:hover {
+  background: #617F8A;
+  transition: background 1s ease;/*transisi*/
+}
+nav ul li ul li {border-style: solid;    border-width: 3px;	border-color:#FFFFFF;	padding:2px 2px 2px 2px;	font-style: red;}
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  height:30px;
+}
+nav li:hover li {
+  float: none;
+  font-size: 11px;
+ 
+}
+nav li:hover li a:hover {
+  background: #95A9B1;
+  transition: background 1s ease;/*transisi*/
+}
+nav ul li ul li a {
+    text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+}
+
+
+
+

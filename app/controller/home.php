@@ -1,7 +1,6 @@
 <?php
 
 class home extends Controller {
-	
 	var $models = FALSE;
 	var $view;
 	
@@ -15,69 +14,43 @@ class home extends Controller {
 	}
 	public function loadmodule()
 	{
-		
-		// $this->models = $this->loadModel('frontend');
+		 $this->models = $this->loadModel('m_about_us');
 	}
 	
-	function parseExcel()
-	{
-		global $EXCEL;
-		if ($_FILES){
-			
-			// parameternya adalah name dari input type file
-			$excel = $this->excel('tes');
-			
-			$baris = $excel->rowcount($sheet_index=0);
-			$nilai1 = $excel->val($EXCEL[0]['startrow'], $EXCEL[0]['startcolumn']);
-			
-			pr($baris);
-			pr($nilai1);
-		}
-	}
 	
 	public function index(){
-	global $basedomain;
-	global $baseheader;
+		global $basedomain;
+		global $baseheader;
         
+		$result_data = $this->models->about();
+		// pr($result_data);
 		$var = array(1,2,3);
 	
-	//	pr($basedomain);
-	//	pr($baseheader);
-		
-		
-		
+		// pr($basedomain);
+		 //pr($baseheader);
 		// pr($this->view);
-		$this->view->assign('home',$var);
+		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		// $this->view->assign('coba1','coba data smarty1');
-		//pr($var);
-		
-		return $this->loadView('test');
-		return $this->loadView('header');
-		
-
+		// pr($var);
+		// pr($result_data);
+		return $this->loadView('about_us');
 	}
+	public function about_us(){
+		global $basedomain;
+		global $baseheader;
         
-	public function tangkap(){
-		if(isset($_POST)){
-			// validasi value yang masuk
-		   $x = form_validation($_POST);
-		   
-		   $data['input'] = $this->models->inputData($x['id'],$x['nama'],$x['alamat']);
-		   
-		   /* tampung kembalian data dari fungsi yang dipanggil */
-			//$data['frontend'] = $this->models->get_data_desc();
-		   if($data['input'])
-		   {
-			   //return $this->loadView('display');
-			   global $CONFIG;
-			   redirect($CONFIG['default']['base_url']."display");
-		   }else {
-			   echo "gagal";
-		   }
-		   
-		  // pr($x);
-		}
+		$result_data = $this->models->about_us();
+		// pr($result_data);
+		$var = array(1,2,3);
+	
+		// pr($basedomain);
+		 //pr($baseheader);
+		// pr($this->view);
+		$this->view->assign('data',$result_data);
+		$this->view->assign('coba','coba data smarty');
+		// pr($var);
+		// pr($result_data);
+		return $this->loadView('about_us');
 	}
 	
 }
