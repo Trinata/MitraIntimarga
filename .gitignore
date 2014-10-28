@@ -1,7 +1,11 @@
 config/*
-cahce/*
+cache/*
 public_assets/*
 dashboard/*
 libs/*
 tmp/*
 logs/*
+admin/config/*
+admin/cache/*
+admin/logs/*
+admin/tmp/*
