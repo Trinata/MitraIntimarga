@@ -21,13 +21,6 @@ class about_us_m extends Database {
             return $result;
         }
         
-	public function get_article_asc(){
-		$query = "SELECT * FROM Aset ORDER BY Aset_ID ASC LIMIT 2";
-		pr($query);
-		// $result = $this->fetch($query,0);
-		
-		// return $result;
-	}
 	public function about(){
 		/*$query= "SELECT * FROM mitra_news_content WHERE 1  ";*/
 		$query= "SELECT * FROM mitra_news_content WHERE lid= '1' " ;
