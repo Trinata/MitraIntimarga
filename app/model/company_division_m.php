@@ -5,7 +5,7 @@ class company_division_m extends Database {
 		/*$query= "SELECT * FROM mitra_news_content WHERE 1  ";*/
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid='412' and n_status='1' " ;
 		$result= $this->fetch($query,1);
-		// pr($result);
+		 //pr($result);
 		return $result;
 	
 		// $result = $this->fetch($query,0);
