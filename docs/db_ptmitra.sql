@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 20, 2014 at 06:59 PM
--- Server version: 5.5.37-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.4
+-- Host: 127.0.0.1
+-- Generation Time: Oct 28, 2014 at 02:57 PM
+-- Server version: 5.5.39
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `activityValue` varchar(100) DEFAULT NULL,
-  `n_status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `n_status` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -51,14 +50,13 @@ INSERT INTO `activity` (`id`, `activityValue`, `n_status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `activity_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `activityId` int(11) NOT NULL,
   `activityDesc` text NOT NULL,
   `source` varchar(20) NOT NULL,
   `datetimes` datetime NOT NULL,
-  `n_status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `n_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
@@ -122,7 +120,7 @@ INSERT INTO `activity_log` (`id`, `userid`, `activityId`, `activityDesc`, `sourc
 --
 
 CREATE TABLE IF NOT EXISTS `admin_member` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
+`id` int(15) NOT NULL,
   `name` varchar(46) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
@@ -130,8 +128,7 @@ CREATE TABLE IF NOT EXISTS `admin_member` (
   `username` varchar(46) DEFAULT NULL,
   `salt` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
-  `n_status` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `n_status` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -148,14 +145,13 @@ INSERT INTO `admin_member` (`id`, `name`, `nickname`, `email`, `register_date`, 
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `category_name` varchar(200) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `relation` int(11) DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
-  `n_status` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `n_status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -173,12 +169,11 @@ INSERT INTO `mitra_category` (`id`, `category_name`, `description`, `image`, `re
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_child` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `userid` int(11) NOT NULL COMMENT 'parent id',
   `name` varchar(200) DEFAULT NULL,
   `birthdate` date NOT NULL,
-  `n_status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `n_status` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
@@ -213,13 +208,11 @@ INSERT INTO `mitra_child` (`id`, `userid`, `name`, `birthdate`, `n_status`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_member_interest` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `userid` int(11) NOT NULL DEFAULT '0',
   `category_id` varchar(100) DEFAULT NULL,
   `date_join` varchar(300) NOT NULL,
-  `n_status` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `userid` (`userid`)
+  `n_status` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -236,7 +229,7 @@ INSERT INTO `mitra_member_interest` (`id`, `userid`, `category_id`, `date_join`,
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_news_content` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `parentid` int(11) NOT NULL,
   `lid` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
@@ -259,39 +252,28 @@ CREATE TABLE IF NOT EXISTS `mitra_news_content` (
   `tags` text NOT NULL COMMENT 'format serialize tags',
   `authorid` int(11) NOT NULL,
   `n_status` int(11) NOT NULL DEFAULT '0',
-  `topcontent` int(11) NOT NULL DEFAULT '0' COMMENT '0;standart;1:featured;2:review;3:interview',
-  PRIMARY KEY (`id`),
-  KEY `title` (`title`),
-  KEY `categoryid` (`categoryid`),
-  KEY `created_date` (`created_date`),
-  KEY `posted_date` (`posted_date`),
-  KEY `n_status` (`n_status`),
-  KEY `articleTypeID` (`articleType`),
-  KEY `image` (`image`),
-  KEY `parentID` (`parentid`),
-  KEY `lid` (`lid`),
-  KEY `online` (`fromwho`),
-  KEY `expired_date` (`expired_date`),
-  KEY `url` (`url`),
-  KEY `aid` (`authorid`),
-  KEY `file` (`file`),
-  KEY `slider_image` (`slider_image`),
-  KEY `sourceurl` (`filesize`),
-  KEY `thumbnail_image` (`thumbnail_image`),
-  KEY `topcontent` (`topcontent`),
-  KEY `sourceurl_2` (`sourceurl`),
-  KEY `can_save` (`can_save`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `topcontent` int(11) NOT NULL DEFAULT '0' COMMENT '0;standart;1:featured;2:review;3:interview'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `mitra_news_content`
 --
 
 INSERT INTO `mitra_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `content`, `image`, `thumbnail_image`, `slider_image`, `categoryid`, `articleType`, `url`, `sourceurl`, `file`, `created_date`, `expired_date`, `posted_date`, `fromwho`, `filesize`, `can_save`, `tags`, `authorid`, `n_status`, `topcontent`) VALUES
-(1, 0, 0, '1 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '7f97ab29b00bc87ba72226b1f13cc4b3.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/7f97ab29b00bc87ba72226b1f13cc4b3.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(1, 0, 1, 'partner', 'GEM System, Inc., Ontario, CANADA', '<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n    <li>\r\n       POTASSIUM Optically Pumped K-Mag/Grad\r\n    </li>\r\n    <li>\r\n       AIRBORNE SYSTEM Potassium - SuperSenser\r\n    </li>\r\n</ul>', 'assets/images/partner/gem.jpg', '', '', 1, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
 (2, 0, 0, '2 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '1d15a439732ff4756b0ea121e05ffa81.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/1d15a439732ff4756b0ea121e05ffa81.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:25', 0, 0, 0, '', 1, 1, 0),
 (3, 0, 0, '3 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '83badbf45943ed06a978e79baf77224a.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/83badbf45943ed06a978e79baf77224a.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:33', 0, 0, 0, '', 1, 1, 0),
-(4, 0, 0, '4 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', 'db5086d7fa346198edea68b2d72f0d1f.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/db5086d7fa346198edea68b2d72f0d1f.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:41', 0, 0, 0, '', 1, 1, 0);
+(4, 0, 0, '4 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', 'db5086d7fa346198edea68b2d72f0d1f.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/db5086d7fa346198edea68b2d72f0d1f.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:41', 0, 0, 0, '', 1, 1, 0),
+(5, 0, 1, 'partner', 'Advanced Geosciences, Inc., Austin, TX, USA', '<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n    <li>\r\n       POTASSIUM Optically Pumped K-Mag/Grad\r\n    </li>\r\n    <li>\r\n       AIRBORNE SYSTEM Potassium - SuperSenser\r\n    </li>\r\n</ul>', 'assets/images/partner/agi.jpg', '', '', 1, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(6, 0, 1, 'partner', 'Bartington Instruments, Ltd., Oxford OX28 4FE, UK', '<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n\r\n</ul>', 'assets/images/partner/Bartington.gif', '', '', 1, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(7, 0, 1, 'partner', '  DMT GmbH., Essen, GERMANY', '\r\n<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n    <li>\r\n       POTASSIUM Optically Pumped K-Mag/Grad\r\n    </li>\r\n    <li>\r\n       AIRBORNE SYSTEM Potassium - SuperSenser\r\n    </li>\r\n</ul>', 'assets/images/partner/dmt.gif', '', '', 0, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(8, 0, 1, 'partner', 'Scientific Educational Apparatus', '<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n    <li>\r\n       POTASSIUM Optically Pumped K-Mag/Grad\r\n    </li>\r\n    <li>\r\n       AIRBORNE SYSTEM Potassium - SuperSenser\r\n    </li>\r\n</ul>', 'assets/images/partner/frediksen.jpg', '', '', 2, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(9, 0, 1, 'partner', '', '<ul>\r\n    <li>\r\n       DCS-1 Drill Cores Scanner\r\n    </li>\r\n    <li>\r\n       Gamma Surveyor\r\n    </li>\r\n    <li>\r\n       SCR-Scintillation Gamma RadiaMeter\r\n    </li>\r\n</ul>', 'assets/images/partner/hazdust.gif', '', '', 1, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(10, 0, 1, 'partner', '', '', 'assets/images/partner/ids.jpg', '', '', 0, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(11, 0, 1, 'partner', '', '', 'assets/images/partner/reftek.gif', '', '', 0, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(12, 0, 1, 'partner', 'Thin Film Measurement & Analysis', '<ul>\r\n    <li>\r\n       OVERHOUSER Magnetometer/Gradiometer\r\n    </li>\r\n    <li>\r\n       SUPERGRADIO Meter Earthquake Prediction Instrumentation\r\n    </li>\r\n    <li>\r\n       UEROMAG Observatory Volcanology\r\nRadiaMeter\r\n    </li>\r\n    <li>\r\n       POTASSIUM Optically Pumped K-Mag/Grad\r\n    </li>\r\n    <li>\r\n       AIRBORNE SYSTEM Potassium - SuperSenser\r\n    </li>\r\n</ul>', 'assets/images/partner/scient2.gif', '', '', 2, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(13, 0, 0, 'profile', '', '\r\n\r\nPT. MITRA INTIMARGA is a well known regional distributor in INDONESIA, specializing in GEOPHYSICS and SCIENTIFIC equipment and tools. As a Supplier for laboratories and Research, Institutes, we distribute major brands that are reputable Global market in their respective fields.\r\n\r\nAs the leading provider of Scientific & Technology Equipment, our extensive customers’ coverage includes Government University and Institutes, Government Research Laboratories and Industries in Indonesia.\r\n\r\n\r\nThis is achieved by leveraging our established regional sales network and our strong technical competencies to ensure that we meet the market objectives for our Principals.\r\n\r\nCustomer service is a priority in PT. Mitra Intimarga. The company has an extensive regional network of Sales Offices as our Company Dealer. This enables the Company to provide a high level of customer  interactions to handle for After Sales Services.\r\n\r\nA Dealers also a vehicle for our Principal partners to gain instant access to the Indonesia markets for their respective products. This is a competitive advantage the benefits both our Customers & our Principals.   ', '', '', '', 411, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
+(14, 0, 0, '', '', '', 'assets/images/img/compony-division.jpg', '', '', 412, 0, '', '', '', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -300,16 +282,12 @@ INSERT INTO `mitra_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `co
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_news_content_comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `contentid` int(11) NOT NULL,
   `comment` text NOT NULL,
   `date` datetime NOT NULL,
-  `n_status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `date` (`date`),
-  KEY `userid` (`userid`),
-  KEY `contentid` (`contentid`)
+  `n_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -319,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `mitra_news_content_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `mitra_news_content_repo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `brief` text NOT NULL,
   `content` text NOT NULL,
@@ -331,12 +309,7 @@ CREATE TABLE IF NOT EXISTS `mitra_news_content_repo` (
   `otherid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
-  `n_status` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `otherid` (`otherid`),
-  KEY `IDX_typeAlbum` (`typealbum`),
-  KEY `IDX_Album_ID` (`gallerytype`),
-  KEY `IDX_FROM_WHO` (`fromwho`)
+  `n_status` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=360 ;
 
 --
@@ -712,7 +685,7 @@ INSERT INTO `mitra_news_content_repo` (`id`, `title`, `brief`, `content`, `typea
 --
 
 CREATE TABLE IF NOT EXISTS `social_member` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
+`id` int(15) NOT NULL,
   `sosmed_id` varchar(50) NOT NULL,
   `name` varchar(46) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
@@ -741,11 +714,7 @@ CREATE TABLE IF NOT EXISTS `social_member` (
   `email_token` varchar(50) DEFAULT NULL,
   `photo_moderation` int(11) NOT NULL,
   `salt` varchar(200) DEFAULT NULL,
-  `password` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sosmed_id` (`sosmed_id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
+  `password` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10080 ;
 
 --
@@ -759,6 +728,124 @@ INSERT INTO `social_member` (`id`, `sosmed_id`, `name`, `nickname`, `email`, `re
 (10075, '1900304539', 'Albertus Bayu Aji', NULL, 'andreass.bayu@gmail.com', '2014-09-15 05:48:25', '0000-00-00 00:00:00', NULL, '', NULL, 'AndreassBayu', NULL, 0, 0, NULL, NULL, '', '', NULL, NULL, 'Jakarat', '085710440875', 1, 0, 1, 2, NULL, 0, NULL, NULL),
 (10079, '594315585', 'Ovan Sunarto P.', NULL, 'ovan89@gmail.com', '2014-09-23 02:18:35', '0000-00-00 00:00:00', NULL, '', NULL, 'ovancop', '2014-10-07 09:24:05', 0, 0, NULL, NULL, 'Kesehatan lebih penting', 'http://t.co/jePSH4BIdP', NULL, NULL, 'ada', '2311', 1, 20, 1, 2, NULL, 0, NULL, NULL);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activity`
+--
+ALTER TABLE `activity`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `activity_log`
+--
+ALTER TABLE `activity_log`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_member`
+--
+ALTER TABLE `admin_member`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mitra_category`
+--
+ALTER TABLE `mitra_category`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mitra_child`
+--
+ALTER TABLE `mitra_child`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mitra_member_interest`
+--
+ALTER TABLE `mitra_member_interest`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `userid` (`userid`);
+
+--
+-- Indexes for table `mitra_news_content`
+--
+ALTER TABLE `mitra_news_content`
+ ADD PRIMARY KEY (`id`), ADD KEY `title` (`title`), ADD KEY `categoryid` (`categoryid`), ADD KEY `created_date` (`created_date`), ADD KEY `posted_date` (`posted_date`), ADD KEY `n_status` (`n_status`), ADD KEY `articleTypeID` (`articleType`), ADD KEY `image` (`image`), ADD KEY `parentID` (`parentid`), ADD KEY `lid` (`lid`), ADD KEY `online` (`fromwho`), ADD KEY `expired_date` (`expired_date`), ADD KEY `url` (`url`), ADD KEY `aid` (`authorid`), ADD KEY `file` (`file`), ADD KEY `slider_image` (`slider_image`), ADD KEY `sourceurl` (`filesize`), ADD KEY `thumbnail_image` (`thumbnail_image`), ADD KEY `topcontent` (`topcontent`), ADD KEY `sourceurl_2` (`sourceurl`), ADD KEY `can_save` (`can_save`);
+
+--
+-- Indexes for table `mitra_news_content_comment`
+--
+ALTER TABLE `mitra_news_content_comment`
+ ADD PRIMARY KEY (`id`), ADD KEY `date` (`date`), ADD KEY `userid` (`userid`), ADD KEY `contentid` (`contentid`);
+
+--
+-- Indexes for table `mitra_news_content_repo`
+--
+ALTER TABLE `mitra_news_content_repo`
+ ADD PRIMARY KEY (`id`), ADD KEY `otherid` (`otherid`), ADD KEY `IDX_typeAlbum` (`typealbum`), ADD KEY `IDX_Album_ID` (`gallerytype`), ADD KEY `IDX_FROM_WHO` (`fromwho`);
+
+--
+-- Indexes for table `social_member`
+--
+ALTER TABLE `social_member`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `sosmed_id` (`sosmed_id`), ADD UNIQUE KEY `username` (`username`), ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activity`
+--
+ALTER TABLE `activity`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `activity_log`
+--
+ALTER TABLE `activity_log`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
+--
+-- AUTO_INCREMENT for table `admin_member`
+--
+ALTER TABLE `admin_member`
+MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `mitra_category`
+--
+ALTER TABLE `mitra_category`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `mitra_child`
+--
+ALTER TABLE `mitra_child`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `mitra_member_interest`
+--
+ALTER TABLE `mitra_member_interest`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `mitra_news_content`
+--
+ALTER TABLE `mitra_news_content`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `mitra_news_content_comment`
+--
+ALTER TABLE `mitra_news_content_comment`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `mitra_news_content_repo`
+--
+ALTER TABLE `mitra_news_content_repo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=360;
+--
+-- AUTO_INCREMENT for table `social_member`
+--
+ALTER TABLE `social_member`
+MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10080;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
