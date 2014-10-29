@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-03 07:53:06
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-28 15:13:31
          compiled from ".\view\meta.html" */ ?>
 <?php /*%%SmartyHeaderCode:4999533cf6fc5f2316-99153596%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2f4dedc067a605a48f87b736a893f0066399f9dd' => 
     array (
       0 => '.\\view\\meta.html',
-      1 => 1396504383,
+      1 => 1413806434,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <title>Dashboard - Admin</title>
+    <title>Admin</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="">

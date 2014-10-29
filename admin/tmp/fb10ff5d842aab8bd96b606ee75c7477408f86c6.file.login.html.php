@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-03 11:10:22
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-28 15:13:30
          compiled from ".\view\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:34455325611d3be3d1-22220767%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fb10ff5d842aab8bd96b606ee75c7477408f86c6' => 
     array (
       0 => '.\\view\\login.html',
-      1 => 1396516220,
+      1 => 1413806434,
       2 => 'file',
     ),
   ),
@@ -31,7 +31,7 @@ css/Login.css" type="text/css" />
 	<div id="login">
 		<img width="200px" src="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
 images/logos/logo-login.png" alt="Logo" />
-		<h3>Welcome to CDC Admin.</h3>
+		<h3>Administrator</h3>
 
 		<h5>Please sign in to get access.</h5>
 
@@ -60,9 +60,9 @@ login/local" class="form" method="post">
 
 	</div> <!-- /#login -->
 
-	<a href="#styledModal" data-toggle="modal" id="signup-btn" class="btn btn-lg btn-block">
+	<!--<a href="#styledModal" data-toggle="modal" id="signup-btn" class="btn btn-lg btn-block">
 		Create an Account
-	</a>
+	</a>-->
 
 
 </div> <!-- /#login-container -->
