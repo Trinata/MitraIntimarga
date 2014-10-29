@@ -2,49 +2,35 @@
 <p class="title1geophisic">
 	2010 product list
 </p>
+
 <p class="title2geophisic">
 	Scientifics Division
 </p>
 <table class="table">
-	<th bgcolor="#FF0000"  colspan="2">Scientific Educational Apparatus</th>
-  <tr>
-    <td height="140" width="236" >
-	<img align="center"  width="212" height="66" border="0" src="{$basedomain}assets/images/partner/frediksen.jpg"/> 
-	</td>
-    <td>
-		<p>
-			Physics - Educational Experiment Sets
-		</p>
-		
-	</td>
-  </tr>
-  <tr>
-  <th bgcolor="#00CC66"  colspan="2"> GEM System, Inc., Ontario, CANADA</th>
-  <tr>
-    <td height="140" width="40%" >
-	<img align="center" width="212" height="66" border="0" src="{$basedomain}assets/images/partner/scient2.gif"/> 
-	</td>
-    <td width="60%">
-		<p>
-			Spectroscopic Ellipsometer
-		</p>
-		<p>
-			Spectroscopic Reflect meter
-		</p>
-		<p>
-			Plasma Monitoring & Process Control System
-		</p>
-	</td>
-  </tr>
+	{if $data}
+		{foreach $data as $val } 
+			<th bgcolor="#FF0000"  colspan="2">{$val.brief}</th>
+			  <tr>
+				<td height="140" width="236" >
+				<img align="center"  width="212" height="66" border="0" src="{$basedomain}{$val.image}"/> 
+				</td>
+				<td class="center">
+					<p>
+						{$val.content}
+					</p>
+					
+				</td>
+				
+			  </tr>
+		{/foreach}
+	{/if}
+  </table>
+  <br>
+  <br>
   <tr>
 	  <th colspan="2">  
 			<p class="footer1">INDONESIA Authorized Agent</p>
 			<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
 			<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
 	  </tr>
-  <tr>
-	   <th colspan="2" align="center">  
-			<input align="center" class="footer1" s type="button" name="print" value="print">
-		
-  </tr>
-</table>
+ 

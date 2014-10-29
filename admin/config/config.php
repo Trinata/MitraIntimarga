@@ -19,11 +19,11 @@ $CONFIG['admin']['default_view'] = 'home';
 $CONFIG['admin']['login'] = 'login';
 
 
-$CONFIG['admin']['app_url'] = 'http://localhost/nestle/nestle/';
-$CONFIG['admin']['base_url'] = 'http://localhost/nestle/nestle/admin/';
-$CONFIG['admin']['root_path'] = $_SERVER['DOCUMENT_ROOT'].'/nestle/nestle/admin';
+$CONFIG['admin']['app_url'] = 'http://localhost/MitraIntimarga/';
+$CONFIG['admin']['base_url'] = 'http://localhost/MitraIntimarga/admin/';
+$CONFIG['admin']['root_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/admin';
 
-$CONFIG['admin']['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/nestle/nestle/public_assets/';
+$CONFIG['admin']['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/public_assets/';
 $CONFIG['admin']['image'] = array('image/jpeg', 'image/pjpeg','image/png');
 $CONFIG['admin']['max_filesize'] = 2097152;
 
@@ -38,8 +38,12 @@ $app_domain = $CONFIG['admin']['app_url'];
 
 $dbConfig[0]['host'] = 'localhost';
 $dbConfig[0]['user'] = 'root';
+<<<<<<< HEAD
+$dbConfig[0]['pass'] = '';
+=======
 $dbConfig[0]['pass'] = 'root123root';
-$dbConfig[0]['name'] = 'nestle_microsite';
+>>>>>>> origin/master
+$dbConfig[0]['name'] = 'db_ptmitra';
 $dbConfig[0]['server'] = 'mysql';
 
 
