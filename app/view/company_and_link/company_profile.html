@@ -13,7 +13,13 @@
 	<tr>
 		<hr>
 			<p class="center">
-				<input align="center" class="center" type="button"  value="Print">
+			{if $data1}
+				{foreach $data1 as $val1 } 
+				<a href="{$basedomain}{$val1.file}" download="dokumen">
+					<input type="button" value="download dokumen" src="{$basedomain}{$val1.file}" >
+				</a>
+				{/foreach}
+			{/if}
 			</p>
-		<hr>
+		
 	</tr>

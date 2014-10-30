@@ -1,5 +1,5 @@
 <?php
-class company_marketing extends Controller {
+class partner extends Controller {
 	var $models = FALSE;
 	var $view;
 	
@@ -13,22 +13,24 @@ class company_marketing extends Controller {
 	}
 	public function loadmodule()
 	{
-		 $this->models = $this->loadModel('company_marketing_m');
+		 $this->models = $this->loadModel('partner_m');
 	}
 	public function index(){
 	global $basedomain;
 	global $baseheader;
         
-		$result_data = $this->models->company_marketing();
-	
+		$result_data = $this->models->about();
 		// pr($result_data);
 		$var = array(1,2,3);
+	
 		// pr($basedomain);
-
+		 //pr($baseheader);
+		// pr($this->view);
 		$this->view->assign('data',$result_data);
-		
 		$this->view->assign('coba','coba data smarty');
-		return $this->loadView('company_and_link/company_marketing');
+		//pr($var);
+		// pr($result_data);
+		return $this->loadView('about_us');
 	}
 	
 }

@@ -38,11 +38,7 @@ $app_domain = $CONFIG['admin']['app_url'];
 
 $dbConfig[0]['host'] = 'localhost';
 $dbConfig[0]['user'] = 'root';
-<<<<<<< HEAD
 $dbConfig[0]['pass'] = '';
-=======
-$dbConfig[0]['pass'] = 'root123root';
->>>>>>> origin/master
 $dbConfig[0]['name'] = 'db_ptmitra';
 $dbConfig[0]['server'] = 'mysql';
 
