@@ -20,12 +20,12 @@ class home extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('marticle');
+		$this->models = $this->loadModel('m_menu');
 	}
 	
 	public function index(){
 		$this->view->assign('active','active');
-		$data = $this->models->get_article();
+		$data = $this->models->home();
 
 		if ($data){
 			foreach ($data as $key => $val){

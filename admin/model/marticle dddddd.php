@@ -124,15 +124,11 @@ class marticle extends Database {
 		
 	}
 	
-	function get_article_id($data)
+	function get_article_id()
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE id= {$data} LIMIT 1";
+		$query= "SELECT * FROM mitra_news_content WHERE lid= '1' " ;
 		
 		$result = $this->fetch($query,0);
-
-		if($result['posted_date'] != '') $result['posted_date'] = dateFormat($result['posted_date'],'dd-mm-yyyy');
-		($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
-
 		return $result;
 	}
 	
@@ -211,5 +207,23 @@ class marticle extends Database {
 		return false;
 
 	}
+	/*------------------------edit maraoks ---------------*/
+	function about_us_edit($data)
+	{
+
+		$query = "UPDATE mitra_news_content
+						SET 
+							title = '{$data['title']}',
+							content = '{$data['content']}'
+						WHERE
+							id = '{$data['id']}'";
+		
+		$result = $this->query($query);
+		return $result;
+		
+
+	}
+	
+	
 }
 ?>

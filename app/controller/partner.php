@@ -15,7 +15,7 @@ class partner extends Controller {
 	{
 		 $this->models = $this->loadModel('partner_m');
 	}
-	public function index(){
+	public function partner(){
 	global $basedomain;
 	global $baseheader;
         

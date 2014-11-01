@@ -22,23 +22,18 @@ class article extends Controller {
 	
 	public function index(){
        
-		
-
 	}
 	
 	public function addarticle(){
 		
 		$this->view->assign('active','active');
 
-		if(isset($_GET['id']))
-		{
-			$data = $this->models->get_article_id($_GET['id']);	
+			$data = $this->models->get_article_id();	
 			$this->view->assign('data',$data);
-		} 
-
 		$this->view->assign('admin',$this->admin['admin']);
 		return $this->loadView('inputarticle');
 	}
+	
     
 	public function articleinp(){
 		global $CONFIG;
@@ -205,6 +200,39 @@ class article extends Controller {
 
 		}
 	}
+	
+	/*----------------edit maraoks -------------------*/
+	public function about_us_edit(){
+	
+	
+	global $CONFIG;
+	
+	//pr($_POST['edit']);
+	// pr($_POST);
+	// exit;
+	
+	if($_POST['edit']=="Edit"){
+	
+		$this->view->assign('active','active');
+			$data = $this->models->about_us_edit($_POST);	
+			
+			
+			$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
+		
+		echo "<script>alert('Content About Us telah diedit');window.location.href='".$CONFIG['admin']['base_url']."'</script>";
+	
+	}
+	else{
+		$this->view->assign('active','active');
+
+			$data = $this->models->get_article_id();	
+			$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
+		return $this->loadView('inputarticle');
+	}
+	}
+	
 
 }
 
