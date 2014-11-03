@@ -13,17 +13,9 @@ class about_us_m extends Database {
 		
 		 return $result;
 	}
-	function inputData($id, $nama, $alamat){
-            $query = "call testsInputProcedure(".$id.",'".$nama."','".$alamat."')";
-            
-            $result = $this->query($query);
-            
-            return $result;
-        }
-        
 	public function about(){
 		/*$query= "SELECT * FROM mitra_news_content WHERE 1  ";*/
-		$query= "SELECT * FROM mitra_news_content WHERE lid= '1' " ;
+		$query= "SELECT * FROM mitra_news_content WHERE  categoryid='3' and n_status = '1' " ;
 		$result= $this->fetch($query,1);
 		// pr($result);
 		return $result;

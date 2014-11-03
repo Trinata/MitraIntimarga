@@ -17,16 +17,18 @@
 		{if $data}
 			{foreach $data as $val } 
 			<br>
-				<img align="center"  width="212" height="66" border="0" src="{$basedomain}{$val.image}"/> 
+				<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
 			<br>
 			{/foreach}
 		{/if}
+		<br>
+		<br>
 		</td>
 		<td class="center" >
 			{if $data1}
 			{foreach $data1 as $val1 }
 			<br>			
-				<img align="center"  width="212" height="66" border="0" src="{$basedomain}{$val1.image}"/> 
+				<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val1.image}"/> 
 			<br>
 			{/foreach}
 		{/if}

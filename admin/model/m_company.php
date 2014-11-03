@@ -1,5 +1,5 @@
 <?php
-class m_produk extends Database {
+class m_company extends Database {
 	
 	var $prefix = "mitra";
 	function article_inp($data)
@@ -34,12 +34,13 @@ class m_produk extends Database {
 							n_status = {$data['n_status']}
 						WHERE
 							id = '{$data['id']}'";
-		}
-// pr($query);
+			}
 		$result = $this->query($query);
 		
 		return $result;
 	}
+	
+	
 	
 	
 	function get_article_slide()
@@ -210,9 +211,9 @@ class m_produk extends Database {
 	}
 	*/
 	
-	function produk($type=1)
+	function company($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='4' and n_status != '2'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -226,6 +227,260 @@ class m_produk extends Database {
 		
 		return $result;
 	}
+	function company_profile()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='1' " ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function company_division()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='2' and n_status !='2'" ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function company_profile_submit()
+	{
+
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+
+	
+	
+	
+	function company_division_submit($upload)
+	{
+
+		global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	// pr('baru');
+	// exit;
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		// pr('lama');
+	// exit;
+	}
+		 
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	
+	function company_organization()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='3' and n_status !='2'" ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function company_organization_submit($upload)
+	{
+
+		global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	// pr('baru');
+	// exit;
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		// pr('lama');
+	// exit;
+	}
+		 
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	function company_marketing()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='4' and n_status !='2'" ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function company_marketing_submit($upload)
+	{
+
+		global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	// pr('baru');
+	// exit;
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		// pr('lama');
+	// exit;
+	}
+		 
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	function customer_list()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='5' and n_status !='2'" ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function customer_list_submit($upload)
+	{
+
+		global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	// pr('baru');
+	// exit;
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		// pr('lama');
+	// exit;
+	}
+		 
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	
+	function customer_location()
+	{
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='6' and n_status !='2'" ;
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function customer_location_submit($upload)
+	{
+
+		global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	// pr('baru');
+	// exit;
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		// pr('lama');
+	// exit;
+	}
+		 
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	
+	
 	function geophysics_list($type=1)
 	{
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
@@ -280,12 +535,12 @@ class m_produk extends Database {
 		
 		return $result;
 	}
-	function addgeophysics($upload,$uploaddoc)
+	function addgeophysics($upload)
 	{
 	
-	 pr($_POST);
-	 pr($upload);
-	 pr($uploaddoc);
+	// pr($_POST);
+	// pr($upload);
+	
 		$query = "INSERT INTO  
 						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 												created_date,posted_date,authorid,n_status)
@@ -300,17 +555,7 @@ class m_produk extends Database {
 		
 		$result = $this->fetch($query,0);
 		
-		$getID = $this->insert_id();
-		
-		$query2 = "INSERT INTO 
-		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
-		VALUES 
-		('".$uploaddoc['full_name']."','2','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
-		pr($query2);exit;
-		$result2 = $this->fetch($query2,0);
-		
 		return $result;
-		return $result2;
 	}
 	function delete_geophysics()
 	{
@@ -386,8 +631,7 @@ class m_produk extends Database {
 	 // pr($_FILES['file_image']['name']);
 	// exit;
 	global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
+		if($_FILES['file_image']['name'] != ''){
 
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
@@ -401,16 +645,16 @@ class m_produk extends Database {
 	
 		
 	
-	}else{	
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
+		}else{	
+			$query = "UPDATE {$this->prefix}_news_content
+							SET 
+								title = '".$_POST['title']."',
+								content = '".$_POST['content']."',
+								n_status = '".$_POST['n_status']."'
+							WHERE
+								id = '".$_POST['id']."' ";
 
-	}
+		}
 		 
 		
 		$result = $this->fetch($query,0);

@@ -21,6 +21,10 @@ $CONFIG['admin']['login'] = 'login';
 
 $CONFIG['admin']['app_url'] = 'http://localhost/MitraIntimarga/';
 $CONFIG['admin']['base_url'] = 'http://localhost/MitraIntimarga/admin/';
+/*  tambahan maraoks buat link gambar */
+$CONFIG['admin']['app_file_url'] = 'http://localhost/MitraIntimarga/public_assets/';
+
+/*---------------------------------*/
 $CONFIG['admin']['root_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/admin';
 
 $CONFIG['admin']['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/public_assets/';
@@ -34,6 +38,9 @@ $CONFIG['admin']['js'] = APPPATH.'js/';
 
 $basedomain = $CONFIG['admin']['base_url'];
 $app_domain = $CONFIG['admin']['app_url'];
+/* tambahan base file */
+$app_file_domain = $CONFIG['admin']['app_file_url'];
+/*-----------------*/
 
 /* Konfigurasi DB */
 
