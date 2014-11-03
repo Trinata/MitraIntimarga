@@ -19,16 +19,18 @@ class field_training extends Controller {
 	global $basedomain;
 	global $baseheader;
         
-		$result_data = $this->models->field_training();
+		$result_data_frame_kiri = $this->models->field_training_frame_kiri();
+		$result_data_frame_kanan = $this->models->field_training_frame_kanan();
 	
 		// pr($result_data);
 		$var = array(1,2,3);
 		// pr($basedomain);
 
-		$this->view->assign('data',$result_data);
+		$this->view->assign('data_frame_kiri',$result_data_frame_kiri);
+		$this->view->assign('data_frame_kanan',$result_data_frame_kanan);
 		
 		$this->view->assign('coba','coba data smarty');
-		return $this->loadView('news_indo/field_training');
+		return $this->loadView('news_info/field_training');
 	}
 	
 }
