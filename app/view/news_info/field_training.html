@@ -1,0 +1,87 @@
+<p class="framejudul">
+LABORATORY INSTALLATION & TRAINING
+</p>
+
+<html>
+<head>
+<style>
+
+#judul{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: Times New Roman;
+  padding: 50px;
+  text-align: center; 
+}
+#foto{
+  border-bottom: 3px solid blue;
+  width: 740px;
+  height: 1150px;
+}
+#frame_kanan1{
+	height: 98%;
+	width: 47%;
+	margin:0px 5px 0px 0px;
+	float:right;
+	border: 1px solid white;	
+	text-align: center;
+	font-size: 12px;
+}
+#frame_kiri1{
+	height: 98%;
+	width: 47%;
+	margin:0px 0px 0px 5px;
+	float:left;
+	border: 1px solid white;
+	font-size: 12px;
+	text-align: center;
+}
+}
+
+</style>
+</head>
+
+<body>
+	<div id="judul">
+		Laboratory Installation & Training
+	</div>
+	<div id="foto">
+		<div id="frame_kiri1">
+			{if $data_frame_kiri}
+				{foreach $data_frame_kiri as $val } 
+					<img align="center" width="100%" height="20%" border="0" src="{$basedomain}{$val.image}"/> 
+					{$val.title}
+					<br>
+					<br>
+					<br>
+				{/foreach}
+			{/if}
+		</div>
+		<div id="frame_kanan1">
+			{if $data_frame_kanan}
+				{foreach $data_frame_kanan as $val } 
+					<img align="center" width="100%" height="20%" border="0" src="{$basedomain}{$val.image}"/> 
+					{$val.title}
+					<br>
+					<br>
+					<br>
+				{/foreach}
+			{/if}
+			<br>
+			<br>
+			<p style="text-align:right">All Document by : PT. MITRA INTIMARGA<p/>
+		</div>
+	</div>
+	
+	<tr>
+		<p class="footer1">INDONESIA Authorized Agent</p>
+		<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
+		<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
+	</tr>
+	<tr>
+		<hr>
+			<p class="center">
+				<input align="center" class="center" type="button"  value="Print">
+			</p>
+		<hr>
+	</tr>

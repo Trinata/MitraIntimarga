@@ -24,7 +24,8 @@ $CONFIG['admin']['base_url'] = 'http://localhost/MitraIntimarga/admin/';
 $CONFIG['admin']['root_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/admin';
 
 $CONFIG['admin']['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/MitraIntimarga/public_assets/';
-$CONFIG['admin']['image'] = array('image/jpeg', 'image/pjpeg','image/png');
+$CONFIG['admin']['image'] = array('image/jpeg', 'image/pjpeg','image/png','image/gif');
+$CONFIG['admin']['doc'] = array('application/pdf');
 $CONFIG['admin']['max_filesize'] = 2097152;
 
 $CONFIG['admin']['css'] = APPPATH.'css/';
@@ -38,7 +39,9 @@ $app_domain = $CONFIG['admin']['app_url'];
 
 $dbConfig[0]['host'] = 'localhost';
 $dbConfig[0]['user'] = 'root';
+
 $dbConfig[0]['pass'] = 'root123root';
+
 $dbConfig[0]['name'] = 'db_ptmitra';
 $dbConfig[0]['server'] = 'mysql';
 

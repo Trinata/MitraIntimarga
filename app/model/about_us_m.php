@@ -32,5 +32,13 @@ class about_us_m extends Database {
 		
 		// return $result;
 	}
+	public function about_content(){
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' and n_status='1' " ;
+		$result= $this->fetch($query,1);
+		// pr($result);
+		return $result;
+	
+		
+	}
 }
 ?>
