@@ -1,12 +1,5 @@
 <?php
 
-require_once(LIBS.'twitteroauth/tmhOAuth-master/tmhOAuth.php');
-
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
 
 class uploadfoto extends Controller {
 
