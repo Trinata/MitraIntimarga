@@ -17,8 +17,11 @@ $ROUTES = array(
                 'activate',
                 'register',
                 'setting',
-		'article',
+				'article',
                 'uploadfoto',
-                'getphoto'
+                'getphoto',
+				'about_us',
+				'produk',
+				'company','monthsnews','lab_training','field_training','rental'
                 );
 ?>
