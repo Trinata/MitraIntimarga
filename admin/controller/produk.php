@@ -47,32 +47,6 @@ class produk extends Controller {
 
 	}
 	
-	/*----------------edit maraoks -------------------*/
-	public function about_us_edit(){
-	
-	global $CONFIG;
-	
-	if($_POST['edit']=="Edit"){
-	
-		$this->view->assign('active','active');
-			$data = $this->models->about_us_edit($_POST);	
-			
-			
-			$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
-		
-		echo "<script>alert('Content About Us telah diedit');window.location.href='".$CONFIG['admin']['base_url']."'</script>";
-	
-	}
-	else{
-		$this->view->assign('active','active');
-
-			$data = $this->models->about_us();	
-			$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
-		return $this->loadView('about_us');
-	}
-	}
 	public function geophysics_list(){
 		
 		$this->view->assign('active','active');
@@ -127,21 +101,18 @@ class produk extends Controller {
 		return $this->loadView('produk/scientific_list');
 	}
 	public function geophysics(){
-		/*
+		global $CONFIG;	
 		$this->view->assign('active','active');
-			$data = $this->models->geophysics();	
-			$this->view->assign('data',$data);
+		
+	
+		$data = $this->models->list_geophysics();
+		$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
-		*/
+		
 		return $this->loadView('produk/geophysics');
 	}
 	public function scientific(){
-		/*
-		$this->view->assign('active','active');
-			$data = $this->models->scientific();	
-			$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
-		*/
+		
 		return $this->loadView('produk/scientific');
 	}
 	public function addScientific(){
@@ -149,6 +120,11 @@ class produk extends Controller {
 	global $CONFIG;	
 		// pr($_POST);
 		// pr($_FILES);
+		if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
 		
 		$this->view->assign('active','active');
 		
@@ -159,7 +135,138 @@ class produk extends Controller {
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
+	public function addgeophysics(){
+	global $CONFIG;	
 	
+	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		// $id=$_GET['title'];
+		 // pr($id);
+		// pr($_POST);
+		// pr($_FILES);
+		If($_POST['list_geophysic'] !=''){
+		pr("tambah");
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		// pr($upload);
+		$data = $this->models->addgeophysicschild($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+	
+		}else{
+		pr("baru");
+		
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		// pr($upload);
+		$data = $this->models->addgeophysics($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		// return $this->loadView('produk/addScientific');
+		}
+	}
+	public function aksi_geophysics(){
+		
+	global $CONFIG;	
+		// pr($_POST);
+		// pr($_FILES);
+			$this->view->assign('active','active');
+			$upload = uploadFile('file_image',null, 'image');
+			// pr($upload);
+			$data = $this->models->delete_geophysics();
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+			// return $this->loadView('produk/addScientific');	
+		
+		
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_geophysics();
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function delete_scientific(){
+		
+	global $CONFIG;	
+		// pr($_POST);
+		// pr($_FILES);
+		
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_scientific();
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function editproduk(){
+	global $CONFIG;	
+
+		$id=$_GET['id'];
+		
+		
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		 $data = $this->models->editproduk($id);
+		
+		
+		 if($data['n_status'] ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+			}
+		//pr($data);
+		$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
+	
+		 return $this->loadView('produk/editproduk');
+		
+	}
+	public function edit_produk_submit(){
+		
+	global $CONFIG;	
+	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		 //pr($_POST);
+		 pr($_FILES);
+		 // pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->edit_produk_submit($upload);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function delete_produk(){
+		
+	global $CONFIG;	
+		// pr($_POST);
+		// pr($_FILES);
+		
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_produk();
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	
 
 }

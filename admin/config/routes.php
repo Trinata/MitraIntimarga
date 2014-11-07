@@ -11,5 +11,8 @@ $ROUTES = array(
 				'article',
 				'menu',
 				'produk',
+				'news',
+				'about',
+				'company'
                 );
 ?>
