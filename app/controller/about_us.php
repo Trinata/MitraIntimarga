@@ -40,7 +40,7 @@ class about_us extends Controller {
         
 		$id=$_GET['id'];
 		pr($id);
-		$result_data = $this->models->partner($id);
+		$result_data = $this->models->tangkap($id);
 		$var = array(1,2,3);
 	
 		$this->view->assign('data',$result_data);

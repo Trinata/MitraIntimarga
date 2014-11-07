@@ -36,8 +36,8 @@
 			<p class="center">
 			{if $data1}
 				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}public_assets/{$val1.title}" download="dokumen pdf">
-					<input type="button" value="download dokumen" src="{$basedomain}public_assets/{$val1.title}" >
+				<a href="{$basedomain}{$val1.file}" download="dokumen coy">
+					<input type="button" value="download dokumen" src="{$basedomain}{$val1.file}" >
 				</a>
 				{/foreach}
 			{/if}

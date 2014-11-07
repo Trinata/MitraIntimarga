@@ -112,13 +112,6 @@ class produk extends Controller {
 		return $this->loadView('produk/geophysics');
 	}
 	public function scientific(){
-	global $CONFIG;	
-		$this->view->assign('active','active');
-		
-	
-		$data = $this->models->list_scientific();
-		$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
 		
 		return $this->loadView('produk/scientific');
 	}
@@ -132,28 +125,15 @@ class produk extends Controller {
 		} else {
 			$_POST['n_status']=0;
 		}
-		If($_POST['list_geophysic'] !=''){
-		pr("tambah");
-		$this->view->assign('active','active');
-		$upload = uploadFile('file_image',null, 'image');
-		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		// pr($upload);
-		$data = $this->models->addScientificschild($upload,$uploaddoc);
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
-	
-		}else{
 		
 		$this->view->assign('active','active');
 		
 		$upload = uploadFile('file_image',null, 'image');
-		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
-		$data = $this->models->addScientific($upload,$uploaddoc);
+		$data = $this->models->addScientific($upload);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 		// return $this->loadView('produk/addScientific');
-		}
 	}
 	public function addgeophysics(){
 	global $CONFIG;	

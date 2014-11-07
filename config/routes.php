@@ -6,19 +6,24 @@
 */
 
 $ROUTES = array(
-		'home',
-		'contact',
-		'upload',
-                'zip', 
-                'login',
-                'onebyone',
-                'browse',
-                'user',
-                'activate',
-                'register',
-                'setting',
-		'article',
-                'uploadfoto',
-                'getphoto'
+				'home',
+				'company',
+				'about_us',
+				'produk',
+				'about',
+				'partner',
+				'master_template',
+				'contact',
+				'search',
+				'specimen',
+				'tulisan',
+				'testing',
+				'news',
+				'upload',
+				'contact',
+				'monthsnews',
+				'lab_training',
+				'field_training',
+				'rental'
                 );
 ?>
