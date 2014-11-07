@@ -29,8 +29,14 @@ $(function () {
 						<h3>
 							<i class="fa fa-tasks"></i>
 							Geophysics
+								<select name='list_geophysic'>
+							<option value="">-</option>
+							{foreach $data as $var}
+								  <option value="{$var.id}">{$var.title}</option>
+							{/foreach}
+							</select> 
 						</h3>
-
+							
 					</div> <!-- /.portlet-header -->
 				
 					<div class="portlet-content">

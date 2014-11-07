@@ -31,7 +31,8 @@ class produk_m extends Database {
 	}
 	public function geophsics_file(){
 		
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid='31' and articleType='1' and n_status='1' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and 	gallerytype='1' and title !='' and files !='' " ;
+	
 		$result= $this->fetch($query,1);
 	
 		return $result;
@@ -39,9 +40,10 @@ class produk_m extends Database {
 	}
 	public function scientifics_file (){
 		
-		$query= "SELECT * FROM mitra_news_content WHERE  categoryid='31' and articleType='2' and n_status='1' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and 	gallerytype='2' and title !='' and files !='' " ;
 		$result= $this->fetch($query,1);
-		
+		pr($query);
+		pr($result);
 		return $result;
 	
 	}

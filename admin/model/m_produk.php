@@ -116,6 +116,25 @@ class m_produk extends Database {
 		return $result;
 	}
 	
+	function list_geophysics()
+	{
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($query );
+		// pr($result );
+		return $result;
+	}
+	function list_scientific()
+	{
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($query );
+		// pr($result );
+		return $result;
+	}
+	
 	function frame_inp($data){
 
 		foreach ($data[0] as $key => $val) {
@@ -258,7 +277,7 @@ class m_produk extends Database {
 		
 		return $result;
 	}
-	function addScientific($upload)
+	function addScientific($upload,$uploaddoc)
 	{
 	
 	// pr($_POST);
@@ -273,12 +292,22 @@ class m_produk extends Database {
 							,'".$upload['full_path']."','3','2','','".$_POST['postdate']."'
 							,'','".$_POST['n_status']."')";
 
-		// pr($query);
-		 // exit;
+		pr($query);
 		
 		$result = $this->fetch($query,0);
 		
+		$getID = $this->insert_id();
+		
+		$query2 = "INSERT INTO 
+		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
+		VALUES 
+		('".$uploaddoc['full_name']."','3','2','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		
+		$result2 = $this->fetch($query2,0);
+		
 		return $result;
+		return $result2;
+
 	}
 	function addgeophysics($upload,$uploaddoc)
 	{
@@ -305,12 +334,42 @@ class m_produk extends Database {
 		$query2 = "INSERT INTO 
 		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
 		VALUES 
-		('".$uploaddoc['full_name']."','2','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
-		pr($query2);exit;
+		('".$uploaddoc['full_name']."','3','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		
 		$result2 = $this->fetch($query2,0);
 		
 		return $result;
 		return $result2;
+	}
+	function addgeophysicschild($upload,$uploaddoc)
+	{
+	
+	 pr($_POST);
+	  pr($upload);
+	  pr($uploaddoc);
+		
+		$query = "INSERT INTO 
+		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
+		VALUES 
+		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','3','1','".$uploaddoc['full_path']."','".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."')";
+		
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function addScientificschild($upload,$uploaddoc)
+	{
+	
+	 pr($_POST);
+	  pr($upload);
+	  pr($uploaddoc);
+		
+		$query = "INSERT INTO 
+		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
+		VALUES 
+		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','3','2','".$uploaddoc['full_path']."','".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."')";
+		
+		$result = $this->fetch($query,0);
+		return $result;
 	}
 	function delete_geophysics()
 	{
