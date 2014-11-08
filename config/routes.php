@@ -8,17 +8,14 @@
 $ROUTES = array(
 		'home',
 		'contact',
-		'upload',
-                'zip', 
+		'about_us',
+                'produk', 
                 'login',
-                'onebyone',
-                'browse',
-                'user',
-                'activate',
-                'register',
-                'setting',
-		'article',
-                'uploadfoto',
-                'getphoto'
-                );
+                'company',
+                'news',
+                'monthsnews',
+                'lab_training',
+                'field_training',
+                'rental',
+		);
 ?>

@@ -1,4 +1,5 @@
-config/*
+config/config.php
+config/access.php
 cache/*
 public_assets/*
 dashboard/*
