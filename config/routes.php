@@ -6,25 +6,6 @@
 */
 
 $ROUTES = array(
-<<<<<<< HEAD
-		'home',
-		'contact',
-		'upload',
-                'zip', 
-                'login',
-                'onebyone',
-                'browse',
-                'user',
-                'activate',
-                'register',
-                'setting',
-				'article',
-                'uploadfoto',
-                'getphoto',
-				'about_us',
-				'produk',
-				'company','monthsnews','lab_training','field_training','rental'
-=======
 				'home',
 				'company',
 				'about_us',
@@ -44,6 +25,5 @@ $ROUTES = array(
 				'lab_training',
 				'field_training',
 				'rental'
->>>>>>> bb7a389ad548a4b91234d9ec363bc3fd827a1d14
                 );
 ?>

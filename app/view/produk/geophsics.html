@@ -1,3 +1,41 @@
+<section id="feature" class="transparent-bg">
+        <div class="container">
+           <div class="center wow fadeInDown">
+                <h2>2010 Product List</h2>
+                <p class="lead">Geophisic Division</p>
+            </div>
+
+            <div class="row">
+				<div class="col-sm-12">
+					<table class="table" border="1">
+					{if $data}
+						{foreach $data as $val } 
+							<th bgcolor="#00CC66"  colspan="2">{$val.title}</th>
+							  <tr>
+								<td height="140" width="236" >
+								<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								</td>
+								<td class="center">
+									<p>
+										{$val.content}
+									</p>
+								</td>
+							  </tr>
+						{/foreach}
+					{/if}
+					</table>
+					
+				</div>
+			
+            </div><!--/.row--> 
+
+
+
+        </div><!--/.container-->
+    </section><!--/#feature-->
+
+
+{*}
 <br>
 <p class="title1geophisic">
 	2010 product list
@@ -41,5 +79,5 @@
 			</p>
 		
 	</tr>
-
+{/*}
   
