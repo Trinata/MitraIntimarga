@@ -1,5 +1,11 @@
 <?php
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\FacebookRequestException;
+
 
 
 
@@ -42,7 +48,65 @@ class article extends Controller {
   	return $this->loadView('article/index');
   }
 
-  
+  function loginFbValid(){
+    global $CONFIG, $basedomain;
+
+    FacebookSession::setDefaultApplication($CONFIG['fb']['appId'], $CONFIG['fb']['secret']);
+
+      $helper = new FacebookRedirectLoginHelper($basedomain.'article/loginFbValid/');
+      // $session = false;
+
+        try{
+          $session = $helper->getSessionFromRedirect();
+          
+        }catch(FacebookRequestException $ex){
+
+        }catch(\Exception $ex) {
+
+        }
+
+
+        if ($session) {
+         
+          
+
+            $fbsession = new FacebookSession($session->getToken());
+            $params = $basedomain.'logout.php';
+
+            $logoutUrl = $helper->getLogoutUrl($fbsession,$params); 
+
+
+            $_SESSION['fb-logout'] = $logoutUrl;
+            // print_r($_SESSION);exit;
+            $me = (new FacebookRequest(
+                  $session, 'GET', '/me'
+                ))->execute()->getGraphObject();
+            
+            // pr($me);exit;    
+            $dataUser = array('id','email','first_name','gender','last_name','link','middle_name','name','quotes');
+            foreach ($dataUser as $value) {
+                $user[$value] = $me->getProperty($value);
+            }
+            
+            // pr($user);
+            $setLoginUser = $this->loginHelper->loginSosmed(1,$user); 
+            // pr($setLoginUser);
+
+            $getUserInfo = $this->loginHelper->getUserInfo($setLoginUser['id']);
+            
+            $this->log('welcome','login success',$getUserInfo['id']);
+
+            if ($getUserInfo['verified']>0){
+              redirect($basedomain.'uploadfoto/pilihframe');
+            }else{
+              redirect($basedomain.'home/formRegister');
+            }
+
+            exit;
+          }
+          
+        
+  }
 
 	function detail(){
 

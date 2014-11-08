@@ -28,7 +28,7 @@ class monthsnews extends Controller {
 		$this->view->assign('data',$result_data);
 		
 		$this->view->assign('coba','coba data smarty');
-		return $this->loadView('news_info/monthsnews');
+		return $this->loadView('news_indo/monthsnews');
 	}
 	
 }

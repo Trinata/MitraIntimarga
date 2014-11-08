@@ -41,54 +41,6 @@ class m_produk extends Database {
 		return $result;
 	}
 	
-	function produk($type=1)
-	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and n_status = '1' OR n_status = '0'  ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
-		
-		return $result;
-	}
-	function geophysics_list($type=1)
-	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' OR n_status = '0'  ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
-		
-		return $result;
-	}
-	function scientific_list($type=1)
-	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status = '1' OR n_status = '0'  ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
-		
-		return $result;
-	}
 	
 	function get_article_slide()
 	{
@@ -161,6 +113,16 @@ class m_produk extends Database {
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
 		
 		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function list_geophysics()
+	{
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($query );
+		// pr($result );
 		return $result;
 	}
 	
@@ -240,8 +202,10 @@ class m_produk extends Database {
 
 	}
 	/*------------------------edit maraoks ---------------*/
-	function geophysics()
+	
+	/*function geophysics()
 	{
+		
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
 		
 		$result = $this->fetch($query,0);
@@ -252,6 +216,56 @@ class m_produk extends Database {
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
 		
 		$result = $this->fetch($query,0);
+		return $result;
+	}
+	*/
+	
+	function produk($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+	function geophysics_list($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+	function scientific_list($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
 		return $result;
 	}
 	function addScientific($upload)
@@ -266,10 +280,163 @@ class m_produk extends Database {
 					VALUES
 						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."'
 
-							,'".$upload['full_path']."','3','2',','".$_POST['postdate']."'
+							,'".$upload['full_path']."','3','2','','".$_POST['postdate']."'
 							,'','".$_POST['n_status']."')";
 
-		//pr($query);
+		// pr($query);
+		 // exit;
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	function addgeophysics($upload,$uploaddoc)
+	{
+	
+	 pr($_POST);
+	 pr($upload);
+	 pr($uploaddoc);
+		$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."'
+
+							,'".$upload['full_path']."','3','1','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";
+
+		// pr($query);
+		 // exit;
+		
+		$result = $this->fetch($query,0);
+		
+		$getID = $this->insert_id();
+		
+		$query2 = "INSERT INTO 
+		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
+		VALUES 
+		('".$uploaddoc['full_name']."','2','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		pr($query2);exit;
+		$result2 = $this->fetch($query2,0);
+		
+		return $result;
+		return $result2;
+	}
+	function addgeophysicschild($upload,$uploaddoc)
+	{
+	
+	 pr($_POST);
+	  pr($upload);
+	  pr($uploaddoc);
+		
+		$query2 = "INSERT INTO 
+		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
+		VALUES 
+		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','2','1','".$uploaddoc['full_path']."',".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."'";
+		pr($query2);exit;
+		$result2 = $this->fetch($query2,0);
+		return $result2;
+	}
+	function delete_geophysics()
+	{
+	
+	// pr($_POST);
+	// pr($upload);
+	// exit;
+	$del = $_POST['ids'];
+    $idsToDelete = implode($del, ', ');
+	// pr($idsToDelete);
+		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+						
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		
+
+		// pr($query);
+		// exit;
+		
+
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	function delete_scientific()
+	{
+	// pr($_POST);
+	
+	$del = $_POST['ids'];
+    $idsToDelete = implode($del, ', ');
+	// pr($idsToDelete);
+		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		// pr($query);
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function delete_produk()
+	{
+	// pr($_POST);
+	
+	$del = $_POST['ids'];
+    $idsToDelete = implode($del, ', ');
+	// pr($idsToDelete);
+		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		// pr($query);
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function editproduk($id)
+	{
+	
+		$query = "SELECT * FROM mitra_news_content WHERE id= $id ";
+		 // pr($query);
+		$result = $this->fetch($query,0);
+		return $result;
+	}
+	
+	function edit_produk_submit($upload)
+	{
+	 // pr($_FILES['file_image']['name']);
+	// exit;
+	global $CONFIG;
+
+	if($_FILES['file_image']['name'] != ''){
+
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file = '".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+	
+		
+	
+	}else{	
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+
+	}
+		 
 		
 		$result = $this->fetch($query,0);
 		

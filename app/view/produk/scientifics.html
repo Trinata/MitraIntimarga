@@ -9,10 +9,10 @@
 <table class="table">
 	{if $data}
 		{foreach $data as $val } 
-			<th bgcolor="#FF0000"  colspan="2">{$val.brief}</th>
+			<th bgcolor="#FF0000"  colspan="2">{$val.title}</th>
 			  <tr>
 				<td height="140" width="236" >
-				<img align="center"  width="212" height="66" border="0" src="{$basedomain}{$val.image}"/> 
+				<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
 				</td>
 				<td class="center">
 					<p>

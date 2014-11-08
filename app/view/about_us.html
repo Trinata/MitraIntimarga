@@ -1,4 +1,37 @@
+<section id="recent-works">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2 align="center" >WELCOME</h2>
+                <p class="lead"> {$val1.content}</p>
+            </div>
 
+            <div class="row">
+			
+			{if $data}
+				{foreach $data as $val } 
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap" style="width:250px;height:260px;border:1px solid #b8c4e8;">
+                        <img class="img-responsive" src="{$basedomain}{$val.image}" alt="" style="position:center">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+                                <a class="preview" href="{$basedomain}about_us/partner/?id={$val.id}" rel="prettyPhoto"><i class="fa fa-eye"></i> Detail</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+			
+				{/foreach}
+			{/if} 
+                 
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#recent-works-->
+
+
+
+{*}
 <div id="frame_kanan">
 		<tr>
 			{if $data}
@@ -6,7 +39,7 @@
 							<!--{$val}  -->
 					<p align="center">
 						<a href="{$basedomain}about_us/partner/?id={$val.id}">
-							<img width="180" height="50" border="0" src="{$basedomain}{$val.image}"/>
+							<img width="180" height="50" border="0" src="{$basedomain}public_assets/{$val.image}"/>
 							</a>
 					</p>
 				{/foreach}
@@ -28,3 +61,4 @@
 				{/foreach}
 			{/if}
 </div>
+{/*}

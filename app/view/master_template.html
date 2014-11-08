@@ -1,26 +1,14 @@
-{include file="meta.html"}
+   {include file="meta.html"}
+
 	<!-- RUNNING GLOBAL VAR -->
 	<script>
 		var basedomain = "{$basedomain}";
 	</script>
 	<!-- HEADER -->
-	<div id="header">
+	
 	{include file="header.html"}
-	</div>
-	<!-- menu -->
-	<div id="menu"  align="center">
-	{include file="menu.html"}
-	</div>
-	<!-- CONTENT -->
-	<br>
-	<br>
-	<div id="content">
+	
 	
 		{$content}
 		
-	</div>
-	<!-- FOOTER -->
-    <footer id="footer">
-		{include file="footer.html"}
-	</footer>
-</html>
+	{include file="footer.html"}
