@@ -16,7 +16,6 @@ class about extends Controller {
 	}
 	public function loadmodule()
 	{
-		
 		$this->models = $this->loadModel('m_about');
 	}
 	
