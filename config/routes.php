@@ -14,5 +14,13 @@ $ROUTES = array(
 				'master_template',
 				'contact',
 				'search',
+				'news',
+				'upload',
+				'contact',
+				'monthsnews',
+				'lab_training',
+				'field_training',
+				'rental'
+
                 );
 ?>
