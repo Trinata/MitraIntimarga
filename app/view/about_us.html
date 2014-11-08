@@ -2,7 +2,12 @@
         <div class="container">
             <div class="center wow fadeInDown">
                 <h2 align="center" >WELCOME</h2>
-                <p class="lead"> {$val1.content}</p>
+				
+				{if $data1}
+				{foreach $data1 as $val1 } 
+              <p class="lead"> {$val1.content}</p>  
+			  {/foreach}
+			{/if}
             </div>
 
             <div class="row">
@@ -11,7 +16,7 @@
 				{foreach $data as $val } 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap" style="width:250px;height:260px;border:1px solid #b8c4e8;">
-                        <img class="img-responsive" src="{$basedomain}{$val.image}" alt="" style="position:center">
+                        <img class="img-responsive" src="{$basedomain}public_assets/{$val.image}" alt="" style="position:center">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme</a> </h3>
@@ -30,35 +35,3 @@
     </section><!--/#recent-works-->
 
 
-
-{*}
-<div id="frame_kanan">
-		<tr>
-			{if $data}
-				{foreach $data as $val } 
-							<!--{$val}  -->
-					<p align="center">
-						<a href="{$basedomain}about_us/partner/?id={$val.id}">
-							<img width="180" height="50" border="0" src="{$basedomain}public_assets/{$val.image}"/>
-							</a>
-					</p>
-				{/foreach}
-			{/if}
-		</tr>
-</div>
-<div id="frame_kiri">
-	<p align="center">
-		<img width="179" height="34" border="0" src="{$basedomain}assets/images/partner/ani-welcome1.gif"/>
-	</p>
-	{if $data}
-				{foreach $data1 as $val1 } 
-							<!--{$val}  -->
-					<p>
-						
-					{$val1.content}
-						
-					</p>
-				{/foreach}
-			{/if}
-</div>
-{/*}
