@@ -33,7 +33,7 @@ class home extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		// pr($var);
 		// pr($result_data);
-		return $this->loadView('about_us');
+		return $this->loadView('home');
 	}
 	public function about_us(){
 		global $basedomain;

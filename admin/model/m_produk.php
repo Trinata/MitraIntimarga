@@ -315,8 +315,8 @@ class m_produk extends Database {
 		$query2 = "INSERT INTO 
 		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
 		VALUES 
-		('".$uploaddoc['full_name']."','2','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
-		pr($query2);exit;
+		('".$uploaddoc['full_name']."','3','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		pr($query2);
 		$result2 = $this->fetch($query2,0);
 		
 		return $result;
@@ -332,8 +332,8 @@ class m_produk extends Database {
 		$query2 = "INSERT INTO 
 		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
 		VALUES 
-		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','2','1','".$uploaddoc['full_path']."',".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."'";
-		pr($query2);exit;
+		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','3','1','".$uploaddoc['full_path']."',".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."'";
+		pr($query2);
 		$result2 = $this->fetch($query2,0);
 		return $result2;
 	}

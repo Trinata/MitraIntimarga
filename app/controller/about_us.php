@@ -21,7 +21,8 @@ class about_us extends Controller {
         
 		$result_data = $this->models->about();
 		$result_data1 = $this->models->about_content();
-		// pr($result_data);
+		 //pr($result_data);
+		 // pr($result_data1);
 		$var = array(1,2,3);
 	
 		// pr($basedomain);
@@ -49,7 +50,6 @@ class about_us extends Controller {
 		// pr($result_data);
 		return $this->loadView('partner');
 	}
-	
 }
 
 ?>

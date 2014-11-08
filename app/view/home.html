@@ -1,24 +1,47 @@
-<?php defined ('MICRODATA') or exit ( 'Forbidden Access' ); ?>
+{include file="slider.html"}
+<section id="recent-works">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2 align="center" >COMPANY Profile</h2>
+                <p class="lead" align="justify"> {*}{$val1.content}{/*}
+				
+					<strong>PT. MITRA INTIMARGA</strong>  is  a well known  regional  distributor  in  </strong>INDONESIA</strong>, specializing  in <strong>SCIENTIFIC & GEOPHYSICS</strong> equipment and tools. 
+				</p>
+				 <p class="lead" align="justify">
+					As the leading provider of <strong>Scientific & Technology Equipment</strong>, our extensive customers’ coverage includes Government University and Institutes, Government Research Laboratories and Industries in Indonesia. This is achieved by leveraging our established regional sales network and our strong technical competencies to ensure that we meet the market objectives for our Principals. 
+				</p>
+				 <p class="lead" align="justify">
 
-	<br>
-		<!--<h3 class="h3">Biodiversitas{$basedomain}</h3> -->
-		<p class="title">
-			Mitra harapan kami …………..
-		</p>
-		<p>
-			 1A : “The First and The Best” Yang pertama dan Yang Terbaik artinya dapat dipercaya baik dalam hitungan “1 = Angka” maupun dengan komitmentnya “A = Huruf”.
+					Customer Service is a priority in <strong>PT. Mitra Intimarga</strong>. The  company has an extensive  <strong>Regional Network of Sales Offices</strong>  as  our  Company  Dealer. This  enables  the Company to  provide  a  high level of customer interactions to handle for <strong><i>After Sales Services</i></strong>. 
+				</p>
+				 <p class="lead" align="justify">
 
-		</p>
-		<p>
-			 Mitra terpercaya dalam Teknologi Laboratorium Produksi dan Informasi
-		</p>
-		<p>
-			 Adalah  Perusahaan  Mitra  yang  profesional,  Inti  berintegritas  tinggi,  transparan,  dengan  Marga  cerdas  dan mumpuni. (PT. MITRA INTIMARGA)
-		</p>
-		<p>
-			  Agar dapat memahami kebutuhan para Pelanggan dan dukungan Para Mitra dengan lebih baik, Mitra mestilah patner lokal sejati berkualitas Internasional.</p>
-		<p>
-			Terimakasih atas kepercayaan dan dukungan para Mitra kami…….
-		</p>
-		
+					A Dealers  around Indonesia also  a  vehicle  for  our  Principal  partners  to  gain instant  access to  the markets for our range of products. <strong><i>This  is  a  competitive  advantage  the  benefits  both  our Customers & our Principals</i></strong>. 
 
+				
+				</p>
+            </div>
+
+            <div class="row">
+			{*}
+			{if $data}
+				{foreach $data as $val } 
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap" style="width:250px;height:260px;border:1px solid #b8c4e8;">
+                        <img class="img-responsive" src="{$basedomain}{$val.image}" alt="" style="position:center">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+                                <a class="preview" href="{$basedomain}about_us/partner/?id={$val.id}" rel="prettyPhoto"><i class="fa fa-eye"></i> Detail</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+			
+				{/foreach}
+			{/if} 
+            {/*}
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#recent-works-->

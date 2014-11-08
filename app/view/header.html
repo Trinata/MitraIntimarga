@@ -7,9 +7,10 @@
             <div class="container">
                 <div class="row">
                    
-                    <div class="col-sm-6 col-xs-4">
+                    {*}<div class="col-sm-6 col-xs-4">
                         <div class="top-number"><p><i class="fa fa-phone-square"></i>  (021) 8243 4829</p></div>
                     </div>
+					
                     <div class="col-sm-6 col-xs-8">
                        <div class="social">
                             <ul class="social-share">
@@ -27,6 +28,7 @@
                            </div>
                        </div>
                     </div>
+					{/*}
                 </div>
             </div><!--/.container-->
 			<img src="{$basedomain}assets/images/header.jpg" width="100%"/>
@@ -66,15 +68,9 @@
 				<div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{$basedomain}">Home</a></li>
-                        <li><a href="{$basedomain}about_us">About Us</a></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk <i class="fa fa-angle-down"></i></a>
-							 <ul class="dropdown-menu">
-                                <li><a href="{$basedomain}produk/geophsics">Geophysics</a></li>
-                                <li><a href="{$basedomain}produk/scientifics">Scientifics</a></li>
-                            </ul>
-						</li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company & Link <i class="fa fa-angle-down"></i></a>
+                        <!--<li><a href="{$basedomain}about_us">About Us</a></li>-->
+						 <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
 								<li><a href="blog-item.html">Company Overview</a>
                                    <ul class="nav">
@@ -86,9 +82,44 @@
                                     </ul>
                                 </li>
                                 <li><a href="{$basedomain}company/customer_location">Customer Location</a></li>
-                                <li><a href="{$basedomain}company/overseas">Overseas Link</a></li>
+                                {*}<li><a href="{$basedomain}company/overseas">Overseas Link</a></li>{/*}
                             </ul>
                         </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk <i class="fa fa-angle-down"></i></a>
+							 <ul class="dropdown-menu">
+                                <li><a href="{$basedomain}produk/geophsics">Geophysics</a>
+									<ul class="nav">
+                                        <li><a href="#">GF Instruments</a></li>
+                                        <li><a href="#">PASI</a></li>
+                                        <li><a href="#">AGI</a></li>
+                                        <li><a href="#">ADI</a></li>
+                                        <li><a href="#">IDS</a></li>
+                                        <li><a href="#">SYSCOM</a></li>
+                                        <li><a href="#">REFTEK</a></li>
+                                        <li><a href="#">BARTINGTON</a></li>
+                                        <li><a href="#">TENSOR</a></li>
+                                        <li><a href="#">ALT</a></li>
+										
+									</ul>
+								</li>
+                                <li><a href="{$basedomain}produk/scientifics">Scientifics</a>
+									<ul class="nav">
+                                        <li><a href="#">ELECTRON</a></li>
+                                        <li><a href="#">BUNGARD</a></li>
+                                        <li><a href="#">FREDERIKSEN</a></li>
+                                        <li><a href="#">NEWPORT</a></li>
+                                        <li><a href="#">EDIBON</a></li>
+                                        <li><a href="#">WUEKRO</a></li>
+									</ul>
+								</li>
+                                <li><a href="#">Civil & Geotech <br/>Engineering</a>
+									<ul class="nav">
+                                        <li><a href="#">ELECTRON</a></li>
+									</ul>
+								</li>
+                            </ul>
+						</li>
+                        <li><a href="#">Brocure</a></li>
                         <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown">News & Info <i class="fa fa-angle-down"></i></a>
 							 <ul class="dropdown-menu">
                                 <li><a href="{$basedomain}monthsnews">This Mont News</a></li>
@@ -98,7 +129,7 @@
                                         <li><a href="{$basedomain}field_training">Field Training</a></li>
                                     </ul>
 								</li>
-                                <li><a href="{$basedomain}rental">Rental & Services</a></li>
+                               {*} <li><a href="{$basedomain}rental">Rental & Services</a></li>{/*}
                             </ul>
 						
 						</li>
