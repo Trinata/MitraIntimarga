@@ -112,28 +112,49 @@ class produk extends Controller {
 		return $this->loadView('produk/geophysics');
 	}
 	public function scientific(){
+		global $CONFIG;	
+		$this->view->assign('active','active');
+		
+	
+		$data = $this->models->list_scientific();
+		$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
 		
 		return $this->loadView('produk/scientific');
 	}
 	public function addScientific(){
 		
 	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
+		pr($_POST);
+		pr($_FILES);
 		if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
 			$_POST['n_status']=0;
 		}
+		If($_POST['list_geophysic'] !=''){
+		pr("tambah");
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		pr($upload);
+		pr($uploaddoc);
+		$data = $this->models->addScientificchild($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+	
+		}else{
 		
 		$this->view->assign('active','active');
 		
 		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
-		$data = $this->models->addScientific($upload);
+		$data = $this->models->addScientific($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 		// return $this->loadView('produk/addScientific');
+		}
 	}
 	public function addgeophysics(){
 	global $CONFIG;	
@@ -144,16 +165,19 @@ class produk extends Controller {
 		} else {
 			$_POST['n_status']=0;
 		}
-		// $id=$_GET['title'];
-		 // pr($id);
-		// pr($_POST);
-		// pr($_FILES);
+		$id=$_GET['title'];
+		 pr($id);
+		pr($_POST);
+		pr($_FILES);
 		If($_POST['list_geophysic'] !=''){
 		pr("tambah");
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		// pr($upload);
+		 pr($upload);
+		pr($uploaddoc);
+		exit;
+		
 		$data = $this->models->addgeophysicschild($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
@@ -164,7 +188,9 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		// pr($upload);
+		 pr($upload);
+		 pr($uploaddoc);
+		 exit;
 		$data = $this->models->addgeophysics($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";

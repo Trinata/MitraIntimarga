@@ -6,18 +6,15 @@
 */
 
 $ROUTES = array(
+
+
 				'home',
 				'company',
 				'about_us',
 				'produk',
-				'about',
-				'partner',
 				'master_template',
 				'contact',
 				'search',
-				'specimen',
-				'tulisan',
-				'testing',
 				'news',
 				'upload',
 				'contact',
@@ -25,5 +22,7 @@ $ROUTES = array(
 				'lab_training',
 				'field_training',
 				'rental'
+
                 );
+
 ?>
