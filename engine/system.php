@@ -16,7 +16,7 @@ define ('TMP', 'tmp/');
 require_once (COREPATH.'common.php');
 
 require_once LIBS.'mobile_detect/Mobile_Detect.php';
-
+/*
 $detect = new Mobile_Detect;
 $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 $scriptVersion = $detect->getScriptVersion();
@@ -30,6 +30,9 @@ if ($deviceType !='computer'){
 	define ('APPPATH', 'app/');
 	require_once (COREPATH.'loader.php');
 }
+*/
+define ('APPPATH', 'app/');
+require_once (COREPATH.'loader.php');
 
 if (is_array($CONFIG)) {
 	

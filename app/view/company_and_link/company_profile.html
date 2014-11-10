@@ -3,7 +3,7 @@
         <div class="container">
            <div class="center wow fadeInDown">
                 <h2>Company Profile</h2>
-                <p class="lead">&nbsp;</p>
+             {*}<p class="lead">&nbsp;</p>{/*}
             </div>
 
             <div class="row">
@@ -11,7 +11,7 @@
 					{if $data}
 						{foreach $data as $val } 
 							<p>
-							{$val.content}
+							{$val.content|html_entity_decode}
 							</p>	
 						{/foreach}
 					{/if}
