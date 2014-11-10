@@ -1,14 +1,24 @@
    {include file="meta.html"}
-
-	<!-- RUNNING GLOBAL VAR -->
-	<script>
-		var basedomain = "{$basedomain}";
-	</script>
-	<!-- HEADER -->
 	
-	{include file="header.html"}
-	
-	
-		{$content}
+	{if $page.page==home && $page.function==index}
 		
-	{include file="footer.html"}
+		{include file="landing.html"}
+		
+		{include file="footer.html"}
+	{else}
+	
+		<!-- RUNNING GLOBAL VAR -->
+		<script>
+			var basedomain = "{$basedomain}";
+		</script>
+		<!-- HEADER -->
+		
+			{include file="header.html"}
+		
+		
+			{$content}
+			
+		{include file="footer.html"}
+		
+	{/if}
+	
