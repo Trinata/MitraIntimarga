@@ -3,7 +3,7 @@ class company_link_m extends Database {
 
 	public function company_profile(){
 
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid='4' and articleType ='1' and n_status='1' " ;
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid='411' and articleType ='0' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		return $result;
 
