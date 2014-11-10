@@ -21,7 +21,8 @@ $ROUTES = array(
 				'monthsnews',
 				'lab_training',
 				'field_training',
-				'rental'
+				'rental',
+				'brocure'
 
                 );
 
