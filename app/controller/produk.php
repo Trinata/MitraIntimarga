@@ -29,6 +29,56 @@ class produk extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('produk/geophsics');
 	}
+
+	public function gfinstrument(){
+	global $basedomain;
+	global $baseheader;
+        
+		$result_data = $this->models->geophsics();
+		$result_data_file = $this->models->geophsics_file();
+		$var = array(1);
+		// pr($basedomain);
+
+		$this->view->assign('data',$var);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('title','GF INSTRUMENT');
+		$this->view->assign('image','gf.jpg');
+		return $this->loadView('produk/geophysic/gfinstrument');
+	}
+
+	public function pasi(){
+	global $basedomain;
+	global $baseheader;
+        
+		$result_data = $this->models->geophsics();
+		$result_data_file = $this->models->geophsics_file();
+		$var = array(1);
+		// pr($basedomain);
+
+		$this->view->assign('data',$var);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('title','PASI');
+		$this->view->assign('image','pasi.jpg');
+		return $this->loadView('produk/geophysic/pasi');
+	}
+
+	public function adi(){
+	global $basedomain;
+	global $baseheader;
+        
+		$result_data = $this->models->geophsics();
+		$result_data_file = $this->models->geophsics_file();
+		$var = array(1);
+		// pr($basedomain);
+
+		$this->view->assign('data',$var);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('title','ADI');
+		$this->view->assign('image','adi.jpg');
+		return $this->loadView('produk/geophysic/pasi');
+	}
+
+
 	public function scientifics(){
 	global $basedomain;
 	global $baseheader;
