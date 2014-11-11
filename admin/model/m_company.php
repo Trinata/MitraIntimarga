@@ -229,7 +229,7 @@ class m_company extends Database {
 	}
 	function company_profile()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='1' " ;
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='1' and n_status !='2' " ;
 		
 		$result = $this->fetch($query,0);
 		return $result;
@@ -239,6 +239,21 @@ class m_company extends Database {
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='2' and n_status !='2'" ;
 		
 		$result = $this->fetch($query,0);
+		return $result;
+	}
+	function company_profileadd_submit()
+	{	
+			$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','4','1','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";
+
+	
+		
+		$result = $this->fetch($query,0);
+		
 		return $result;
 	}
 	function company_profile_submit()
@@ -265,34 +280,62 @@ class m_company extends Database {
 
 		global $CONFIG;
 
-	if($_FILES['file_image']['name'] != ''){
+			if($_FILES['file_image']['name'] != ''){
 
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		
-	// pr('baru');
-	// exit;
-	}else{	
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
+					$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$_POST['content']."',
+									image = '".$upload['full_name']."',
+									file = '".$upload['full_path']."',
+									n_status = '".$_POST['n_status']."'
+								WHERE
+									id = '".$_POST['id']."' ";
+			
+				
+			// pr('baru');
+			// exit;
+			}else{	
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$_POST['content']."',
+									n_status = '".$_POST['n_status']."'
+								WHERE
+									id = '".$_POST['id']."' ";
+				// pr('lama');
+			// exit;
+			}
 		 
 		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	
+	function company_divisionadd_submit($upload)
+	{
+		global $CONFIG;
+		$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','2','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";
+
+					// $query = "UPDATE {$this->prefix}_news_content
+								// SET 
+									// title = '".$_POST['title']."',
+									// content = '".$_POST['content']."',
+									// image = '".$upload['full_name']."',
+									// file = '".$upload['full_path']."',
+									// n_status = '".$_POST['n_status']."'
+								// WHERE
+									// id = '".$_POST['id']."' ";
+									
+		// pr($query);
+		// exit;
+	
 		$result = $this->fetch($query,0);
 		
 		return $result;
@@ -311,35 +354,49 @@ class m_company extends Database {
 
 		global $CONFIG;
 
-	if($_FILES['file_image']['name'] != ''){
+				if($_FILES['file_image']['name'] != ''){
 
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		
-	// pr('baru');
-	// exit;
-	}else{	
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
+						$query = "UPDATE {$this->prefix}_news_content
+									SET 
+										title = '".$_POST['title']."',
+										content = '".$_POST['content']."',
+										image = '".$upload['full_name']."',
+										file = '".$upload['full_path']."',
+										n_status = '".$_POST['n_status']."'
+									WHERE
+										id = '".$_POST['id']."' ";
+				
+					
+				// pr('baru');
+				// exit;
+				}else{	
+					$query = "UPDATE {$this->prefix}_news_content
+									SET 
+										title = '".$_POST['title']."',
+										content = '".$_POST['content']."',
+										n_status = '".$_POST['n_status']."'
+									WHERE
+										id = '".$_POST['id']."' ";
+					// pr('lama');
+				// exit;
+				}
 		 
 		
 		$result = $this->fetch($query,0);
+		
+		return $result;
+	}
+	function company_organizationadd_submit($upload)
+	{
+		global $CONFIG;
+		$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','3','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";	
+		$result = $this->fetch($query,0);
+		pr($query);
 		
 		return $result;
 	}
@@ -356,34 +413,49 @@ class m_company extends Database {
 
 		global $CONFIG;
 
-	if($_FILES['file_image']['name'] != ''){
+			if($_FILES['file_image']['name'] != ''){
 
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
+					$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$_POST['content']."',
+									image = '".$upload['full_name']."',
+									file = '".$upload['full_path']."',
+									n_status = '".$_POST['n_status']."'
+								WHERE
+									id = '".$_POST['id']."' ";
+			
+				
+			// pr('baru');
+			// exit;
+			}else{	
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$_POST['content']."',
+									n_status = '".$_POST['n_status']."'
+								WHERE
+									id = '".$_POST['id']."' ";
+				// pr('lama');
+			// exit;
+			}
+				 
 		
-	// pr('baru');
-	// exit;
-	}else{	
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
+		$result = $this->fetch($query,0);
+		
+		return $result;
 	}
-		 
-		
+	function company_marketingadd_submit($upload)
+	{
+
+		global $CONFIG;
+				$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','4','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";
+							
 		$result = $this->fetch($query,0);
 		
 		return $result;
@@ -431,6 +503,20 @@ class m_company extends Database {
 		
 		$result = $this->fetch($query,0);
 		
+		return $result;
+	}
+	function customer_listadd_submit($upload)
+	{
+
+		global $CONFIG;
+			$query = "INSERT INTO  
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,authorid,n_status)
+					VALUES
+						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','5','','".$_POST['postdate']."'
+							,'','".$_POST['n_status']."')";
+				
+		$result = $this->fetch($query,0);
 		return $result;
 	}
 	
@@ -513,6 +599,7 @@ class m_company extends Database {
 		
 		return $result;
 	}
+	
 	function addScientific($upload)
 	{
 	

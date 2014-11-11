@@ -51,6 +51,8 @@ class company extends Controller {
 		$this->view->assign('active','active');
 
 			$data = $this->models->company_profile();
+			if($data){
+			//pr("isi");
 
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
@@ -58,8 +60,30 @@ class company extends Controller {
 				$data['n_status'] = '0';
 			}			
 			$this->view->assign('data',$data);
+			
 		$this->view->assign('admin',$this->admin['admin']);
+		}else{
+		//pr("kosong");
+		return $this->loadView('company/company_none');
+		}
 		return $this->loadView('company/company_profile');
+	}
+	public function company_profileadd_submit(){
+		
+	global $CONFIG;	
+		$this->view->assign('active','active');
+	pr("masuk");
+	
+	 if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		 }
+		 pr($_POST['n_status']);
+		
+		 $data = $this->models->company_profileadd_submit();
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 	}
 	
 	public function company_profile_submit(){
@@ -86,9 +110,10 @@ class company extends Controller {
 	public function company_division(){
 		
 		$this->view->assign('active','active');
+		
 
 			$data = $this->models->company_division();
-
+			if($data){
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
 			} else {
@@ -96,12 +121,16 @@ class company extends Controller {
 			}			
 			$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
+		}else{
+		//pr("kosong");
+		return $this->loadView('company/company_division_none');
+		}
 		return $this->loadView('company/company_division');
 	}
 	
 	public function company_division_submit(){
 		global $CONFIG;	
-	if(isset($_POST['n_status'])){
+		if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
 			$_POST['n_status']=0;
@@ -118,11 +147,33 @@ class company extends Controller {
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
+	
+	public function company_divisionadd_submit(){
+		global $CONFIG;	
+		if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		// pr($_POST);
+		 pr($_FILES);
+		  pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		 pr($upload);
+		$data = $this->models->company_divisionadd_submit($upload);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	public function company_organization(){
+		
 		
 		$this->view->assign('active','active');
 
 			$data = $this->models->company_organization();
+			if($data){
 
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
@@ -131,16 +182,20 @@ class company extends Controller {
 			}			
 			$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
+		}else{
+		$data = $this->models->company_organization();
+		return $this->loadView('company/company_organization_none');
+		}
 		return $this->loadView('company/company_organization');
 	}
 	
 	public function company_organization_submit(){
 		global $CONFIG;	
-	if(isset($_POST['n_status'])){
-			if($_POST['n_status']=='on') $_POST['n_status']=1;
-		} else {
-			$_POST['n_status']=0;
-		}
+		if(isset($_POST['n_status'])){
+				if($_POST['n_status']=='on') $_POST['n_status']=1;
+			} else {
+				$_POST['n_status']=0;
+			}
 		 //pr($_POST);
 		 //pr($_FILES);
 		 // pr($_FILES['file_image']['name']);
@@ -153,11 +208,30 @@ class company extends Controller {
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
+	public function company_organizationadd_submit(){
+		global $CONFIG;	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		 //pr($_POST);
+		 //pr($_FILES);
+		 // pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		$data = $this->models->company_organizationadd_submit($upload);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	public function company_marketing(){
 		
 		$this->view->assign('active','active');
 
 			$data = $this->models->company_marketing();
+			if($data){
 
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
@@ -166,10 +240,66 @@ class company extends Controller {
 			}			
 			$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
+		}else{
+		
+		return $this->loadView('company/company_marketing_none');
+		}
 		return $this->loadView('company/company_marketing');
 	}
 	
 	public function company_marketing_submit(){
+		global $CONFIG;	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->company_marketing_submit($upload);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+	
+	}
+	public function company_marketingadd_submit(){
+		global $CONFIG;	
+		if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->company_marketingadd_submit($upload);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function customer_list(){
+		
+		$this->view->assign('active','active');
+
+			$data = $this->models->customer_list();
+			if($data){
+			pr("kosong");
+
+		 if($data['n_status'] ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+			}			
+			$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
+		}else{
+		pr("kosong");
+		return $this->loadView('company/customer_list_none');
+		}
+		return $this->loadView('company/customer_list');
+	}
+	public function customer_listadd_submit(){
 		global $CONFIG;	
 	if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
@@ -183,25 +313,9 @@ class company extends Controller {
 		
 		$upload = uploadFile('file_image',null, 'image');
 		// pr($upload);
-		$data = $this->models->company_marketing_submit($upload);
-
+		$data = $this->models->customer_listadd_submit($upload);
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 		// return $this->loadView('produk/addScientific');
-	}
-	public function customer_list(){
-		
-		$this->view->assign('active','active');
-
-			$data = $this->models->customer_list();
-
-		 if($data['n_status'] ){
-				$data['n_status'] = 'checked';
-			} else {
-				$data['n_status'] = '0';
-			}			
-			$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
-		return $this->loadView('company/customer_list');
 	}
 	
 	public function customer_list_submit(){

@@ -108,13 +108,13 @@ class m_produk extends Database {
 		
 	}
 	
-	function about_us()
-	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
+	// function about_us()
+	// {
+		// $query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
 		
-		$result = $this->fetch($query,0);
-		return $result;
-	}
+		// $result = $this->fetch($query,0);
+		// return $result;
+	// }
 	
 	function list_geophysics()
 	{
