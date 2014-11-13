@@ -38,9 +38,8 @@ class home extends Controller {
 	public function home(){
 		global $basedomain;
 		global $baseheader;
-        
 		$result_data = $this->models->about();
-		 pr($result_data);
+		
 		$var = array(1,2,3);
 	
 		// pr($basedomain);

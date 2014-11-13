@@ -75,5 +75,4 @@ class about extends Controller {
 		return $this->loadView('about_us');
 	}
 }
-
 ?>
