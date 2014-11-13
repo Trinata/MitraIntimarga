@@ -22,7 +22,8 @@ $ROUTES = array(
 				'lab_training',
 				'field_training',
 				'rental',
-				'brocure'
+				'brocure',
+				'album'
 
                 );
 
