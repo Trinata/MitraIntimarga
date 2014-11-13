@@ -2,11 +2,14 @@
 class contentHelper extends Database {
 	
 	var $db_coll;
+	var $db;
+
 	function __construct()
 	{
 		global $DBCOLL,$DBAPP;
 		$this->db_coll = $DBCOLL;
-		$this->db_app = $DBAPP;
+		$this->db = new Database;
+		$this->prefix = "mitra";
 	}
 	
 	function getNews()
@@ -55,7 +58,39 @@ class contentHelper extends Database {
 		return false;
 	}
 	
-	
+	function getContent($id=false, $type=1,$cat=1, $debug=false)
+	{
+
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id} ";
+		
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"*",
+                'condition' => "categoryid= {$type} AND articleType = {$cat} AND n_status = 1 {$filter} ",
+                );
+
+		$res = $this->db->lazyQuery($sql,$debug);
+		if ($res) return $res;
+		return false;
+	}
+
+	function getRepo($id=false, $typealbum=1, $gallerytype=1, $otherid=false, $debug=false)
+	{
+
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id} ";
+		if ($otherid) $filter .= " AND otherid = {$otherid} ";
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content_repo",
+                'field'=>"*",
+                'condition' => "typealbum= {$typealbum} AND gallerytype = {$gallerytype} AND n_status = 1 {$filter} ",
+                );
+
+		$res = $this->db->lazyQuery($sql,$debug);
+		if ($res) return $res;
+		return false;
+	}
 	
 }
 ?>

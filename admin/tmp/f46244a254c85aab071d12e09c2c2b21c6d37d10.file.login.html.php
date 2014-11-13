@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-05-20 17:52:25
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-13 11:23:53
          compiled from "view/login.html" */ ?>
 <?php /*%%SmartyHeaderCode:2051838123537b25d91b1f73-43269607%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f46244a254c85aab071d12e09c2c2b21c6d37d10' => 
     array (
       0 => 'view/login.html',
-      1 => 1396516220,
+      1 => 1415196895,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_537b25d95b7ac6_69114498',
   'variables' => 
   array (
     'basedomain' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_537b25d95b7ac6_69114498',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_537b25d95b7ac6_69114498')) {function content_537b25d95b7ac6_69114498($_smarty_tpl) {?><link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
 css/Login.css" type="text/css" />
@@ -29,9 +29,9 @@ css/Login.css" type="text/css" />
 
 	
 	<div id="login">
-		<img width="200px" src="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
+		<img width="250px" src="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
 images/logos/logo-login.png" alt="Logo" />
-		<h3>Welcome to CDC Admin.</h3>
+		<h3>Administrator</h3>
 
 		<h5>Please sign in to get access.</h5>
 
@@ -60,9 +60,9 @@ login/local" class="form" method="post">
 
 	</div> <!-- /#login -->
 
-	<a href="#styledModal" data-toggle="modal" id="signup-btn" class="btn btn-lg btn-block">
+	<!--<a href="#styledModal" data-toggle="modal" id="signup-btn" class="btn btn-lg btn-block">
 		Create an Account
-	</a>
+	</a>-->
 
 
 </div> <!-- /#login-container -->
