@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-05-20 17:52:25
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-13 11:23:54
          compiled from "./view/meta.html" */ ?>
 <?php /*%%SmartyHeaderCode:1122750340537b25d95f0bb0-03260897%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c5aa3f8b03a04dea8dac5499f0588195de041ec0' => 
     array (
       0 => './view/meta.html',
-      1 => 1396504383,
+      1 => 1407515222,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_537b25d9652ce0_10523874',
   'variables' => 
   array (
     'basedomain' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_537b25d9652ce0_10523874',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_537b25d9652ce0_10523874')) {function content_537b25d9652ce0_10523874($_smarty_tpl) {?><!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -29,7 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <title>Dashboard - Admin</title>
+    <title>Admin</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="">

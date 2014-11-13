@@ -1,4 +1,5 @@
 <?php
+
 class monthsnews extends Controller {
 	var $models = FALSE;
 	var $view;
@@ -13,37 +14,47 @@ class monthsnews extends Controller {
 	}
 	public function loadmodule()
 	{
-		 $this->models = $this->loadModel('monthsnews_m');
+		$this->contentHelper = $this->loadModel('contentHelper');
+		$this->models = $this->loadModel('monthsnews_m');
 	}
-	public function index(){
-	global $basedomain;
-	global $baseheader;
-        
-		$result_data = $this->models->monthsnews();
-	
-		// pr($result_data);
-		$var = array(1,2,3);
-		// pr($basedomain);
 
+	public function index(){
+
+	
+		$result_data = $this->contentHelper->getContent($id=false, $type=5,$cat=2);
+		
+		if ($result_data){
+
+			foreach ($result_data as $key => $value) {
+
+				if ($value['posted_date']) $result_data[$key]['changeDate'] = changeDate($value['posted_date']);
+			}
+			
+		}
+
+		// pr($result_data);
 		$this->view->assign('data',$result_data);
 		
-		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('news_indo/monthsnews');
 	}
 
 	public function detailnews(){
-	global $basedomain;
-	global $baseheader;
-        
-		$result_data = $this->models->monthsnews();
 	
-		// pr($result_data);
-		$var = array(1,2,3);
-		// pr($basedomain);
 
-		$this->view->assign('data',$result_data);
+		$id = _g('id');
+		$result_data = $this->contentHelper->getContent($id=false, $type=5,$cat=2);
 		
-		$this->view->assign('coba','coba data smarty');
+		if ($result_data){
+
+			foreach ($result_data as $key => $value) {
+				
+				if ($value['posted_date']) $result_data[$key]['changeDate'] = changeDate($value['posted_date']);
+			}
+			
+		}
+		// pr($result_data);
+		$this->view->assign('data',$result_data);
+
 		return $this->loadView('news_indo/detailmonthsnews');
 	}
 	
