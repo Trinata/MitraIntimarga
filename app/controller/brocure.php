@@ -23,7 +23,7 @@ class brocure extends Controller {
 		global $baseheader;
         
 		$result_data = $this->models->brocure();
-		pr($result_data);
+		//pr($result_data);
 		// pr($result_data);
 		
 		$this->view->assign('data',$result_data);

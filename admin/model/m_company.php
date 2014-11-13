@@ -269,28 +269,22 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','2','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			} else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','2','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			}
@@ -470,43 +464,40 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 							
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-									typealbum='2',
-									gallerytype='1'
-								WHERE
-									otherid = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 							
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2',$getID)";
+			
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
-									pr($query);
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+							
 				$result = $this->fetch($query,0);
 			}
 			
@@ -634,43 +625,40 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-									typealbum='2',
-									gallerytype='1'
-								WHERE
-									otherid = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','3',$getID)";
+				
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
 				$result = $this->fetch($query,0);
 			}
 			
@@ -774,7 +762,7 @@ class m_company extends Database {
 	}
 	function company_marketingadd_submit($upload,$uploaddoc)
 	{
-				global $CONFIG;
+		global $CONFIG;
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 			//	pr("isi dua duanya");
 					$query = "INSERT INTO  
@@ -793,43 +781,40 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-									typealbum='2',
-									gallerytype='1'
-								WHERE
-									otherid = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','4',$getID)";
+				
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
-									
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
 				$result = $this->fetch($query,0);
 			}
 			
@@ -955,42 +940,39 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-									typealbum='2',
-									gallerytype='1'
-								WHERE
-									otherid = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','5',$getID)";
+			
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			}
@@ -1119,42 +1101,39 @@ class m_company extends Database {
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									image = '".$upload['full_name']."',
-									file ='".$upload['full_path']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-									typealbum='2',
-									gallerytype='1'
-								WHERE
-									otherid = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-				$query = "UPDATE {$this->prefix}_news_content
-								SET 
-									title = '".$_POST['title']."',
-									content = '".$_POST['content']."',
-									n_status = '".$_POST['n_status']."',
-									posted_date='".$_POST['postdate']."'
-								WHERE
-									id = '".$_POST['id']."' ";
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
 			}
