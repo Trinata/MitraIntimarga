@@ -14,7 +14,7 @@ class brocure extends Controller {
 	}
 	public function loadmodule()
 	{
-		 $this->models = $this->loadModel('m_about_us');
+		 $this->models = $this->loadModel('m_brocure');
 	}
 	
 	
@@ -22,17 +22,12 @@ class brocure extends Controller {
 		global $basedomain;
 		global $baseheader;
         
-		$result_data = $this->models->about();
+		$result_data = $this->models->brocure();
+		//pr($result_data);
 		// pr($result_data);
-		$var = array(1,2,3);
-	
-		// pr($basedomain);
-		 //pr($baseheader);
-		// pr($this->view);
+		
 		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		// pr($var);
-		// pr($result_data);
 		return $this->loadView('brocure/brocure');
 	}
 	

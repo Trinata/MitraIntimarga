@@ -108,17 +108,17 @@ class m_produk extends Database {
 		
 	}
 	
-	function about_us()
-	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
+	// function about_us()
+	// {
+		// $query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
 		
-		$result = $this->fetch($query,0);
-		return $result;
-	}
+		// $result = $this->fetch($query,0);
+		// return $result;
+	// }
 	
 	function list_geophysics()
 	{
-	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2' and parentid=''  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 		// pr($query );
@@ -127,7 +127,7 @@ class m_produk extends Database {
 	}
 	function list_scientific()
 	{
-	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2' and parentid=''  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 		// pr($query );
@@ -304,7 +304,7 @@ class m_produk extends Database {
 		$query2 = "INSERT INTO 
 		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
 		VALUES 
-		('".$uploaddoc['full_name']."','3','2','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		('".$_POST['title']."','3','2','".$uploaddoc['full_name']."','".$_POST['n_status']."',{$getID})";
 		// pr($query2);
 		 // exit;
 		$result2 = $this->fetch($query2,0);
@@ -337,7 +337,7 @@ class m_produk extends Database {
 		$query2 = "INSERT INTO 
 		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
 		VALUES 
-		('".$uploaddoc['full_name']."','3','1','".$uploaddoc['full_path']."','".$_POST['n_status']."',{$getID})";
+		('".$_POST['title']."','3','1','".$uploaddoc['full_name']."','".$_POST['n_status']."',{$getID})";
 		pr($query2);
 		$result2 = $this->fetch($query2,0);
 		
@@ -346,34 +346,125 @@ class m_produk extends Database {
 	}
 	function addgeophysicschild($upload,$uploaddoc)
 	{
-	
-	 pr($_POST);
-	  pr($upload);
-	  pr($uploaddoc);
-		
-		$query2 = "INSERT INTO 
-		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
-		VALUES 
-		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','3','1','".$uploaddoc['full_path']."',".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."'";
-		pr($query2);
-		$result2 = $this->fetch($query2,0);
-		return $result2;
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+				pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			pr("kosong semua");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						pr($query);			
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
 	}
 	function addscientificchild($upload,$uploaddoc)
 	{
-	
-	 pr($_POST);
-	  pr($upload);
-	  pr($uploaddoc);
-		
-		$query2 = "INSERT INTO 
-		{$this->prefix}_news_content_repo (title,titleimage,content, typealbum, gallerytype, files,filesimage, n_status, otherid) 
-		VALUES 
-		('".$uploaddoc['full_name']."','".$upload['full_name']."','".$_POST['content']."','3','2','".$uploaddoc['full_path']."','".$upload['full_path']."','".$_POST['n_status']."','".$_POST['list_geophysic']."'";
-		pr($query2);
-		exit;
-		$result2 = $this->fetch($query2,0);
-		return $result2;
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+									
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
 	}
 	function delete_geophysics()
 	{

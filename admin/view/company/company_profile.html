@@ -14,7 +14,7 @@ $(function () {
 </script>
 
 <div id="content-header">
-	<h1>Add New Article</h1>
+	<h1>Company Profile</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -28,7 +28,7 @@ $(function () {
 
 						<h3>
 							<i class="fa fa-tasks"></i>
-							Form Article
+							Form Company Profile
 						</h3>
 
 					</div> <!-- /.portlet-header -->
@@ -38,7 +38,7 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="text-input">Title</label>
-									<input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
+									<input type="text" name="title" class="form-control" value="{$data.content.title}" data-required="true"/>
 							</div>
 						</div>	
 						<!--
@@ -52,15 +52,14 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
-									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
+									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content.content}</textarea>
 							</div>
 							
 							
 									<!-- hidden -->
-									<input type="hidden" name="id" value="{$data.id}" />
+									<input type="hidden" name="id" value="{$data.content.id}" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
-									<input type="hidden" name="image" value="{$data.image}" />
-									<input type="hidden" name="image_url" value="{$data.file}" />
+				
 									<!-- hidden -->
 							
 						</div>
@@ -83,8 +82,8 @@ $(function () {
 					<div class="portlet-content">
 						<div class="form-group">
 							<label for="select-input">Postdate</label>
-							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="yyyy-dd-mm" data-date-autoclose="true">
-								<input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true">
+							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+								<input class="form-control" type="text" name="postdate" value="{$data.content.posted_date}" data-required="true">
 								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
 							
@@ -93,7 +92,7 @@ $(function () {
 						<div class="form-group">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="n_status" class="" {$data.n_status} >
+										<input type="checkbox" name="n_status" class="" {$data.content.n_status} >
 										Publish
 									</label>
 								</div>
@@ -115,7 +114,7 @@ $(function () {
 					</div> 
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
-						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://localhost/MitraIntimarga/public_assets/{$data.image}" alt="http://localhost/MitraIntimarga/public_assets/{$data.image}" /></div>
+						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://localhost/MitraIntimarga/public_assets/{$data.content.image}" alt="http://localhost/MitraIntimarga/public_assets/{$data.content.image}" /></div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 						  <div>
 							<span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>
@@ -125,6 +124,24 @@ $(function () {
 					</div>
 				</div>
 				-->
+				<div class="portlet">
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-picture-o"></i>
+							upload dokumen
+						</h3>
+
+					</div> 
+					<div class="portlet-content">
+						<div class="fileupload fileupload-new" data-provides="fileupload">
+						 <div>
+							<input type="file"  name="file_pdf" src="dsdd" />{$data.repo.files}
+							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+						  </div>
+						</div>
+					</div>
+				</div>
 				
 			</div>
 		</div>

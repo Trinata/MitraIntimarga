@@ -10,7 +10,7 @@
 					<table class="table" border="1">
 					{if $data}
 						{foreach $data as $val } 
-							<th bgcolor="#FF0000"  colspan="2">{$title}</th>
+							<th bgcolor="#FF0000"  colspan="2">{$val.title}</th>
 							  <tr>
 								<td height="140" width="236" >
 								<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
@@ -24,6 +24,18 @@
 						{/foreach}
 					{/if}
 					</table>
+					<tr>
+						<hr>
+							<p class="center">
+							{if $data1}
+								{foreach $data1 as $val1 } 
+								<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen coy">
+									<input type="button" value="download {$val1.title}.pdf" src="{$basedomain}public_assets/{$val1.files}" >
+								</a>
+								{/foreach}
+							{/if}
+							</p>
+					</tr>
 					
 				</div>
 			
@@ -60,6 +72,7 @@
 		{/foreach}
 	{/if}
   </table>
+  
   <br>
   <br>
 	<tr>
@@ -73,8 +86,8 @@
 			<p class="center">
 			{if $data1}
 				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}{$val1.file}" download="dokumen coy">
-					<input type="button" value="download dokumen" src="{$basedomain}{$val1.file}" >
+				<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen coy">
+					<input type="button" value="download dokumen" src="{$basedomain}public_assets/{$val1.files}" >
 				</a>
 				{/foreach}
 			{/if}

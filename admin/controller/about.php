@@ -74,9 +74,5 @@ class about extends Controller {
 		$this->view->assign('admin',$this->admin['admin']);
 		return $this->loadView('about_us');
 	}
-	
-	
-
 }
-
 ?>

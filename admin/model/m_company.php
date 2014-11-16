@@ -109,14 +109,6 @@ class m_company extends Database {
 		
 	}
 	
-	function about_us()
-	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
-		
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	
 	function frame_inp($data){
 
 		foreach ($data[0] as $key => $val) {
@@ -192,28 +184,9 @@ class m_company extends Database {
 		return false;
 
 	}
-	/*------------------------edit maraoks ---------------*/
-	
-	/*function geophysics()
-	{
-		
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
-		
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	function scientific()
-	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
-		
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	*/
-	
 	function company($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='4' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='2' and n_status != '2'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -229,255 +202,944 @@ class m_company extends Database {
 	}
 	function company_profile()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='1' " ;
+	
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='1' and n_status !='2' " ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
+		//pr($result);
 		return $result;
+		
+		
 	}
 	function company_division()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='2' and n_status !='2'" ;
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='2' and n_status !='2'" ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
 		return $result;
 	}
-	function company_profile_submit()
+	function company_profileadd_submit($upload,$uploaddoc)
+	{	
+		
+			if($uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','2','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','1',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','2','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			} else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','2','1','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
+	}
+	function company_profile_submit($upload,$uploaddoc)
 	{
-
+		// pr($uploaddoc);
+		// pr($upload);
+		// pr($_POST);
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+		// pr($upload['full_name']);
+		// pr("isi dua duanya");
+		// pr($_POST['id']);
 		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-
-		$result = $this->fetch($query,0);
-		
-		return $result;
-	}
-
-	
-	
-	
-	function company_division_submit($upload)
-	{
-
-		global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
 							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-	
+							
+		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
 		
-	// pr('baru');
-	// exit;
-	}else{	
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
-		 
-		
+							
 		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
 		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							pr($query);
+		$result = $this->fetch($query,0);
+		}
 		return $result;
+	}
+
+	
+	function company_division_submit($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+						
+		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+						
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+						
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+						
+		$result = $this->fetch($query,0);
+		}
+		return $result;
+		
+		
+	}
+	
+	function company_divisionadd_submit($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+							
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2',$getID)";
+			
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+							
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+							
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2',$getID)";
+			
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','2','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+							
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
+	
+		
 	}
 	
 	function company_organization()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='3' and n_status !='2'" ;
+
+	$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='3' and n_status !='2'" ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
 		return $result;
+	
+	
 	}
 	
-	function company_organization_submit($upload)
+	function company_organization_submit($upload,$uploaddoc)
 	{
-
 		global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		
-	// pr('baru');
-	// exit;
-	}else{	
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
-		 
-		
+							
 		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+						
+		$result2 = $this->fetch($query2,0);
 		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							pr($query);
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+						
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+						
+		$result = $this->fetch($query,0);
+		}
 		return $result;
+		
+	}
+	function company_organizationadd_submit($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','3',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','3',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','3','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+								
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
+
 	}
 	function company_marketing()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='4' and n_status !='2'" ;
+	$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='4' and n_status !='2'" ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
 		return $result;
+	
 	}
 	
-	function company_marketing_submit($upload)
+	function company_marketing_submit($upload,$uploaddoc)
 	{
-
 		global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		
-	// pr('baru');
-	// exit;
-	}else{	
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
-		 
-		
+							
 		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
 		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}
+		return $result;
+
+	}
+	function company_marketingadd_submit($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','4',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','4',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','4','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+						
+				$result = $this->fetch($query,0);
+			}
+			
 		return $result;
 	}
 	function customer_list()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='5' and n_status !='2'" ;
+	
+	$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='5' and n_status !='2'" ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
 		return $result;
 	}
 	
-	function customer_list_submit($upload)
+	function customer_list_submit($upload,$uploaddoc)
 	{
-
 		global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
 	
-		
-	// pr('baru');
-	// exit;
-	}else{	
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
-		 
-		
+							
 		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
 		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}
+		return $result;
+		
+	}
+	function customer_listadd_submit($upload,$uploaddoc)
+	{
+
+		global $CONFIG;
+		if($uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','5',$getID)";
+			
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','5',$getID)";
+			
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','5','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}
+			
 		return $result;
 	}
 	
 	function customer_location()
 	{
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '4' and articleType='6' and n_status !='2'" ;
+	
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='6' and n_status !='2'" ;
 		
-		$result = $this->fetch($query,0);
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
 		return $result;
+		
 	}
 	
-	function customer_location_submit($upload)
+	function customer_location_submit($upload,$uploaddoc)
 	{
-
-		global $CONFIG;
-
-	if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
 		
-	// pr('baru');
-	// exit;
-	}else{	
+			global $CONFIG;
+		
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+		
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
 							content = '".$_POST['content']."',
-							n_status = '".$_POST['n_status']."'
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		// pr('lama');
-	// exit;
-	}
-		 
-		
+							
 		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
 		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}
 		return $result;
+		
+	}
+	function customer_locationadd_submit($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+			//	pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','6',$getID)";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','6','".$_POST['postdate']."'
+								,'','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}
+			
+		return $result;
+		
 	}
 	
 	
@@ -510,154 +1172,6 @@ class m_company extends Database {
 
 			$result[$key]['username'] = $username['username'];
 		}
-		
-		return $result;
-	}
-	function addScientific($upload)
-	{
-	
-	// pr($_POST);
-	// pr($upload);
-	
-		$query = "INSERT INTO  
-						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
-												created_date,posted_date,authorid,n_status)
-					VALUES
-						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."'
-
-							,'".$upload['full_path']."','3','2','','".$_POST['postdate']."'
-							,'','".$_POST['n_status']."')";
-
-		// pr($query);
-		 // exit;
-		
-		$result = $this->fetch($query,0);
-		
-		return $result;
-	}
-	function addgeophysics($upload)
-	{
-	
-	// pr($_POST);
-	// pr($upload);
-	
-		$query = "INSERT INTO  
-						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
-												created_date,posted_date,authorid,n_status)
-					VALUES
-						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."'
-
-							,'".$upload['full_path']."','3','1','','".$_POST['postdate']."'
-							,'','".$_POST['n_status']."')";
-
-		// pr($query);
-		 // exit;
-		
-		$result = $this->fetch($query,0);
-		
-		return $result;
-	}
-	function delete_geophysics()
-	{
-	
-	// pr($_POST);
-	// pr($upload);
-	// exit;
-	$del = $_POST['ids'];
-    $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-						
-							n_status = '2'
-						WHERE
-							id in($idsToDelete)";
-		
-
-		// pr($query);
-		// exit;
-		
-
-		$result = $this->fetch($query,0);
-		
-		return $result;
-	}
-	function delete_scientific()
-	{
-	// pr($_POST);
-	
-	$del = $_POST['ids'];
-    $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							n_status = '2'
-						WHERE
-							id in($idsToDelete)";
-		// pr($query);
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	function delete_produk()
-	{
-	// pr($_POST);
-	
-	$del = $_POST['ids'];
-    $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							n_status = '2'
-						WHERE
-							id in($idsToDelete)";
-		// pr($query);
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	function editproduk($id)
-	{
-	
-		$query = "SELECT * FROM mitra_news_content WHERE id= $id ";
-		 // pr($query);
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	
-	function edit_produk_submit($upload)
-	{
-	 // pr($_FILES['file_image']['name']);
-	// exit;
-	global $CONFIG;
-		if($_FILES['file_image']['name'] != ''){
-
-			$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$_POST['content']."',
-							image = '".$upload['full_name']."',
-							file = '".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		
-	
-		}else{	
-			$query = "UPDATE {$this->prefix}_news_content
-							SET 
-								title = '".$_POST['title']."',
-								content = '".$_POST['content']."',
-								n_status = '".$_POST['n_status']."'
-							WHERE
-								id = '".$_POST['id']."' ";
-
-		}
-		 
-		
-		$result = $this->fetch($query,0);
 		
 		return $result;
 	}

@@ -68,11 +68,18 @@
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk <i class="fa fa-angle-down"></i></a>
 							 <ul class="dropdown-menu">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Geophysics   <i class="fa fa-caret-right"></i></a>
+                                <li class="dropdown"><a href="{$basedomain}produk/geophsics" class="dropdown-toggle" data-toggle="dropdown">Geophysics   <i class="fa fa-caret-right"></i></a>
 									<ul class="nav dropdown-menu">
-                                        <li><a href="{$basedomain}produk/gfinstrument">GF Instruments</a></li>
-                                        <li><a href="#">PASI</a></li>
-                                        <li><a href="#">AGI</a></li>
+										
+                                       
+											{if $data}
+												{foreach $data2 as $val2 } 
+												 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">{$val2.title}</a></li>
+							
+												{/foreach}
+											{/if}
+                                       <!-- <li><a href="#">PASI</a></li>
+										<li><a href="#">AGI</a></li>
                                         <li><a href="#">GEM</a></li>
                                         <li><a href="#">IDS</a></li>
                                         <li><a href="#">SYSCOM</a></li>
@@ -80,17 +87,27 @@
                                         <li><a href="#">BARTINGTON</a></li>
                                         <li><a href="#">TENSOR</a></li>
                                         <li><a href="#">ALT</a></li>
-										
+									
+										-->
 									</ul>
 								</li>
-                                <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown">Scientifics   <i class="fa fa-caret-right"></i></a>
+                                <li class="dropdown"><a href="{$basedomain}produk/scientifics"  class="dropdown-toggle" data-toggle="dropdown">Scientifics   <i class="fa fa-caret-right"></i></a>
 									<ul class="nav dropdown-menu">
-                                        <li><a href="#">ELECTRON</a></li>
-                                        <li><a href="#">BUNGARD</a></li>
-                                        <li><a href="#">FREDERIKSEN</a></li>
-                                        <li><a href="#">NEWPORT</a></li>
-                                        <li><a href="#">EDIBON</a></li>
-                                        <li><a href="#">WUEKRO</a></li>
+									{if $data}
+												{foreach $data3 as $val3 } 
+												 <li><a href="{$basedomain}produk/partnerscientifics/?id={$val2.id}">{$val3.title}</a></li>
+							
+												{/foreach}
+											{/if}
+									
+									
+                                        <li><a href="1">ELECTRON</a></li>
+                                        <li><a href="2">BUNGARD</a></li>
+                                        <li><a href="3">FREDERIKSEN</a></li>
+                                        <li><a href="4">NEWPORT</a></li>
+                                        <li><a href="5">EDIBON</a></li>
+                                        <li><a href="6">WUEKRO</a></li>
+									
 									</ul>
 								</li>
                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Civil & Geotech <br/>Engineering   <i class="fa fa-caret-right"></i></a>

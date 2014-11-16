@@ -7,8 +7,9 @@
 
             <div class="row">
 				<div class="col-sm-12" align="center">
-					<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/assets/images/img/struktur-organisasi.png"/>
-					{if $data}
+				<!--	<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/assets/images/img/struktur-organisasi.png"/>
+-->				
+				{if $data}
 							{foreach $data as $val } 
 							<img align="center" class="img-responsive img-blog" width="100%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}"/>
 							{/foreach}
@@ -36,18 +37,18 @@ Company Organization
 		<p class="footer1">INDONESIA Authorized Agent</p>
 		<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
 		<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
-	</tr>
+</tr>
+{/*}
 <tr>
 	<hr>
 		<p class="center">
 		{if $data1}
 			{foreach $data1 as $val1 } 
-			<a href="{$basedomain}{$val1.file}" download="dokumen">
-				<input type="button" value="download dokumen" src="{$basedomain}{$val1.file}" >
+			<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen">
+				<input type="button" value="download dokumen" src="{$basedomain}public_assets/{$val1.files}" >
 			</a>
 			{/foreach}
 		{/if}
 		</p>
 		
 </tr>
-{/*}

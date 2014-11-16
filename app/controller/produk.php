@@ -29,6 +29,32 @@ class produk extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('produk/geophsics');
 	}
+	public function partnergeophysics(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnergeophysics($id);
+		$var = array(1,2,3);
+		// pr($basedomain);
+		//pr($result_data);
+		$this->view->assign('data',$result_data);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/geophysic/partnergeophsics');
+	}
+	public function partnerscientifics(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnerscientifics($id);
+		$var = array(1,2,3);
+		// pr($basedomain);
+		//pr($result_data);
+		$this->view->assign('data',$result_data);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/geophysic/partnergeophsics');
+	}
 
 	public function gfinstrument(){
 	global $basedomain;
