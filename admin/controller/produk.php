@@ -271,8 +271,7 @@ class produk extends Controller {
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
-	public function delete_produk(){
-		
+	public function delete_produk(){	
 	global $CONFIG;	
 		// pr($_POST);
 		// pr($_FILES);
@@ -285,6 +284,21 @@ class produk extends Controller {
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
+	}
+	
+	public function civil(){	
+	global $CONFIG;	
+		// pr($_POST);
+		// pr($_FILES);
+		
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		//$data = $this->models->delete_produk();
+
+		// echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+		 return $this->loadView('produk/addScientific');
 	}
 	
 

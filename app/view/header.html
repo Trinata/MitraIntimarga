@@ -69,9 +69,7 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk <i class="fa fa-angle-down"></i></a>
 							 <ul class="dropdown-menu">
                                 <li class="dropdown"><a href="{$basedomain}produk/geophsics" class="dropdown-toggle" data-toggle="dropdown">Geophysics   <i class="fa fa-caret-right"></i></a>
-									<ul class="nav dropdown-menu">
-										
-                                       
+									<ul class="nav dropdown-menu">                 
 											{if $data}
 												{foreach $data2 as $val2 } 
 												 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">{$val2.title}</a></li>
@@ -100,13 +98,14 @@
 												{/foreach}
 											{/if}
 									
-									
+									<!--
                                         <li><a href="1">ELECTRON</a></li>
                                         <li><a href="2">BUNGARD</a></li>
                                         <li><a href="3">FREDERIKSEN</a></li>
                                         <li><a href="4">NEWPORT</a></li>
                                         <li><a href="5">EDIBON</a></li>
                                         <li><a href="6">WUEKRO</a></li>
+										-->
 									
 									</ul>
 								</li>

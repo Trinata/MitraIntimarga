@@ -13,6 +13,7 @@ $ROUTES = array(
 				'produk',
 				'news',
 				'about',
-				'company'
+				'company',
+				'brocure'
                 );
 ?>
