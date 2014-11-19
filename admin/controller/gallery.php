@@ -158,7 +158,7 @@ class gallery extends Controller {
 							$saveData = $this->marticle->updateRepo($image);
 							// pr($saveData);
 							if ($saveData){
-								echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery/gallery/listFile'</script>";
+								echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery/listFile'</script>";
 							}	
 						}
 
