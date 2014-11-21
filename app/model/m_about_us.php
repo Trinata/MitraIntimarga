@@ -2,7 +2,7 @@
 /* contoh models */
 
 class m_about_us extends Database {
-	
+	var $prefix = "mitra";
 	public function getDataDesc(){
 		$query = "SELECT * FROM tests ORDER BY ID DESC";
 		//pr($query);
@@ -47,6 +47,22 @@ class m_about_us extends Database {
 		// $result = $this->fetch($query,0);
 		
 		// return $result;
+	}
+	public function geophysics(){
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($result);
+		return $result;
+	
+		
+	}
+	public function scientifics(){
+	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($result);
+		return $result;
 	}
 }
 ?>

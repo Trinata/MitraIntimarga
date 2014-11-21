@@ -21,34 +21,28 @@ class home extends Controller {
 	public function index(){
 		global $basedomain;
 		global $baseheader;
-        
 		$result_data = $this->models->about();
-		// pr($result_data);
+		$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
 		$var = array(1,2,3);
-	
-		// pr($basedomain);
-		 //pr($baseheader);
-		// pr($this->view);
 		$this->view->assign('data',$result_data);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('coba','coba data smarty');
-		// pr($var);
-		// pr($result_data);
 		return $this->loadView('landing');
 	}
 	public function home(){
 		global $basedomain;
 		global $baseheader;
 		$result_data = $this->models->about();
-		
+		$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
 		$var = array(1,2,3);
-	
-		// pr($basedomain);
-		 //pr($baseheader);
-		// pr($this->view);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		// pr($var);
-		// pr($result_data);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+
 		return $this->loadView('home');
 	}
 	public function about_us(){
@@ -56,16 +50,14 @@ class home extends Controller {
 		global $baseheader;
         
 		$result_data = $this->models->about_us();
-		// pr($result_data);
+		$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
 		$var = array(1,2,3);
-	
-		// pr($basedomain);
-		 //pr($baseheader);
-		// pr($this->view);
+
 		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		// pr($var);
-		// pr($result_data);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
 		return $this->loadView('about_us');
 	}
 	

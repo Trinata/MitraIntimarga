@@ -19,15 +19,16 @@ class produk_m extends Database {
 		$query = "SELECT * FROM Aset ORDER BY Aset_ID ASC LIMIT 2";
 		//pr($query);
 	}
-	public function geophsics(){
+	public function geophysics(){
 		
 		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
-		 pr($result);
+		 //pr($result);
 		// exit;
 		return $result;
 	
 	}
+
 	public function geophsics_file(){
 		
 		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' " ;
@@ -56,7 +57,7 @@ class produk_m extends Database {
 	public function partnergeophysics ($id){
 		$query= "SELECT * FROM mitra_news_content WHERE id=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
-		 pr($result);
+		 //pr($result);
 		
 		return $result;
 	}

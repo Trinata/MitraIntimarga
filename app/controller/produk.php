@@ -15,11 +15,11 @@ class produk extends Controller {
 	{
 		 $this->models = $this->loadModel('produk_m');
 	}
-	public function geophsics(){
+	public function geophysics(){
 	global $basedomain;
 	global $baseheader;
         
-		$result_data = $this->models->geophsics();
+		$result_data = $this->models->geophysics();
 		$result_data_file = $this->models->geophsics_file();
 		$var = array(1,2,3);
 		// pr($basedomain);
@@ -33,7 +33,7 @@ class produk extends Controller {
 	global $basedomain;
 	global $baseheader;
         $id=$_GET['id'];
-		pr($id);
+		//pr($id);
 		$result_data = $this->models->partnergeophysics($id);
 		$var = array(1,2,3);
 		// pr($basedomain);
