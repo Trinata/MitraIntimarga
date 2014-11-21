@@ -220,7 +220,7 @@ class m_brocure extends Database {
 							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['title']."','','','".$upload['full_name']."','".$upload['full_path']."','4','1','".$_POST['postdate']."'
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$_POST['postdate']."'
 								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
@@ -290,6 +290,90 @@ class m_brocure extends Database {
 		
 		return $result;
 	}
+	function editbrocure($id)
+	{
+		//$query = "SELECT * FROM {$this->prefix}_news_content WHERE  id='$id'";
+		$query = "SELECT A.title, A.content, A.n_status, A.posted_date , A.image, B.otherid, b.title as titlerepo, b.contentimage, b.files
+		FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
+		ON A.id = B.otherid where a.id='$id' ";
+		
+		$result = $this->fetch($query,1);
+		
+		return $result;
+	}
+	function editbrocure_submit ()
+	{
+		global $CONFIG;
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+						
+		$result2 = $this->fetch($query2,0);
+		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							//pr($query);
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+						
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$_POST['postdate']."'
+						WHERE
+							id = '".$_POST['id']."' ";
+						
+		$result = $this->fetch($query,0);
+		}
+		return $result;
+	
+	}
+	
 	
 	
 	

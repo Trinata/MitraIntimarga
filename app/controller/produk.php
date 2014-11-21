@@ -33,7 +33,7 @@ class produk extends Controller {
 	global $basedomain;
 	global $baseheader;
         $id=$_GET['id'];
-		//pr($id);
+		pr($id);
 		$result_data = $this->models->partnergeophysics($id);
 		$var = array(1,2,3);
 		// pr($basedomain);
@@ -96,19 +96,16 @@ class produk extends Controller {
 		$result_data_file = $this->models->geophsics_file();
 		$var = array(1);
 		// pr($basedomain);
-
+		
 		$this->view->assign('data',$var);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('title','ADI');
 		$this->view->assign('image','adi.jpg');
 		return $this->loadView('produk/geophysic/pasi');
 	}
-
-
 	public function scientifics(){
 	global $basedomain;
-	global $baseheader;
-        
+	global $baseheader;   
 		$result_data = $this->models->scientifics();
 		$result_data_file = $this->models->scientifics_file();
 		// pr($result_data);
@@ -119,8 +116,6 @@ class produk extends Controller {
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('produk/scientifics');
-	}
-	
+	}	
 }
-
 ?>

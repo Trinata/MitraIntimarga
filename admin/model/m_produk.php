@@ -295,7 +295,7 @@ class m_produk extends Database {
 							,'".$upload['full_path']."','3','2','','".$_POST['postdate']."'
 							,'','".$_POST['n_status']."')";
 
-		pr($query);
+		//pr($query);
 		
 		
 		$result = $this->fetch($query,0);
@@ -318,19 +318,20 @@ class m_produk extends Database {
 	 pr($_POST);
 	 pr($upload);
 	 pr($uploaddoc);
+	 $content = strtr($_POST['content'], "'", "&#39;");
 		$query = "INSERT INTO  
 						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 												created_date,posted_date,authorid,n_status)
 					VALUES
-						('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."'
+						('".$_POST['title']."','','".$content."','".$upload['full_name']."'
 
 							,'".$upload['full_path']."','3','1','','".$_POST['postdate']."'
 							,'','".$_POST['n_status']."')";
 
-		// pr($query);
-		 // exit;
+		 //pr($query);
 		
 		$result = $this->fetch($query,0);
+		//pr($result);
 		
 		$getID = $this->insert_id();
 		
@@ -338,7 +339,7 @@ class m_produk extends Database {
 		{$this->prefix}_news_content_repo (title, typealbum, gallerytype, files, n_status, otherid) 
 		VALUES 
 		('".$_POST['title']."','3','1','".$uploaddoc['full_name']."','".$_POST['n_status']."',{$getID})";
-		pr($query2);
+		//pr($query2);
 		$result2 = $this->fetch($query2,0);
 		
 		return $result;
@@ -346,9 +347,12 @@ class m_produk extends Database {
 	}
 	function addgeophysicschild($upload,$uploaddoc)
 	{
+	
+	// pr($upload);
+	// pr($uploaddoc);
 		global $CONFIG;
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
-				pr("isi dua duanya");
+				//pr("isi dua duanya");
 					$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
@@ -364,7 +368,7 @@ class m_produk extends Database {
 				$result2 = $this->fetch($query2,0);
 			
 			}else if ($upload['full_name'] !='') {
-			pr("gambar aja");
+			//pr("gambar aja");
 				$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
@@ -374,7 +378,7 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
-			pr("doc aja");
+			//pr("doc aja");
 				$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
@@ -391,14 +395,14 @@ class m_produk extends Database {
 			
 			}
 			else{
-			pr("kosong semua");
+			//pr("kosong semua");
 					$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
 							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$_POST['postdate']."'
 								,'','".$_POST['n_status']."')";
-						pr($query);			
+						//pr($query);			
 				$result = $this->fetch($query,0);
 			}
 			

@@ -184,8 +184,8 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		 pr($upload);
-		 pr($uploaddoc);
+		 // pr($upload);
+		 // pr($uploaddoc);
 		$data = $this->models->addgeophysics($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
