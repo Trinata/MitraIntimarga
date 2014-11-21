@@ -23,6 +23,8 @@ class brocure extends Controller {
 		global $baseheader;
         
 		$result_data = $this->models->brocure();
+		$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
 		
 		
 		//$result_data2 = $this->models->brocure();
@@ -30,6 +32,8 @@ class brocure extends Controller {
 		// pr($result_data);
 		
 		$this->view->assign('data',$result_data);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('brocure/brocure');
 	}

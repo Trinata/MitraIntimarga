@@ -20,8 +20,14 @@ class album extends Controller {
 	public function index(){
 	
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=1);
+		//
+	//------------	tambahan maraoks----------//
+		$result_data_file3 = $this->contentHelper->geophysics();
+		$result_data_file4 = $this->contentHelper->scientifics();
 		// pr($getAlbum);
 		$this->view->assign('album',$getAlbum);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
 		return $this->loadView('album/music');
 	}
 	

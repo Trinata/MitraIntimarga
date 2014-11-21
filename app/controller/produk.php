@@ -40,7 +40,7 @@ class produk extends Controller {
 		//pr($result_data);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		return $this->loadView('produk/geophysic/partnergeophsics');
+		return $this->loadView('produk/geophysic/partnergeophysics');
 	}
 	public function partnerscientifics(){
 	global $basedomain;
@@ -53,7 +53,7 @@ class produk extends Controller {
 		//pr($result_data);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('coba','coba data smarty');
-		return $this->loadView('produk/geophysic/partnergeophsics');
+		return $this->loadView('produk/scientific/partnerscientifics');
 	}
 
 	public function gfinstrument(){
