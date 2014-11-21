@@ -60,24 +60,32 @@ class brocure extends Controller {
 		
 	
 	}
-	
-	public function company_division_submit(){
-	
-		global $CONFIG;	
-		if(isset($_POST['n_status'])){
-				if($_POST['n_status']=='on') $_POST['n_status']=1;
-			} else {
-				$_POST['n_status']=0;
-			}
+	public function editbrocure(){
+
 		$this->view->assign('active','active');
-		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		$upload = uploadFile('file_image',null, 'image');
+		$id=$_GET['id'];
+		//pr($id);
+		//exit;
+		$data = $this->models->editbrocure($id);
+			//pr($data);
+			
+			
+			 if($data['n_status'] = '1' ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+				}	
+				
+		//pr($data['n_status']);
+		//pr($data);
+		$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
+		return $this->loadView('brocure/edit_brocure');
+	
 		
-		$data = $this->models->company_division_submit($upload,$uploaddoc);
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
-
+	
 	}
+	
 	
 	public function brocure_add_submit(){
 
@@ -91,9 +99,9 @@ class brocure extends Controller {
 			 }
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
-			pr($_POST);
-			pr($upload);
-			pr($uploaddoc );
+			// pr($_POST);
+			// pr($upload);
+			// pr($uploaddoc );
 			
 
 		$data = $this->models->brocure_add_submit($upload,$uploaddoc);
