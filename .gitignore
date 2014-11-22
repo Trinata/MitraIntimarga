@@ -2,7 +2,6 @@ config/config.php
 config/access.php
 config/routes.php
 cache/*
-
 dashboard/*
 libs/*
 tmp/*
