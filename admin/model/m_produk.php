@@ -277,6 +277,23 @@ class m_produk extends Database {
 		
 		return $result;
 	}
+	function civil_list($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+	
 	function addScientific($upload,$uploaddoc)
 	{
 	

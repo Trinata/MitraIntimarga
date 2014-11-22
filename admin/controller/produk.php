@@ -74,6 +74,7 @@ class produk extends Controller {
 
 	
 	}
+	
 	public function scientific_list(){
 		
 		$this->view->assign('active','active');
@@ -100,6 +101,35 @@ class produk extends Controller {
 
 		return $this->loadView('produk/scientific_list');
 	}
+	public function civil_list(){
+		
+		$this->view->assign('active','active');
+		$data = $this->models->civil_list();
+
+		if ($data){
+			foreach ($data as $key => $val){
+
+				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
+
+				$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
+
+				if($val['n_status'] == '1') {
+					$data[$key]['n_status'] = 'Publish';
+					$data[$key]['status_color'] = 'green';
+				} else {
+					$data[$key]['n_status'] = 'Unpublish';
+					$data[$key]['status_color'] = 'red'; 
+				}
+			}
+		}
+		
+		$this->view->assign('data',$data);
+		return $this->loadView('produk/civil_list');
+
+	
+	}
+	
+	
 	public function geophysics(){
 		global $CONFIG;	
 		$this->view->assign('active','active');
@@ -298,7 +328,7 @@ class produk extends Controller {
 		//$data = $this->models->delete_produk();
 
 		// echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		 return $this->loadView('produk/addScientific');
+		 return $this->loadView('produk/civil');
 	}
 	
 
