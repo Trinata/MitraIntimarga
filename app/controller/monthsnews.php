@@ -32,7 +32,7 @@ class monthsnews extends Controller {
 			
 		}
 
-		// pr($result_data);
+		// pr($result_data);exit;
 		$this->view->assign('data',$result_data);
 		
 		return $this->loadView('news_indo/monthsnews');
@@ -42,7 +42,7 @@ class monthsnews extends Controller {
 	
 
 		$id = _g('id');
-		$result_data = $this->contentHelper->getContent($id=false, $type=5,$cat=2);
+		$result_data = $this->contentHelper->getContent($id, $type=5,$cat=2);
 		
 		if ($result_data){
 
@@ -52,7 +52,7 @@ class monthsnews extends Controller {
 			}
 			
 		}
-		// pr($result_data);
+		// pr($result_data);exit;
 		$this->view->assign('data',$result_data);
 
 		return $this->loadView('news_indo/detailmonthsnews');
