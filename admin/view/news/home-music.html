@@ -26,7 +26,7 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						Gallery List
+						Music List
 					</h3>
 
 				</div> <!-- /.portlet-header -->
@@ -35,7 +35,6 @@
 
 					<div class="table-responsive">
 
-					{if $music}
 					<form action="{$basedomain}music/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
 					<a href="{$basedomain}music/addAlbum"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Album</button></a>
@@ -43,15 +42,7 @@
 					<a href="{$basedomain}music/listFile"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>List Gallery</button></a>
 
 					<a href="{$basedomain}music/addFile"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add File</button></a>
-					{else}
-					<form action="{$basedomain}gallery/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
-					<a href="{$basedomain}gallery/addAlbum"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Album</button></a>
-
-					<a href="{$basedomain}gallery/listFile"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>List Gallery</button></a>
-
-					<a href="{$basedomain}gallery/addFile"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add File</button></a>
-					{/if}
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					
@@ -70,13 +61,11 @@
 									<th data-filterable="true" data-sortable="true" >Title</th>
 									<th data-filterable="true" data-sortable="true" >Status</th>
 									<th data-filterable="true" data-sortable="true">Created Date</th>
-									<th data-filterable="true" data-sortable="true">Preview</th>
+									<th data-filterable="true" data-sortable="true">Author</th>
 								</tr>
 							</thead>
 							<tbody>
-								{foreach $data as $hasil}
-								{if $hasil}
-								{foreach $hasil as $var}
+								{foreach $data as $var}
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
@@ -84,10 +73,8 @@
 									<td><a href="{$basedomain}gallery/addAlbum/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
 									<td>{$var.created_date}</td>
-									<td><img src="{$app_domain}public_assets/{$var.files}" width="100px"></td>
+									<td>{$var.username}</td>
 								</tr>
-								{/foreach}
-								{/if}
 								{/foreach}
 							</tbody>
 						</table>

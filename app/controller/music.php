@@ -1,7 +1,7 @@
 <?php
 
 
-class album extends Controller {
+class music extends Controller {
 	var $models = FALSE;
 	var $view;
 	
@@ -21,7 +21,7 @@ class album extends Controller {
 	
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=1);
 		//
-		pr($getAlbum);
+		// pr($getAlbum);
 		$this->view->assign('album',$getAlbum);
 		return $this->loadView('album/music');
 	}
@@ -30,15 +30,15 @@ class album extends Controller {
 		
 		$iddata = _g('id');
 
-		$getRepo = $this->contentHelper->getRepo($id=false, $album=2, $gallery=0, $otherid=$iddata);
+		$getRepo = $this->contentHelper->getRepo($id=false, $album=1, $gallery=1, $otherid=$iddata);
 		
 		//---------------tambahan maraoks-----------------//
-		$result_data_file3 = $this->contentHelper->geophysics();
-		$result_data_file4 = $this->contentHelper->scientifics();
-		pr($getRepo);
+		// $result_data_file3 = $this->contentHelper->geophysics();
+		// $result_data_file4 = $this->contentHelper->scientifics();
+		// pr($getRepo);
 		$this->view->assign('album',$getRepo);
-		$this->view->assign('data2',$result_data_file3);
-		$this->view->assign('data3',$result_data_file4);
+		// $this->view->assign('data2',$result_data_file3);
+		// $this->view->assign('data3',$result_data_file4);
 		return $this->loadView('album/music-detail');
 	}
 

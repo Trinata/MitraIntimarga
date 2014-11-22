@@ -18,7 +18,12 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
+	{if $music}
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}music/addAlbum" enctype="multipart/form-data">
+	{else}
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}gallery/addAlbum" enctype="multipart/form-data">
+	{/if}
+	
 
 		<div class="row">
 			<div class="col-md-9">
@@ -70,7 +75,11 @@ $(function () {
 									<input type="hidden" name="id" value="{$data.id}" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="categoryid" value="5" />
+									{if $music}
+									<input type="hidden" name="articletype" value="1" />
+									{else}
 									<input type="hidden" name="articletype" value="3" />
+									{/if}
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
 									<!-- hidden -->

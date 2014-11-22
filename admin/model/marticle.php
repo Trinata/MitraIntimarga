@@ -116,11 +116,13 @@ class marticle extends Database {
     	if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
     	$created_date = date('Y-m-d H:i:s');
     	if ($n_status == 'on') $n_status = 1;
+    	if ($files) $files = $files;
+    	else $files = null;
 
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content_repo",
-                'field'=>"title, brief, content, typealbum, gallerytype, created_date, otherid, n_status",
-                'value' => "'{$title}', '{$brief}', '{$content}', '{$typealbum}', '{$gallerytype}', '{$created_date}', '{$otherid}', '{$n_status}'",
+                'field'=>"title, brief, content, typealbum, gallerytype, created_date, otherid, n_status, files",
+                'value' => "'{$title}', '{$brief}', '{$content}', '{$typealbum}', '{$gallerytype}', '{$created_date}', '{$otherid}', '{$n_status}', '{$files}'",
                 );
 
 		$res = $this->lazyQuery($sql,$debug,1);

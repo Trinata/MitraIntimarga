@@ -18,8 +18,11 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
+	{if $music}
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}music/addFile" enctype="multipart/form-data">
+	{else}
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}gallery/addFile" enctype="multipart/form-data">
-
+	{/if}
 		<div class="row">
 			<div class="col-md-9">
 				<div class="portlet">
@@ -72,7 +75,11 @@ $(function () {
 									<input type="hidden" name="id" value="{$data.id}" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="typealbum" value="1" />
+									{if $music}
+									<input type="hidden" name="gallerytype" value="1" />
+									{else}
 									<input type="hidden" name="gallerytype" value="0" />
+									{/if}
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
 									<!-- hidden -->
@@ -105,12 +112,12 @@ $(function () {
 						</div>
 						
 						<div class="form-group">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="n_status" class="" {$data.n_status} >
-										Publish
-									</label>
-								</div>
+							<div class="checkbox">	
+							<label>
+								<input type="checkbox" name="n_status" class="" {$data.n_status} >
+								Publish
+							</label>
+							</div>	
 						</div>
 						
 						<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
@@ -126,6 +133,12 @@ $(function () {
 						</h3>
 
 					</div> <!-- /.portlet-header -->
+					<div class="col-md-12">
+							<div class="form-group">
+							<label for="text-input">Nama File</label>
+									<input type="text" name="files" class="form-control" value="{$data.files}" />
+							</div>
+						</div>
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{$app_domain}public_assets/{$data.image}" alt="{$data.image}" /></div>

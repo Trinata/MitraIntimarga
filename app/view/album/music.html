@@ -10,12 +10,12 @@
                 {foreach $album as $val}
                 <div class="" style="width:300px">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{$basedomain}assets/images/{$val.image}" alt="">
+                        <img class="img-responsive" src="{$basedomain}public_assets/{$val.image}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
-                                <h3><a href="{$basedomain}album/detail/?id={$val.id}">{$val.title}</a> </h3>
+                                <h3><a href="{$basedomain}music/detail/?id={$val.id}">{$val.title}</a> </h3>
                                 <p>{$val.content}</p>
-                                <a class="preview" href="{$basedomain}assets/images/{$val.image}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{$basedomain}public_assets/{$val.image}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>

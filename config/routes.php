@@ -23,7 +23,8 @@ $ROUTES = array(
 				'field_training',
 				'rental',
 				'brocure',
-				'album'
+				'album',
+				'music'
 
                 );
 
