@@ -95,9 +95,9 @@ class contentHelper extends Database {
 	public function geophysics(){
 
 		$query= "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and parentid='' and n_status != '2'  " ;
-		pr($query);
+		// pr($query);
 		$result= $this->fetch($query,1);
-			pr($result);
+			// pr($result);
 		return $result;
 
 	}
@@ -105,9 +105,9 @@ class contentHelper extends Database {
 	public function scientifics(){
 
 		$query= "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2'  and parentid='' and n_status != '2'  " ;
-		pr($query);
+		// pr($query);
 		$result= $this->fetch($query,1);
-			pr($result);
+			// pr($result);
 		return $result;
 
 	}
