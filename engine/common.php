@@ -535,7 +535,7 @@ function sendGlobalMail($to,$from,$msg,$config=true){
 		$mail->Password   = $CONFIG['email']['EMAIL_SMTP_PASSWORD'];            // GMAIL password
 		$mail->AddAddress($to);
 		$mail->SetFrom($CONFIG['email']['EMAIL_FROM_DEFAULT'], 'No Reply Account');
-		$mail->Subject = "[ NOTIFICATION ] Flora Kalbar";
+		$mail->Subject = "[ NOTIFICATION ] Pesan Kontak WebSite PT MITRA ";
 		$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
 		$mail->MsgHTML($msg);
 		$result = $mail->Send();
