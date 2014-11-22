@@ -374,6 +374,17 @@ class company extends Controller {
 	
 	
 	}
+	public function delete_company(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_company();
+
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		
+	}
 	
 
 }

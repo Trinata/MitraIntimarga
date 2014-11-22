@@ -221,42 +221,7 @@ class produk extends Controller {
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
 		}
 	}
-	public function aksi_geophysics(){
-		
-	global $CONFIG;	
-		
-			$this->view->assign('active','active');
-			$upload = uploadFile('file_image',null, 'image');
-			
-			$data = $this->models->delete_geophysics();
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
-			// return $this->loadView('produk/addScientific');	
-		
-		
-		$this->view->assign('active','active');
-		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		$data = $this->models->delete_geophysics();
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
-		// return $this->loadView('produk/addScientific');
-	}
-	public function delete_scientific(){
-		
-	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
-		
-		$this->view->assign('active','active');
-		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		$data = $this->models->delete_scientific();
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
-		// return $this->loadView('produk/addScientific');
-	}
+	
 	public function editproduk(){
 	global $CONFIG;	
 
@@ -303,16 +268,13 @@ class produk extends Controller {
 	}
 	public function delete_produk(){	
 	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
-		
 		$this->view->assign('active','active');
 		
 		$upload = uploadFile('file_image',null, 'image');
 		// pr($upload);
 		$data = $this->models->delete_produk();
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
 	

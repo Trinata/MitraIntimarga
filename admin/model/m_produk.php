@@ -489,55 +489,26 @@ class m_produk extends Database {
 	}
 	function delete_geophysics()
 	{
-	
-	// pr($_POST);
-	// pr($upload);
-	// exit;
+
 	$del = $_POST['ids'];
     $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-						
-							n_status = '2'
-						WHERE
-							id in($idsToDelete)";
-		
-
-		// pr($query);
-		// exit;
-		
-
-		$result = $this->fetch($query,0);
-		
-		return $result;
-	}
-	function delete_scientific()
-	{
-	// pr($_POST);
-	
-	$del = $_POST['ids'];
-    $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							n_status = '2'
 						WHERE
 							id in($idsToDelete)";
-		// pr($query);
+
 		$result = $this->fetch($query,0);
+		
 		return $result;
 	}
+	
 	function delete_produk()
 	{
-	// pr($_POST);
+
 	
 	$del = $_POST['ids'];
     $idsToDelete = implode($del, ', ');
-	// pr($idsToDelete);
-		// $query = "DELETE FROM mitra_news_content WHERE id in($idsToDelete) ";
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							n_status = '2'

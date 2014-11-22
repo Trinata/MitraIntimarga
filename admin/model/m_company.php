@@ -1175,6 +1175,17 @@ class m_company extends Database {
 		
 		return $result;
 	}
+	function delete_company(){
+		$del = $_POST['ids'];
+		$idsToDelete = implode($del, ', ');
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		$result = $this->fetch($query,0);
+		return $result;
+	}
 	
 	
 }

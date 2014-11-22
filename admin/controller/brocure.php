@@ -108,83 +108,20 @@ class brocure extends Controller {
 			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 		
 	}
-	
-	
-	
-	/////////////////////// mara
-	
-	public function delete_scientific(){
-		
+
+	public function delete_brocure(){	
 	global $CONFIG;	
-		// pr($_POST);
+		 pr($_POST);
 		// pr($_FILES);
 		
 		$this->view->assign('active','active');
 		
 		$upload = uploadFile('file_image',null, 'image');
 		// pr($upload);
-		$data = $this->models->delete_scientific();
+		$data = $this->models->delete_brocure();
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
-		// return $this->loadView('produk/addScientific');
-	}
-	public function editproduk(){
-	global $CONFIG;	
-
-		$id=$_GET['id'];
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		
-		
-		$this->view->assign('active','active');
-		$upload = uploadFile('file_image',null, 'image');
-		 $data = $this->models->editproduk($id);
-		
-		
-		 if($data['n_status'] ){
-				$data['n_status'] = 'checked';
-			} else {
-				$data['n_status'] = '0';
-			}
-		//pr($data);
-		$this->view->assign('data',$data);
-		$this->view->assign('admin',$this->admin['admin']);
-	
-		 return $this->loadView('produk/editproduk');
-		
-	}
-	public function edit_produk_submit(){
-		
-	global $CONFIG;	
-	
-	if(isset($_POST['n_status'])){
-			if($_POST['n_status']=='on') $_POST['n_status']=1;
-		} else {
-			$_POST['n_status']=0;
-		}
-		 //pr($_POST);
-		 // pr($_FILES);
-		 // pr($_FILES['file_image']['name']);
-		$this->view->assign('active','active');
-		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		$data = $this->models->edit_produk_submit($upload);
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		// return $this->loadView('produk/addScientific');
-	}
-	public function delete_produk(){	
-	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
-		
-		$this->view->assign('active','active');
-		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		$data = $this->models->delete_produk();
-
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		// return $this->loadView('produk/addScientific');
 	}
 	
 	public function civil(){	

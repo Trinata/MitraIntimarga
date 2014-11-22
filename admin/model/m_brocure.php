@@ -108,32 +108,6 @@ class m_brocure extends Database {
 		
 	}
 	
-	// function about_us()
-	// {
-		// $query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='0' " ;
-		
-		// $result = $this->fetch($query,0);
-		// return $result;
-	// }
-	
-	function list_geophysics()
-	{
-	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2' and parentid=''  ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-		// pr($query );
-		// pr($result );
-		return $result;
-	}
-	function list_scientific()
-	{
-	$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2' and parentid=''  ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-		// pr($query );
-		// pr($result );
-		return $result;
-	}
 	
 	function frame_inp($data){
 
@@ -372,6 +346,17 @@ class m_brocure extends Database {
 		}
 		return $result;
 	
+	}
+	function delete_brocure(){
+		$del = $_POST['ids'];
+		$idsToDelete = implode($del, ', ');
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		$result = $this->fetch($query,0);
+		return $result;
 	}
 	
 	

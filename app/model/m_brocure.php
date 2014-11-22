@@ -8,9 +8,9 @@ class m_brocure extends Database {
 FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
 ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
 */
-		$query = " SELECT A.title, A.content, A.image, B.otherid, b.title as titlerepo, b.contentimage, b.files
+		$query = " SELECT A.title, A.content, A.image,A.n_status, B.otherid, B.title as titlerepo, B.contentimage, B.files
 		FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
-		ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
+		ON A.id = B.otherid and B.typealbum='4' and B.gallerytype='1' and A.n_status !='2'";
 		
 		$result= $this->fetch($query,1);
 		//pr($result);
