@@ -16,7 +16,7 @@ class contact_m extends Database {
 
 	public function insert_contact(){
 
-		pr($_POST);
+		// pr($_POST);
 		$create_date=date("Y-m-d H:i:s");
 		$query = "INSERT INTO  
 						mitra_contact (nama, alamat, kota, institusi, telp, fax, email, subjek, komentar, create_date, n_status)
@@ -25,7 +25,7 @@ class contact_m extends Database {
 		// pr($query);
 		$result = $this->query($query);
 		
-		// return $result;
+		return $result;
 
 	}
 }
