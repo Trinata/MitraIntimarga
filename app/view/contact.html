@@ -1,3 +1,16 @@
+<script>
+$().ready(function(){
+    $("form#my_form submit").click(function(){
+        $.post("{$basedomain}contact/proses_pesan",
+            $("form#my_form").serialize(),
+            function(json){
+                /*your success code*/
+                alert('suscces');
+            }, "json");
+        return false;
+    });
+}
+</script>
 <section id="contact-info">
         <div class="center">                
             <h2>How to Reach Us?</h2>
@@ -45,8 +58,12 @@
                 <p class="lead">Tell us about you </p>
             </div> 
             <div class="row contact-wrap"> 
+
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+
+               
+                <form id="my_form" class="contact-form"  method="post" action="{$basedomain}contact/proses_pesan">
+                 
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
                             <label>FULL NAME :</label>

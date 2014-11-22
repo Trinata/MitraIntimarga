@@ -28,6 +28,23 @@ class contact extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('contact');
 	}
+	public function proses_pesan(){
+		global $basedomain;
+		global $baseheader;
+        
+		$create_date=date("Y-m-d H:i:s");
+	
+		
+		$result_data = $this->models->insert_contact();
+
+
+		 echo "<script>alert('Pesan Berhasil Dikirim');window.location.href='".$basedomain."contact'</script>";
+		
+		// $this->view->assign('data',$result_data);
+		// $this->view->assign('coba','coba data smarty');
+		// return $this->loadView('contact');
+
+	}
 	
 }
 
