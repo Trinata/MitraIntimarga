@@ -201,7 +201,47 @@ class produk extends Controller {
 		// pr($_POST);
 		// pr($_FILES);
 		If($_POST['list_geophysic'] !=''){
-		// pr("tambah");
+		pr($_POST['list_geophysic']);
+		
+		 pr("tambah");
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+
+		$data = $this->models->addgeophysicschild($upload,$uploaddoc);
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+	
+		}else{
+		
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		 // pr($upload);
+		 // pr($uploaddoc);
+		$data = $this->models->addgeophysics($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		}
+	}
+	
+	public function addcivil(){
+	global $CONFIG;	
+		pr($_POST);
+		pr($_FILES);
+	exit;
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		// $id=$_GET['title'];
+		 // pr($id);
+		// pr($_POST);
+		// pr($_FILES);
+		If($_POST['list_geophysic'] !=''){
+		pr($_POST['list_geophysic']);
+		
+		 pr("tambah");
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');

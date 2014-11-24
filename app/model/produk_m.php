@@ -28,6 +28,20 @@ class produk_m extends Database {
 		return $result;
 	
 	}
+	////
+	/*
+	
+	public function geophysics(){
+		
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
+		$result= $this->fetch($query,1);
+		 //pr($result);
+		// exit;
+		return $result;
+	
+	}
+	*/
+	
 
 	public function geophsics_file(){
 		
@@ -55,14 +69,14 @@ class produk_m extends Database {
 	
 	}
 	public function partnergeophysics ($id){
-		$query= "SELECT * FROM mitra_news_content WHERE id=$id  and n_status='1'" ;
+		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		 //pr($result);
 		
 		return $result;
 	}
 	public function partnerscientifics ($id){
-		$query= "SELECT * FROM mitra_news_content WHERE id=$id  and n_status='1'" ;
+		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		
 		return $result;
