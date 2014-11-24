@@ -68,6 +68,14 @@ class produk_m extends Database {
 		return $result;
 	
 	}
+	public function civil (){
+		
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid='3' and articleType='3' and n_status='1' " ;
+		$result= $this->fetch($query,1);
+		 //pr($result);
+		return $result;
+	
+	}
 	public function partnergeophysics ($id){
 		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
@@ -80,6 +88,32 @@ class produk_m extends Database {
 		$result= $this->fetch($query,1);
 		
 		return $result;
+	}
+	public function partnercivil ($id){
+		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
+		$result= $this->fetch($query,1);
+		 //pr($result);
+		
+		return $result;
+	}
+	
+	public function geophysicsa(){
+		$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='10' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($result);
+		return $result;
+	
+		
+	}
+	public function scientificsa(){
+	$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='20' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+		// pr($result);
+		return $result;
+	
+		
 	}
 	
 }

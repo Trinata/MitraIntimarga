@@ -62,6 +62,8 @@ class album extends Controller {
 		//------------	tambahan maraoks----------//
 		$result_data_file3 = $this->contentHelper->geophysics();
 		$result_data_file4 = $this->contentHelper->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		$getRepo = $this->contentHelper->getRepo($id=false, $album=1, $gallery=0, $otherid=$iddata);
 		// pr($getRepo);
 		$this->view->assign('album',$getRepo);

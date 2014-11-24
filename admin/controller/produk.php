@@ -171,7 +171,7 @@ class produk extends Controller {
 		// pr($uploaddoc);
 		$data = $this->models->addScientificchild($upload,$uploaddoc);
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 	
 		}else{
 		
@@ -228,7 +228,6 @@ class produk extends Controller {
 	global $CONFIG;	
 		pr($_POST);
 		pr($_FILES);
-	exit;
 	if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
@@ -238,16 +237,16 @@ class produk extends Controller {
 		 // pr($id);
 		// pr($_POST);
 		// pr($_FILES);
-		If($_POST['list_geophysic'] !=''){
-		pr($_POST['list_geophysic']);
+		If($_POST['list_civil'] !=''){
+		pr($_POST['list_civil']);
 		
 		 pr("tambah");
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 
-		$data = $this->models->addgeophysicschild($upload,$uploaddoc);
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		$data = $this->models->addcivilchild($upload,$uploaddoc);
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/civil_list'</script>";
 	
 		}else{
 		
@@ -256,9 +255,9 @@ class produk extends Controller {
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		 // pr($upload);
 		 // pr($uploaddoc);
-		$data = $this->models->addgeophysics($upload,$uploaddoc);
+		$data = $this->models->addcivil($upload,$uploaddoc);
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/civil_list'</script>";
 		}
 	}
 	
@@ -320,17 +319,13 @@ class produk extends Controller {
 	
 	public function civil(){	
 	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
-		
 		$this->view->assign('active','active');
+		$data = $this->models->list_civil();
+		$this->view->assign('data',$data);
+		$this->view->assign('admin',$this->admin['admin']);
 		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		//$data = $this->models->delete_produk();
-
-		// echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		 return $this->loadView('produk/civil');
+		return $this->loadView('produk/civil');
+		 ///////////
 	}
 	
 

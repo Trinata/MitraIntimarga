@@ -121,6 +121,15 @@ class company_link_m extends Database {
 		return $result;
 
 	}
+	public function civil(){
+
+		$query= "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='3'  and parentid='' and n_status != '2'  " ;
+		//pr($query);
+		$result= $this->fetch($query,1);
+			//pr($result);
+		return $result;
+
+	}
 
 
 }

@@ -22,6 +22,8 @@ class company extends Controller {
 		$result_data_file = $this->models->company_profile_file();
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		// pr($result_data);
 		$var = array(1,2,3);
 		$this->view->assign('data',$result_data);
@@ -41,6 +43,8 @@ class company extends Controller {
 		$result_data_file = $this->models->company_division_file();
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		//pr($result_data_file3['0']['id']);
 		//pr($result_data_file4['0']['id']);
 		$this->view->assign('data',$result_data);
@@ -59,6 +63,8 @@ class company extends Controller {
 		$result_data_file = $this->models->company_organization_file();
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
@@ -75,6 +81,8 @@ class company extends Controller {
 		$this->view->assign('data',$result_data);
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		$this->view->assign('coba','coba data smarty');
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
@@ -88,6 +96,8 @@ class company extends Controller {
 		$result_data_file = $this->models->company_customerlist_file();
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
@@ -103,9 +113,12 @@ class company extends Controller {
 		$result_data = $this->models->customer_location();
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		$this->view->assign('data4',$result_data_file5);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
+		
 	
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('company_and_link/customer_location');
