@@ -272,7 +272,8 @@ class m_brocure extends Database {
 		ON A.id = B.otherid where a.id='$id' ";
 		
 		$result = $this->fetch($query,1);
-		
+		pr($result );
+		exit;
 		return $result;
 	}
 	function editbrocure_submit ()

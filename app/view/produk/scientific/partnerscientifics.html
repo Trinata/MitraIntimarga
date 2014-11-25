@@ -66,18 +66,19 @@
 		<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
 		<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
 	</tr>
+	{/*}
 	<tr>
 		<hr>
 			<p class="center">
 			{if $data1}
 				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}{$val1.file}" download="dokumen coy">
-					<input type="button" value="download dokumen" src="{$basedomain}{$val1.file}" >
+				<a href="{$basedomain}{$val1.files}" download="dokumen coy">
+					<input type="button" value="Download {$val1.title}.pdf" src="{$basedomain}{$val1.files}" >
 				</a>
 				{/foreach}
 			{/if}
 			</p>
 		
 	</tr>
-{/*}
+
   

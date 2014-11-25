@@ -64,8 +64,8 @@ class brocure extends Controller {
 
 		$this->view->assign('active','active');
 		$id=$_GET['id'];
-		//pr($id);
-		//exit;
+		// pr($id);
+		// exit;
 		$data = $this->models->editbrocure($id);
 			//pr($data);
 			
@@ -105,7 +105,7 @@ class brocure extends Controller {
 			
 
 		$data = $this->models->brocure_add_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."brocure'</script>";
 		
 	}
 

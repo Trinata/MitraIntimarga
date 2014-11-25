@@ -52,11 +52,26 @@ class produk_m extends Database {
 		return $result;
 	
 	}
-	public function scientifics_file (){
+	public function geophsicschild_file($id){
+		
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$id'" ;
+		$result= $this->fetch($query,1);
+	
+		return $result;
+	
+	}
+	public function scientifics_file ($id){
 		
 		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' " ;
 		$result= $this->fetch($query,1);
 		
+		return $result;
+	
+	}
+	public function scientificschild_file ($id){
+		
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$id' " ;
+		$result= $this->fetch($query,1);
 		return $result;
 	
 	}
@@ -73,6 +88,21 @@ class produk_m extends Database {
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid='3' and articleType='3' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		 //pr($result);
+		return $result;
+	
+	}
+	public function civilchild_file($id){
+		
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$id' " ;
+		$result= $this->fetch($query,1);
+		return $result;
+	
+	}
+	public function civil_file (){
+		
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' " ;
+		$result= $this->fetch($query,1);
+		
 		return $result;
 	
 	}
