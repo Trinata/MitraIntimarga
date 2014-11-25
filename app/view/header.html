@@ -73,7 +73,20 @@
 											 <li><a href="{$basedomain}produk/geophysics">All Geophysics</a></li>
 											{if $data2}
 												{foreach $data2 as $val2 } 
-												 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">{$val2.title}</a></li>
+                                                 {$title=explode(" ",$val2.title)}
+                                                 {$jml_kata=count($title)}
+                                                 {$i=1}
+												 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">
+                                                    {foreach $title as $valu}
+                                                        {if $i%2==0}
+                                                            {$valu}<br/>
+                                                        {else}
+                                                            {$valu}
+                                                        {/if}
+                                                        {$i=$i+1}
+                                                    {/foreach}
+
+                                                 </a></li>
 							
 												{/foreach}
 											{/if}
