@@ -59,6 +59,17 @@ class home extends Controller {
 
 		return $this->loadView('listFrame');
 	}
+	public function delete_home(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_home();
+
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	
 	function ajax()
 	{

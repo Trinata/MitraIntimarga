@@ -45,7 +45,7 @@ class produk_m extends Database {
 
 	public function geophsics_file(){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		//pr($result);
 	
@@ -54,15 +54,15 @@ class produk_m extends Database {
 	}
 	public function geophsicschild_file($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$id'" ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$id'  and n_status='1'" ;
 		$result= $this->fetch($query,1);
 	
 		return $result;
 	
 	}
-	public function scientifics_file ($id){
+	public function scientifics_file (){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		
 		return $result;
@@ -70,7 +70,7 @@ class produk_m extends Database {
 	}
 	public function scientificschild_file ($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$id' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$id' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		return $result;
 	
@@ -93,14 +93,14 @@ class produk_m extends Database {
 	}
 	public function civilchild_file($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$id' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$id' and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		return $result;
 	
 	}
 	public function civil_file (){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		
 		return $result;

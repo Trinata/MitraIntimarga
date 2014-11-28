@@ -255,10 +255,9 @@ class m_produk extends Database {
 	}
 	function geophysics_list($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='1' or articleType='11' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and (articleType='1' or articleType='11') and n_status != '2'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
-
 		foreach ($result as $key => $value) {
 			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
 
@@ -271,7 +270,7 @@ class m_produk extends Database {
 	}
 	function scientific_list($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='2' or articleType='21' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and (articleType='2' or articleType='21') and n_status != '2'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -287,7 +286,7 @@ class m_produk extends Database {
 	}
 	function civil_list($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and articleType='3' or articleType='31' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='3' and (articleType='3' or articleType='31') and n_status != '2'  ORDER BY created_date DESC";
 	
 		$result = $this->fetch($query,1);
 
@@ -423,8 +422,8 @@ class m_produk extends Database {
 				
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 
@@ -442,7 +441,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-			pr($_POST['list_geophysic']);
+			//pr($_POST['list_geophysic']);
 
 				$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
@@ -453,8 +452,8 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -490,8 +489,8 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -518,8 +517,8 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -557,8 +556,8 @@ class m_produk extends Database {
 				
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -583,8 +582,8 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -630,6 +629,14 @@ class m_produk extends Database {
 							n_status = '2'
 						WHERE
 							id in($idsToDelete)";
+		// pr($query);
+		$result = $this->fetch($query,0);
+		$del = $_POST['ids'];
+		$query = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							n_status = '2'
+						WHERE
+							otherid in($idsToDelete)";
 		// pr($query);
 		$result = $this->fetch($query,0);
 		return $result;

@@ -103,7 +103,8 @@ class produk extends Controller {
 	public function scientifics(){
 	global $basedomain;
 	global $baseheader;   
-	 $id=$_GET['id'];
+	 //$id=$_GET['id'];
+	// pr($id);
 		$result_data = $this->models->scientifics();
 		$result_data_file = $this->models->scientifics_file();
 		$result_data_file3 = $this->models->geophysicsa();
