@@ -16,12 +16,13 @@ class album extends Controller {
 	public function loadmodule()
 	{
 		 $this->contentHelper = $this->loadModel('contentHelper');
+		 $this->models = $this->loadModel('m_brocure');
 	}
 	public function index(){
 	
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=1);
 		//
-		pr($getAlbum);
+		// pr($getAlbum);
 		$this->view->assign('album',$getAlbum);
 		return $this->loadView('album/music');
 	}
@@ -35,7 +36,7 @@ class album extends Controller {
 		//---------------tambahan maraoks-----------------//
 		$result_data_file3 = $this->contentHelper->geophysics();
 		$result_data_file4 = $this->contentHelper->scientifics();
-		pr($getRepo);
+		// pr($getRepo);
 		$this->view->assign('album',$getRepo);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
