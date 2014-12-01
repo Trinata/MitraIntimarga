@@ -627,7 +627,7 @@ input.search-form:hover {
   height: 100%;
   opacity: 0;
   border-radius: 0;
-  background: #2A01FF;
+ /* background: #2A01FF;*/
   color: #fff;
   vertical-align: middle;
   -webkit-transition: opacity 500ms;
@@ -1931,7 +1931,7 @@ ul.social_icons li  a i{
 .form-group label {
   color: #4E4E4E;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: bold;
 }
 
 .form-group .form-control {
