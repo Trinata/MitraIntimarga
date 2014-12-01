@@ -269,7 +269,7 @@ class produk extends Controller {
 		
 		
 		$this->view->assign('active','active');
-	
+		
 		 $data = $this->models->editproduk($id);
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
@@ -302,7 +302,7 @@ class produk extends Controller {
 		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		// return $this->loadView('produk/addScientific');
+		
 	}
 	public function delete_produk(){	
 	global $CONFIG;	
