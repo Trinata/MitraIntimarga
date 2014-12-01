@@ -115,6 +115,7 @@ class produk_m extends Database {
 	}
 	public function partnerscientifics ($id){
 		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
+		
 		$result= $this->fetch($query,1);
 		
 		return $result;
@@ -122,22 +123,19 @@ class produk_m extends Database {
 	public function partnercivil ($id){
 		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
-		 //pr($result);
-		
+		 //pr($result);	
 		return $result;
 	}
-	
 	public function geophysicsa(){
-		$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='10' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status != '2'  ORDER BY created_date DESC";
 		
-		$result = $this->fetch($query,1);
-		// pr($result);
+		$result = $this->fetch($query,1);	
 		return $result;
 	
 		
 	}
 	public function scientificsa(){
-	$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='20' and n_status != '2'  ORDER BY created_date DESC";
+	$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 		// pr($result);

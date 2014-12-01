@@ -8,7 +8,7 @@ class company_link_m extends Database {
 
 	}
 	public function company_profile_file(){
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='1'" ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='1' and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		return $result;
 
@@ -22,7 +22,7 @@ class company_link_m extends Database {
 	}
 	public function company_division_file(){
 
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='2'" ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='2' and n_status = '1'" ;
 		$result= $this->fetch($query,1);
 		return $result;
 	
@@ -37,7 +37,7 @@ class company_link_m extends Database {
 	}
 	public function company_organization_file(){
 
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='3' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='3' and n_status = '1' " ;
 		$result= $this->fetch($query,1);
 		return $result;
 
@@ -57,7 +57,7 @@ class company_link_m extends Database {
 	}
 	public function company_customerlist_file(){
 
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='5' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='2' and gallerytype='5' and n_status = '1' " ;
 		$result= $this->fetch($query,1);
 		return $result;
 

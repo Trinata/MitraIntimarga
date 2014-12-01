@@ -23,6 +23,7 @@ class produk extends Controller {
 	public function index(){
 		$this->view->assign('active','active');
 		$data = $this->models->produk();
+		
 
 		if ($data){
 			foreach ($data as $key => $val){
@@ -268,10 +269,8 @@ class produk extends Controller {
 		
 		
 		$this->view->assign('active','active');
-		$upload = uploadFile('file_image',null, 'image');
+	
 		 $data = $this->models->editproduk($id);
-		
-		
 		 if($data['n_status'] ){
 				$data['n_status'] = 'checked';
 			} else {
@@ -297,10 +296,10 @@ class produk extends Controller {
 		 // pr($_FILES);
 		 // pr($_FILES['file_image']['name']);
 		$this->view->assign('active','active');
-		
 		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
-		$data = $this->models->edit_produk_submit($upload);
+		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
@@ -319,13 +318,14 @@ class produk extends Controller {
 	
 	public function civil(){	
 	global $CONFIG;	
+	
 		$this->view->assign('active','active');
 		$data = $this->models->list_civil();
 		$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
 		
 		return $this->loadView('produk/civil');
-		 ///////////
+	
 	}
 	
 
