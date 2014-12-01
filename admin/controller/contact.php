@@ -52,6 +52,15 @@ class contact extends Controller {
 
 	}
 
+	public function contact_del(){
+
+		global $CONFIG;
+		// pr($CONFIG);exit;
+		$data = $this->models->contactDel($_POST['ids']);
+		
+		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."contact'</script>";
+		
+	}
 	
 }
 
