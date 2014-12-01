@@ -40,7 +40,8 @@
 					<a href="{$basedomain}article/addarticle"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
 {/*}	
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
-				
+       
+		
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
 						data-provide="datatable" 
@@ -63,17 +64,70 @@
 								</tr>
 							</thead>
 							<tbody>
+								{$i=0}
 								{foreach $data as $var}
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id_contact}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
-									<td><a href="{$basedomain}article/addarticle/?id={$var.id_contact}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.subjek}</a></td>
+									<td><a href="#login_form{$i}" id="login_pop">{$var.subjek}</a>
+										<a href="#x" class="overlay" id="login_form{$i}"></a>
+								        <div class="popup">
+								            <h2>Detail Pesan</h2>
+								            <p>Pesan Dikirim Pada Tanggal <strong>{$var.create_date}</strong></p>
+								            <div>
+								                <label for="login">Subjek</label>
+								                {$var.subjek}
+								            </div>
+
+								            <div>
+								                <label for="login">Nama</label>
+								                {$var.nama}
+								            </div>
+
+								            <div>
+								                <label for="login">Email</label>
+								                {$var.email}
+								            </div>
+
+								            <div>
+								                <label for="login">Telp</label>
+								                {$var.telp}
+								            </div>
+
+								            <div>
+								                <label for="login">Fax</label>
+								                {$var.fax}
+								            </div>
+								            <div>
+								                <label for="login">Institusi</label>
+								                {$var.institusi}
+								            </div>
+
+								            <div>
+								                <label for="login">Kota</label>
+								                {$var.kota}
+								            </div>
+
+								            <div>
+								                <label for="login">Alamat</label>
+								                {$var.alamat}
+								            </div>
+
+								            <div>
+								                <label for="login">Komentar</label>
+								                {$var.komentar}
+								            </div>
+								            <a class="close" href="#close"></a>
+								        </div>
+
+									</td>
 									<td>{$var.nama}</td>
 									<td>{$var.email}</td>
 									<td>{$var.telp}</td>
 									<td>{$var.create_date}</td>
 								</tr>
+								{$i=$i+1}
 								{/foreach}
 							</tbody>
 						</table>
