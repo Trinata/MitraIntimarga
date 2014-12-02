@@ -20,9 +20,21 @@ class music extends Controller {
 	public function index(){
 	
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=1);
-		//
-		// pr($getAlbum);
+
+		
+		/////////////tambahan maraoks/////////////
+		
+		$result_data_file3 = $this->contentHelper->geophysics();
+		$result_data_file4 = $this->contentHelper->scientifics();
+		$result_data_file5 = $this->contentHelper->civil();
+
+			
+		// pr($result_data);
 		$this->view->assign('album',$getAlbum);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		return $this->loadView('album/music-detail');
 		return $this->loadView('album/music');
 	}
 	
@@ -31,15 +43,9 @@ class music extends Controller {
 		$iddata = _g('id');
 
 		$getRepo = $this->contentHelper->getRepo($id=false, $album=1, $gallery=1, $otherid=$iddata);
-		
-		//---------------tambahan maraoks-----------------//
-		// $result_data_file3 = $this->contentHelper->geophysics();
-		// $result_data_file4 = $this->contentHelper->scientifics();
-		// pr($getRepo);
 		$this->view->assign('album',$getRepo);
-		// $this->view->assign('data2',$result_data_file3);
-		// $this->view->assign('data3',$result_data_file4);
-		return $this->loadView('album/music-detail');
+		//---------------tambahan maraoks-----------------//
+		
 	}
 
 	function activity()

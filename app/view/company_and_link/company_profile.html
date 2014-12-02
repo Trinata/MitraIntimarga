@@ -30,8 +30,8 @@
 			<p class="center">
 			{if $data1}
 				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen" target="_blank">
-					<input type="button" value="Download {$val1.title}" src="{$basedomain}public_assets/{$val1.files}" >
+				<a href="{$basedomain}public_assets/{$val1.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
+					Download File
 				</a>
 				{/foreach}
 			{/if}

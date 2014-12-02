@@ -18,7 +18,7 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}produk/addgeophysics" enctype="multipart/form-data">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}brocure/editbrocure_submit" enctype="multipart/form-data">
 
 		<div class="row">
 			<div class="col-md-9">
@@ -39,7 +39,7 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="text-input">Title</label>
-									<input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
+									<input type="text" name="title" class="form-control" value="{$data.0.title}" data-required="true"/>
 							</div>
 						</div>	
 						<!--
@@ -53,12 +53,12 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
-									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
+									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.0.content}</textarea>
 							</div>
 							
 							
 									<!-- hidden -->
-									<input type="hidden" name="id" value="{$data.id}" />
+									<input type="hidden" name="id" value="{$data.0.otherid}" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
@@ -82,6 +82,7 @@ $(function () {
 
 					</div> <!-- /.portlet-header -->
 					<div class="portlet-content">
+					<!--
 						<div class="form-group">
 							<label for="select-input">Postdate</label>
 							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
@@ -90,11 +91,11 @@ $(function () {
 							</div>
 							
 						</div>
-						
+						-->
 						<div class="form-group">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="n_status" class="" {$data.n_status} >
+										<input type="checkbox" name="n_status" class="" {$data.0.n_status} >
 										Publish
 									</label>
 								</div>
@@ -116,7 +117,7 @@ $(function () {
 					</div> <!-- /.portlet-header -->
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
-						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://localhost/MitraIntimarga/public_assets/{$data.image}" alt="http://localhost/MitraIntimarga/public_assets/{$data.image}" /></div>
+						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://localhost/MitraIntimarga/public_assets/{$data.0.image}" alt="http://localhost/MitraIntimarga/public_assets/{$data.0.image}" /></div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 						  <div>
 							<span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>
@@ -138,6 +139,7 @@ $(function () {
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						 <div>
 							<input type="file" name="file_pdf"/>
+							{{$data.0.titlerepo}}
 							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
 						  </div>
 						</div>

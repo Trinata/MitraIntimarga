@@ -24,7 +24,7 @@ class produk extends Controller {
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
 		$result_data_file5 = $this->models->civil();
-		
+
 		
 		$var = array(1,2,3);
 		// pr($basedomain);
@@ -46,9 +46,8 @@ class produk extends Controller {
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
 		$result_data_file5 = $this->models->civil();
-		$var = array(1,2,3);
-		// pr($basedomain);
-		//pr($result_data);
+		
+
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
@@ -84,6 +83,7 @@ class produk extends Controller {
         $id=$_GET['id'];
 		//pr($id);
 		$result_data = $this->models->partnerscientifics($id);
+		
 		$result_data_file = $this->models->scientificschild_file($id);
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
@@ -103,7 +103,8 @@ class produk extends Controller {
 	public function scientifics(){
 	global $basedomain;
 	global $baseheader;   
-	 $id=$_GET['id'];
+	 //$id=$_GET['id'];
+	// pr($id);
 		$result_data = $this->models->scientifics();
 		$result_data_file = $this->models->scientifics_file();
 		$result_data_file3 = $this->models->geophysicsa();

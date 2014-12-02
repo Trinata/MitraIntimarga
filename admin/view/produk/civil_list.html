@@ -35,7 +35,7 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}produk/aksi_civil" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
+					<form action="{$basedomain}produk/delete_produk" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
 					<a href="{$basedomain}produk/civil"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
 
@@ -69,8 +69,8 @@
 									</td>
 									<td><a href="{$basedomain}produk/editproduk/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
-									<td>{$var.created_date}</td>
-									<td>{$var.username}</td>
+									<td>{$var.posted_date}</td>
+									<td>Admin</td>
 									 <input hidden type='text' name='idgeophysics' value='$_POST[aksi_geophysics]'> 
 								</tr>
 								{/foreach}

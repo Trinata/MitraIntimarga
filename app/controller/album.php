@@ -46,13 +46,20 @@ class album extends Controller {
 	function activity()
 	{
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=3);
-		//------------	tambahan maraoks----------//
-		$result_data_file3 = $this->contentHelper->geophysics();
-		$result_data_file4 = $this->contentHelper->scientifics();
-		// pr($getAlbum);
+		
 		$this->view->assign('album',$getAlbum);
+		//------------	tambahan maraoks----------//
+			$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		
+		// pr($result_data);
+	
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		
+		// pr($getAlbum);
 		return $this->loadView('album/gallery');
 	}
 

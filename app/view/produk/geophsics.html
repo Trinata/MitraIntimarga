@@ -1,44 +1,43 @@
 <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>Geophisic Division</h2>
-                
+                <h2>Geophysics</h2>
+                <p class="lead">&nbsp;</p>
             </div>
 
             <div class="row">
 				<div class="col-sm-12">
 					<table class="table" border="1">
 					{if $data}
-						{foreach $data as $val } 
-							<th bgcolor="#00CC66"  colspan="2">{$val.title}</th>
+							{foreach $data as $val } 
+							
+						<!--	<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}"/> -->
+						
+					
+							<th bgcolor="#00CC66"  colspan="3">{$val.title}</th>
 							  <tr>
 								<td height="140" width="236" >
 								<a href="{$basedomain}produk/partnergeophysics/?id={$val.id}">
-								<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								<img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								
 								</td>
-								<td class="center">
+								<td>
 									<p>
-										{$val.content}
+									{$val.content}	
 									</p>
 								</td>
-							  </tr>
-						{/foreach}
-					{/if}
-					</table>
-						<tr>
-							<hr>
-								<p class="center">
+								<td>
 								{if $data1}
 									{foreach $data1 as $val1 } 
-									<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen coy">
-										<input type="button" value="download {$val1.title}.pdf " src="{$basedomain}public_assets/{$val1.files}" >
-									</a>
+									
+									<a href="{$basedomain}public_assets/{$val1.files}" src="{$basedomain}public_assets/{$val1.files}" class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a>
 									{/foreach}
 								{/if}
-								</p>
-		
-						</tr>
-					
+								</td>
+							  </tr>
+							  	{/foreach}
+					{/if}
+					</table>
 				</div>
 			
             </div><!--/.row--> 
@@ -48,38 +47,3 @@
         </div><!--/.container-->
     </section><!--/#feature-->
 
-
-{*}
-<br>
-<p class="title1geophisic">
-	2010 product list
-</p>
-<p class="title2geophisic">
-	Geophisic Division
-</p>
-<table class="table">
-{if $data}
-		{foreach $data as $val } 
-	<th bgcolor="#00CC66" colspan="2">{$val.title}</th>
-  <tr>
-    <td height="140" width="40%" >
-	<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
-	</td width="60%">
-    <td>
-		<p>
-			{$val.content}
-		
-		</p>
-	</td>
-  </tr>
-		{/foreach}
-	{/if}
- </table> 
-	<tr>
-		<p class="footer1">INDONESIA Authorized Agent</p>
-		<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
-		<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
-	</tr>
-
-{/*}
-  

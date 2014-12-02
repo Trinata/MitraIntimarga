@@ -201,6 +201,29 @@ class m_menu extends Database {
 		return false;
 
 	}
+	function delete_home()
+	{
+
+	
+	$del = $_POST['ids'];
+    $idsToDelete = implode($del, ', ');
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		// pr($query);
+		$result = $this->fetch($query,0);
+		$del = $_POST['ids'];
+		$query = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							n_status = '2'
+						WHERE
+							otherid in($idsToDelete)";
+		// pr($query);
+		$result = $this->fetch($query,0);
+		return $result;
+	}
 	
 	
 	

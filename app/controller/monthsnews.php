@@ -31,7 +31,17 @@ class monthsnews extends Controller {
 			}
 			
 		}
-
+		///////////////////////tambahan maraoks//////////////
+		$result_data_file3 = $this->models->geophysics();
+		$result_data_file4 = $this->models->scientifics();
+		$result_data_file5 = $this->models->civil();
+		
+		// pr($result_data);
+	
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+	
 		// pr($result_data);exit;
 		$this->view->assign('data',$result_data);
 		
