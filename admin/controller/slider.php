@@ -28,7 +28,7 @@ class slider extends Controller {
 	public function index(){
        
 		$this->view->assign('active','active');
-		$data = $this->marticle->getContent($id=false, $type=5,$cat=3);
+		$data = $this->marticle->getContent($id=false, $type=7,$cat=1);
 
 		if ($data){
 			
@@ -54,7 +54,7 @@ class slider extends Controller {
 
 
 		$this->view->assign('active','active');
-		$data = $this->marticle->getContent($id=false, $type=5,$cat=3);
+		$data = $this->marticle->getContent($id=false, $type=7,$cat=1);
 
 		if ($data){
 			
@@ -74,7 +74,7 @@ class slider extends Controller {
 		if(isset($_GET['id']))
 		{
 			$id = $_GET['id'];
-			$data = $this->marticle->getContent($id, $type=5,$cat=3);
+			$data = $this->marticle->getContent($id, $type=7,$cat=1);
 			
 
 			$result = $data[0];
@@ -110,7 +110,7 @@ class slider extends Controller {
 							$saveData = $this->marticle->updateData($image);
 							// pr($saveData);
 							if ($saveData){
-								echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery'</script>";
+								echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."slider'</script>";
 							}	
 						}
 
@@ -118,7 +118,7 @@ class slider extends Controller {
 					}
 				}
 
-				echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery'</script>";
+				echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."slider'</script>";
 	    	}
 		}
 		// pr($dataRepo);
@@ -134,7 +134,7 @@ class slider extends Controller {
 
 		global $CONFIG;
 		// pr($_POST);exit;
-		$data = $this->models->article_del($_POST['ids']);
+		$data = $this->marticle->slider_del($_POST['ids']);
 		
 		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."slider'</script>";
 		

@@ -37,7 +37,7 @@
 
 					<form action="{$basedomain}slider/sliderdel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
-					<a href="{$basedomain}slider/addSlider"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Album</button></a>
+					<a href="{$basedomain}slider/addSlider"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Image</button></a>
 
 
 
@@ -56,23 +56,29 @@
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
 									<th data-filterable="true" data-sortable="true" >Title</th>
-									<th data-filterable="true" data-sortable="true" >Status</th>
-									<th data-filterable="true" data-sortable="true">Created Date</th>
-									<th data-filterable="true" data-sortable="true">Author</th>
+									<th data-filterable="true" data-sortable="true" >Image</th>
+									<th data-filterable="true" data-sortable="true">Status</th>
 								</tr>
 							</thead>
 							<tbody>
+								{if $data}
 								{foreach $data as $var}
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
-									<td><a href="{$basedomain}gallery/addAlbum/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td style="color:{$var.status_color}">{$var.n_status}</td>
-									<td>{$var.created_date}</td>
-									<td>{$var.username}</td>
+									<td><a href="{$basedomain}slider/addSlider/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td><img src="{$app_domain}public_assets/{$var.image}" width="200px"/></td>
+									<td style="color:{$var.status_color}">
+										{if $var.n_status=='1'}
+											Publish
+										{else}
+											Unpublish
+										{/if}
+									</td>
 								</tr>
 								{/foreach}
+								{/if}
 							</tbody>
 						</table>
 					</form>

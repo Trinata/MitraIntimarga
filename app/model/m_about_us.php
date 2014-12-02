@@ -80,5 +80,22 @@ class m_about_us extends Database {
 		return $result;
 
 	}
+	function getContent($id=false, $type=1,$cat=1, $debug=false)
+	{
+		
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id} ";
+		
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"*",
+                'condition' => "categoryid= {$type} AND articleType = {$cat} AND n_status='1' {$filter} ",
+                );
+
+		$res = $this->lazyQuery($sql,$debug);
+		if ($res) return $res;
+		return false;
+
+	}
 }
 ?>
