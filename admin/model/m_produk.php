@@ -478,6 +478,7 @@ class m_produk extends Database {
 	function addscientificchild($upload,$uploaddoc)
 	{
 		global $CONFIG;
+		pr($upload);
 		$create_date=date("Y-m-d H:i:s");
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 			//	pr("isi dua duanya");
@@ -506,7 +507,7 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 									
-				$result = $this->fetch($query,0);
+				// $result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
 				$query = "INSERT INTO  
