@@ -266,7 +266,7 @@ class m_company extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','1','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','1','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 
@@ -296,7 +296,7 @@ class m_company extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','1','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','1','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
