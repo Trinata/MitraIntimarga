@@ -7,7 +7,7 @@ dashboard/*
 libs/*
 tmp/*
 logs/*
-admin/config/*
+admin/config/config.php
 admin/cache/*
 admin/logs/*
 admin/tmp/*
