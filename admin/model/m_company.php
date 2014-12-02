@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 class m_company extends Database {
 	

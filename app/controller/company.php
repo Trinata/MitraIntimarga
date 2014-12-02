@@ -24,7 +24,7 @@ class company extends Controller {
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
 		$this->view->assign('data4',$result_data_file5);
-		// pr($result_data);
+		// pr($result_data_file);
 		$var = array(1,2,3);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);
