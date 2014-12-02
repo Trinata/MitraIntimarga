@@ -228,7 +228,7 @@ class produk extends Controller {
 	
 	public function addcivil(){
 	global $CONFIG;	
-		//pr($_POST);
+		pr($_POST);
 		// pr($_FILES);
 	if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
@@ -240,7 +240,7 @@ class produk extends Controller {
 		// pr($_POST);
 		// pr($_FILES);
 		If($_POST['list_civil'] !=''){
-		// pr($_POST['list_civil']);
+		 pr($_POST['list_civil']);
 		
 		 // pr("tambah");
 		$this->view->assign('active','active');
