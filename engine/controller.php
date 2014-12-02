@@ -37,11 +37,14 @@ class Controller extends Application{
 		if ($this->configkey=='admin')$this->view->assign('admin',$this->isAdminOnline());
 		if ($this->configkey=='mobile')$this->view->assign('user',$this->isUserOnline());
 		
-		$getMenu = $this->getMenu();
+		if($this->configkey=='default'){
+			$getMenu = $this->getMenu();
 		$this->view->assign('data2',$getMenu['geophysics']);
 		$this->view->assign('data3',$getMenu['scientifics']);
 		$this->view->assign('data4',$getMenu['civil']);
-
+	
+		}
+		
 
 		// $this->inject();
 		// pr($this->isUserOnline());
