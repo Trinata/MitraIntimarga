@@ -34,7 +34,7 @@ class music extends Controller {
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('data4',$result_data_file5);
-		return $this->loadView('album/music-detail');
+		// return $this->loadView('album/music-detail');
 		return $this->loadView('album/music');
 	}
 	
@@ -45,7 +45,7 @@ class music extends Controller {
 		$getRepo = $this->contentHelper->getRepo($id=false, $album=1, $gallery=1, $otherid=$iddata);
 		$this->view->assign('album',$getRepo);
 		//---------------tambahan maraoks-----------------//
-		
+		return $this->loadView('album/music-detail');
 	}
 
 	function activity()
