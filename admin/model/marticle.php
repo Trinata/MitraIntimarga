@@ -244,7 +244,7 @@ class marticle extends Database {
 		foreach ($id as $key => $value) {
 			
 			$query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
-		
+			// pr($query);
 			$result = $this->query($query);
 		
 		}

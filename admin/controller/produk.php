@@ -324,7 +324,7 @@ class produk extends Controller {
 		$this->view->assign('data',$data);
 		$this->view->assign('admin',$this->admin['admin']);
 		
-		return $this->loadView('produk/civil');
+		return $this->loadView('produk/Civil');
 		 ///////////
 	}
 	
