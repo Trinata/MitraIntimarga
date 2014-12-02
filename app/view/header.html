@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <body class="homepage">
 
@@ -188,3 +189,169 @@
         </nav><!--/nav-->
 		
     </header><!--/header-->
+=======
+
+<body class="homepage">
+
+    <header id="header">
+        <div class="top-bar">
+             
+            <div class="container">
+                <div class="row">
+                   
+                    {*}<div class="col-sm-6 col-xs-4">
+                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  (021) 8243 4829</p></div>
+                    </div>
+					
+                    <div class="col-sm-6 col-xs-8">
+                       <div class="social">
+                            <ul class="social-share">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li> 
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            </ul>
+                            <div class="search">
+                                <form role="form">
+                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
+                                    <i class="fa fa-search"></i>
+                                </form>
+                           </div>
+                       </div>
+                    </div>
+					{/*}
+                </div>
+            </div><!--/.container-->
+			<img src="{$basedomain}assets/images/header.jpg" width="100%" height="200px"/>
+        </div><!--/.top-bar-->
+
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">&nbsp;</a>
+                </div>
+               
+				<div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{$basedomain}home/home">Home</a></li>
+                        <!--<li><a href="{$basedomain}about_us">About Us</a></li>-->
+						 <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Company Overview   <i class="fa fa-caret-right"></i></a>
+                                   <ul class="nav dropdown-menu">
+                                        <li><a href="{$basedomain}company/company_profile">Company Profile</a></li>
+                                        <li><a href="{$basedomain}company/company_division">Company Division</a></li>
+                                        <li><a href="{$basedomain}company/company_organization">Company Organization</a></li>
+                                        <li><a href="{$basedomain}company/company_marketing">Company Marketing Strategic</a></li>
+                                        <li><a href="{$basedomain}company/company_customerlist">Company Customer List</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{$basedomain}company/customer_location">Customer Location</a></li>
+                                {*}<li><a href="{$basedomain}company/overseas">Overseas Link</a></li>{/*}
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produk <i class="fa fa-angle-down"></i></a>
+							 <ul class="dropdown-menu">
+                                <li class="dropdown"><a href="{$basedomain}produk/geophsics" class="dropdown-toggle" data-toggle="dropdown">Geophysics   <i class="fa fa-caret-right"></i></a>
+									<ul class="nav dropdown-menu">      
+											 <li><a href="{$basedomain}produk/geophysics">All Geophysics</a></li>
+											{if $data2}
+												{foreach $data2 as $val2 } 
+                                                 {$title=explode(" ",$val2.title)}
+                                                 {$jml_kata=count($title)}
+                                                 {$i=1}
+												 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">
+                                                    {foreach $title as $valu}
+                                                        {if $i%2==0}
+                                                            {$valu}<br/>
+                                                        {else}
+                                                            {$valu}
+                                                        {/if}
+                                                        {$i=$i+1}
+                                                    {/foreach}
+
+                                                 </a></li>
+							
+												{/foreach}
+											{/if}
+                                       <!-- <li><a href="#">PASI</a></li>
+										<li><a href="#">AGI</a></li>
+                                        <li><a href="#">GEM</a></li>
+                                        <li><a href="#">IDS</a></li>
+                                        <li><a href="#">SYSCOM</a></li>
+                                        <li><a href="#">REFTEK</a></li>
+                                        <li><a href="#">BARTINGTON</a></li>
+                                        <li><a href="#">TENSOR</a></li>
+                                        <li><a href="#">ALT</a></li>
+									
+										-->
+									</ul>
+								</li>
+                                <li class="dropdown"><a href="{$basedomain}produk/scientifics"  class="dropdown-toggle" data-toggle="dropdown">Scientifics   <i class="fa fa-caret-right"></i></a>
+									<ul class="nav dropdown-menu">
+												<li><a href="{$basedomain}produk/scientifics">All Scientifics</a></li>
+									{if $data3}
+												{foreach $data3 as $val3 } 
+												 <li><a href="{$basedomain}produk/partnerscientifics/?id={$val3.id}">{$val3.title}</a></li>
+							
+												{/foreach}
+											{/if}
+									
+									<!--
+                                        <li><a href="1">ELECTRON</a></li>
+                                        <li><a href="2">BUNGARD</a></li>
+                                        <li><a href="3">FREDERIKSEN</a></li>
+                                        <li><a href="4">NEWPORT</a></li>
+                                        <li><a href="5">EDIBON</a></li>
+                                        <li><a href="6">WUEKRO</a></li>
+										-->
+									
+									</ul>
+								</li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Civil & Geotech <br/>Engineering   <i class="fa fa-caret-right"></i></a>
+									<ul class="nav dropdown-menu">
+                                  <!--  <li><a href="#">CONTROLAB</a></li> -->
+										<li><a href="{$basedomain}produk/civil">All Civil & Geotech</a></li>
+										{if $data4}
+												{foreach $data4 as $val4 } 
+												 <li><a href="{$basedomain}produk/partnercivil/?id={$val4.id}">{$val4.title}</a></li>
+							
+												{/foreach}
+										{/if}
+									
+									</ul>
+								</li>
+                            </ul>
+						</li>
+                        <li><a href="{$basedomain}brocure">Brochures</a></li>
+                        <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown">News & Info <i class="fa fa-angle-down"></i></a>
+							 <ul class="dropdown-menu">
+                                <li><a href="{$basedomain}monthsnews">This Mont News</a></li>
+                                <li><a href="{$basedomain}album/activity">Our Activities</a>
+                                    {*}
+									 <ul class="nav dropdown-menu">
+                                        <li><a href="{$basedomain}lab_training">Lab. Training</a></li>
+                                        <li><a href="{$basedomain}field_training">Field Training</a></li>
+                                    </ul>{/*}
+								</li>
+                                <li><a href="{$basedomain}music">Tha-Ma Duet</a></li>
+                               {*} <li><a href="{$basedomain}rental">Rental & Services</a></li>{/*}
+                            </ul>
+						
+						</li>
+                        <li><a href="{$basedomain}contact">Contact Us</a></li>                        
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+		
+    </header><!--/header-->
+>>>>>>> 2f758d1eeeec0a1eacb9c691dc8836d3cc03db22
