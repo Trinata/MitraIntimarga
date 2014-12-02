@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-10-28 15:13:31
+<?php /* Smarty version Smarty-3.1.15, created on 2014-12-02 01:50:00
          compiled from ".\view\meta.html" */ ?>
 <?php /*%%SmartyHeaderCode:4999533cf6fc5f2316-99153596%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2f4dedc067a605a48f87b736a893f0066399f9dd' => 
     array (
       0 => '.\\view\\meta.html',
-      1 => 1413806434,
+      1 => 1417476583,
       2 => 'file',
     ),
   ),
@@ -39,7 +39,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 css/googleapis.css" type="text/css">
 
 	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
-css/font-awesome.min.css" type="text/css" />		
+css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
+css/modal.css" type="text/css" />		
 	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
 css/bootstrap.min.css" type="text/css" />	
 	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['basedomain']->value;?>
