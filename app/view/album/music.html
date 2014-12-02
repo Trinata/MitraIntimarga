@@ -13,12 +13,12 @@
                         <img class="img-responsive" src="{$basedomain}public_assets/{$val.image}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
-                                <h3><a href="{$basedomain}music/detail/?id={$val.id}">{$val.title}</a> </h3>
-                                <p>{$val.content}</p>
-                                <a class="preview" href="{$basedomain}public_assets/{$val.image}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{$basedomain}public_assets/{$val.image}" rel="prettyPhoto"><img src="{$basedomain}assets/images/loop.png"/> </a>
                             </div> 
                         </div>
-                    </div>
+                        
+                    </div><h3><a href="{$basedomain}music/detail/?id={$val.id}">{$val.title}</a> </h3>
+                        <p>{$val.content}</p>
                 </div>   
                 {/foreach}
                 {/if}
