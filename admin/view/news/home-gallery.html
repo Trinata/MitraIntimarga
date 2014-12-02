@@ -44,7 +44,7 @@
 					<a href="{$basedomain}gallery/addFile"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add File</button></a>
 
 
-					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Unpublish</button>
 					
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
@@ -71,7 +71,7 @@
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
 									<td><a href="{$basedomain}gallery/addAlbum/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td style="color:{$var.status_color}">{$var.n_status}</td>
+									<td style="color:{$var.status_color}">{if $var.n_status == 1}Publish{else}Unpublish{/if}</td>
 									<td>{$var.created_date}</td>
 									<td>{$var.username}</td>
 								</tr>
