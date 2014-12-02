@@ -408,7 +408,7 @@ class gallery extends Controller {
 
 		global $CONFIG;
 		// pr($_POST);exit;
-		$data = $this->models->article_del($_POST['ids']);
+		$data = $this->marticle->article_del($_POST['ids']);
 		
 		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
 		

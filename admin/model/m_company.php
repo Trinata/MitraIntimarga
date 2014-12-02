@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 class m_company extends Database {
 	
@@ -1292,4 +1293,5 @@ class m_company extends Database {
 	
 	
 }
+
 ?>
