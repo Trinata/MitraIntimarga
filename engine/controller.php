@@ -37,6 +37,12 @@ class Controller extends Application{
 		if ($this->configkey=='admin')$this->view->assign('admin',$this->isAdminOnline());
 		if ($this->configkey=='mobile')$this->view->assign('user',$this->isUserOnline());
 		
+		$getMenu = $this->getMenu();
+		$this->view->assign('data2',$getMenu['geophysics']);
+		$this->view->assign('data3',$getMenu['scientifics']);
+		$this->view->assign('data4',$getMenu['civil']);
+
+
 		// $this->inject();
 		// pr($this->isUserOnline());
 
@@ -322,6 +328,19 @@ class Controller extends Application{
 		if (preg_match($ie, $browser)) $result = 3;
 
 		return $result;
+	}
+
+	function getMenu()
+	{
+
+		$getHelper = $this->loadModel('contentHelper');
+		// $getHelper = new contentHelper;
+
+		$data['geophysics'] = $getHelper->geophysics();
+		$data['scientifics'] = $getHelper->scientifics();
+		$data['civil'] = $getHelper->civil();
+
+		return $data;
 	}
 }
 
