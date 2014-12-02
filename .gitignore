@@ -1,6 +1,5 @@
 config/config.php
 config/access.php
-config/routes.php
 public_assets/*
 cache/*
 dashboard/*
