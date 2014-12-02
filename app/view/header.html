@@ -107,11 +107,24 @@
 									<ul class="nav dropdown-menu">
 												<li><a href="{$basedomain}produk/scientifics">All Scientifics</a></li>
 									{if $data3}
-												{foreach $data3 as $val3 } 
-												 <li><a href="{$basedomain}produk/partnerscientifics/?id={$val3.id}">{$val3.title}</a></li>
-							
-												{/foreach}
-											{/if}
+                                                {foreach $data3 as $val3 } 
+                                                 {$title3=explode(" ",$val3.title)}
+                                                 {$jml_kata3=count($title3)}
+                                                 {$i3=1}
+                                                 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">
+                                                    {foreach $title3 as $valu3}
+                                                        {if $i3%2==0}
+                                                            {$valu3}<br/>
+                                                        {else}
+                                                            {$valu3}
+                                                        {/if}
+                                                        {$i3=$i3+1}
+                                                    {/foreach}
+
+                                                 </a></li>
+                            
+                                                {/foreach}
+                                            {/if}
 									
 									<!--
                                         <li><a href="1">ELECTRON</a></li>
@@ -129,11 +142,24 @@
                                   <!--  <li><a href="#">CONTROLAB</a></li> -->
 										<li><a href="{$basedomain}produk/civil">All Civil & Geotech</a></li>
 										{if $data4}
-												{foreach $data4 as $val4 } 
-												 <li><a href="{$basedomain}produk/partnercivil/?id={$val4.id}">{$val4.title}</a></li>
-							
-												{/foreach}
-										{/if}
+                                                {foreach $data4 as $val4 } 
+                                                 {$title4=explode(" ",$val4.title)}
+                                                 {$jml_kata4=count($title4)}
+                                                 {$i4=1}
+                                                 <li><a href="{$basedomain}produk/partnergeophysics/?id={$val2.id}">
+                                                    {foreach $title4 as $valu4}
+                                                        {if $i4%2==0}
+                                                            {$valu4}<br/>
+                                                        {else}
+                                                            {$valu4}
+                                                        {/if}
+                                                        {$i4=$i4+1}
+                                                    {/foreach}
+
+                                                 </a></li>
+                            
+                                                {/foreach}
+                                            {/if}
 									
 									</ul>
 								</li>
