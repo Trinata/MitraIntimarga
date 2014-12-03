@@ -54,6 +54,7 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$data = $this->models->geophysics_list();
 
+		$data_menu = $this->models->getShowmenu('geo');
 		if ($data){
 			foreach ($data as $key => $val){
 
@@ -70,8 +71,8 @@ class produk extends Controller {
 				}
 			}
 		}
-		
 		$this->view->assign('data',$data);
+		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/geophysics_list');
 
 	
@@ -82,6 +83,7 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$data = $this->models->scientific_list();
 
+		$data_menu = $this->models->getShowmenu('scien');
 		if ($data){
 			foreach ($data as $key => $val){
 
@@ -101,6 +103,7 @@ class produk extends Controller {
 		
 		$this->view->assign('data',$data);
 
+		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/scientific_list');
 	}
 	public function civil_list(){
@@ -108,6 +111,7 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$data = $this->models->civil_list();
 
+		$data_menu = $this->models->getShowmenu('civil');
 		if ($data){
 			foreach ($data as $key => $val){
 
@@ -126,6 +130,8 @@ class produk extends Controller {
 		}
 		
 		$this->view->assign('data',$data);
+
+		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/civil_list');
 
 	
@@ -316,7 +322,52 @@ class produk extends Controller {
 		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
-	
+	public function showHidemenu(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+
+		if($_GET['menu']){
+			$menu=$_GET['menu'];
+			if($menu=='geo'){
+				$data['cat']=8;
+				$data['type']=1;
+				$data['menu']=$menu;
+			}elseif($menu=='scien'){
+				$data['cat']=8;
+				$data['type']=2;
+				$data['menu']=$menu;
+			}elseif($menu=='civil'){
+				$data['cat']=8;
+				$data['type']=3;
+				$data['menu']=$menu;
+			}
+			$data_inp=$this->models->showHidemenu_submit($data,"input");
+		}else{
+			$data['id']=$_GET['id'];
+			
+			if($_GET['n_status']=='1'){
+				$data['n_status']=0;
+			}else{
+				$data['n_status']=1;
+			}
+			$data_inp=$this->models->showHidemenu_submit($data,"update");
+
+		}
+
+		if($_GET['produk']=='civil'){
+			$redirect="civil_list";
+		}elseif($_GET['produk']=='scien'){
+			$redirect="scientific_list";
+		}else{
+			$redirect="geophysics_list";
+		}
+		//$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		//$data = $this->models->delete_produk();
+
+		echo "<script>alert('Perubahan Status Berhasil');window.location.href='".$CONFIG['admin']['base_url']."produk/".$redirect."'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	public function civil(){	
 	global $CONFIG;	
 	

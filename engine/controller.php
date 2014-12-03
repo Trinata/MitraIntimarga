@@ -42,6 +42,9 @@ class Controller extends Application{
 		$this->view->assign('data2',$getMenu['geophysics']);
 		$this->view->assign('data3',$getMenu['scientifics']);
 		$this->view->assign('data4',$getMenu['civil']);
+		$this->view->assign('allgeophysics',$getMenu['allgeophysics']);
+		$this->view->assign('allscientifics',$getMenu['allscientifics']);
+		$this->view->assign('allcivil',$getMenu['allcivil']);
 	
 		}
 		
@@ -342,6 +345,9 @@ class Controller extends Application{
 		$data['geophysics'] = $getHelper->geophysics();
 		$data['scientifics'] = $getHelper->scientifics();
 		$data['civil'] = $getHelper->civil();
+		$data['allgeophysics'] = $getHelper->getShowmenu('geo');
+		$data['allscientifics'] = $getHelper->getShowmenu('scien');
+		$data['allcivil'] = $getHelper->getShowmenu('civil');
 
 		return $data;
 	}

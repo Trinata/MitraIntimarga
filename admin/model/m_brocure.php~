@@ -1,5 +1,5 @@
 <?php
-class m_menu extends Database {
+class m_brocure extends Database {
 	
 	var $prefix = "mitra";
 	function article_inp($data)
@@ -41,22 +41,6 @@ class m_menu extends Database {
 		return $result;
 	}
 	
-	function home($type=1)
-	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' OR n_status = '0' ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
-		
-		return $result;
-	}
 	
 	function get_article_slide()
 	{
@@ -123,7 +107,6 @@ class m_menu extends Database {
 		return true;
 		
 	}
-	
 	
 	
 	function frame_inp($data){
@@ -201,134 +184,105 @@ class m_menu extends Database {
 		return false;
 
 	}
-	function delete_home()
+	/*------------------------edit maraoks ---------------*/
+	function brocure_add_submit($upload,$uploaddoc)
 	{
-
-	
-	$del = $_POST['ids'];
-    $idsToDelete = implode($del, ', ');
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							n_status = '2'
-						WHERE
-							id in($idsToDelete)";
-		// pr($query);
-		$result = $this->fetch($query,0);
-		$del = $_POST['ids'];
-		$query = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							n_status = '2'
-						WHERE
-							otherid in($idsToDelete)";
-		// pr($query);
-		$result = $this->fetch($query,0);
-		return $result;
-	}
-	
-	function view_visi()
-	{
-	
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '10' and articleType='1' and n_status !='2' " ;
-		
-		$result['content'] = $this->fetch($query,0);
-		if($result['content'] !=''){
-		// pr($query);
-		// pr($result);
-		if($result['content']['image'] !=''){
-		}else{
-		$result['content']['image']="/icon/noimage.png";
-		}
-		
-		$id=$result['content']['id'];
-		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
-		$result['repo'] = $this->fetch($query2,0);
-		}else{
-		$result="tidakadadata";
-		
-		}
-		//pr($result);
-		return $result;
-		
-		
-	}
-	function add_submitVisi($upload,$uploaddoc)
-	{	
-	$create_date=date("Y-m-d H:i:s");
-		
+		global $CONFIG;
+		$create_date=date("Y-m-d H:i:s");
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
-				//pr("isi dua duanya");
+			//	pr("isi dua duanya");
 					$query = "INSERT INTO  
-							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
-								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
-		
-				
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+								,'','".$_POST['n_status']."')";
+								
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','10','1','".$getID."','".$_POST['n_status']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','4','1',$getID)";
 				
 				$result2 = $this->fetch($query2,0);
-
+			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
-		//	pr($_POST['list_geophysic']);
-
 				$query = "INSERT INTO  
-							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
-								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
-									
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+								,'','".$_POST['n_status']."')";
+								
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
-			//pr($_POST['list_geophysic']);
-
 				$query = "INSERT INTO  
-							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
-								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
-									
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+								,'','".$_POST['n_status']."')";
+								
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
-				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','10','1','".$getID."','".$_POST['n_status']."')";
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','4','1',$getID)";
 				
 				$result2 = $this->fetch($query2,0);
 			
 			}
 			else{
 			//pr("kosong semua");
-			//pr($_POST['list_geophysic']);
-
-					$query = "INSERT INTO  
-							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
-								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
-						//pr($query);		
+							('".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
 			}
-
 			
 		return $result;
+
 	}
-	function submitVisi($upload,$uploaddoc)
+	///////////////////
+	
+	function brocure($type=1)
 	{
-		$create_date=date("Y-m-d H:i:s");
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='4' and articletype='1' and n_status != '2'  ORDER BY created_date DESC";
 		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+	function editbrocure($id)
+	{
+	$create_date=date("Y-m-d H:i:s");
+		//$query = "SELECT * FROM {$this->prefix}_news_content WHERE  id='$id'";
+		$query = "SELECT A.title, A.content, A.n_status, A.posted_date , A.image, B.otherid, b.title as titlerepo, b.contentimage, b.files
+		FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
+		ON A.id = B.otherid where a.id='$id' ";
+		
+		$result = $this->fetch($query,1);
+		return $result;
+	}
+	function editbrocure_submit ($upload,$uploaddoc)
+	{
+		global $CONFIG;
+		$create_date=date("Y-m-d H:i:s");
+		pr($create_date);
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
-		// pr($upload['full_name']);
-		// pr("isi dua duanya");
-		// pr($_POST['id']);
+		
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
@@ -339,8 +293,7 @@ class m_menu extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-							pr($query);
-							
+		
 		$result = $this->fetch($query,0);
 		//$getID = $this->insert_id();
 		$query2 = "UPDATE {$this->prefix}_news_content_repo
@@ -348,15 +301,16 @@ class m_menu extends Database {
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
 							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+						
 						WHERE
 							otherid = '".$_POST['id']."' ";
-							
+						
 		$result2 = $this->fetch($query2,0);
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
+	
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
@@ -367,25 +321,34 @@ class m_menu extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-							
+						
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
-		//pr("doc aja");
+		pr("doc aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+						WHERE
+							id = '".$_POST['id']."' ";
+							$result = $this->fetch($query,0);
+				
 		$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+						
 						WHERE
 							otherid = '".$_POST['id']."' ";
-							
+						
 		$result2 = $this->fetch($query2,0);
 		
 		}
 		else{
 		//pr("kosong semua");
+
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
@@ -394,20 +357,33 @@ class m_menu extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		
+				
 		$result = $this->fetch($query,0);
 		$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							n_status = '".$_POST['n_status']."'
-							
 						WHERE
 							otherid = '".$_POST['id']."' ";
-							
+						
 		$result2 = $this->fetch($query2,0);
 		}
-		
+		return $result;
+	
+	}
+	function delete_brocure(){
+		$del = $_POST['ids'];
+		$idsToDelete = implode($del, ', ');
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '2'
+						WHERE
+							id in($idsToDelete)";
+		$result = $this->fetch($query,0);
 		return $result;
 	}
+	
+	
+	
 	
 }
 ?>

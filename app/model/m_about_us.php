@@ -39,7 +39,7 @@ class m_about_us extends Database {
 	}
 	public function visi(){
 		/*$query= "SELECT * FROM mitra_news_content WHERE 1  ";*/
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='1' and n_status='1' " ;
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '10' and articleType='1' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		// pr($result);
 		return $result;

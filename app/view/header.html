@@ -69,7 +69,9 @@
 							 <ul class="dropdown-menu">
                                 <li class="dropdown"><a href="{$basedomain}produk/geophsics" class="dropdown-toggle" data-toggle="dropdown">Geophysics   <i class="fa fa-caret-right"></i></a>
 									<ul class="nav dropdown-menu">      
+                                            {if $allgeophysics}
 											 <li><a href="{$basedomain}produk/geophysics">All Geophysics</a></li>
+                                             {/if}
 											{if $data2}
 												{foreach $data2 as $val2 } 
                                                  {$title=explode(" ",$val2.title)}
@@ -104,7 +106,9 @@
 								</li>
                                 <li class="dropdown"><a href="{$basedomain}produk/scientifics"  class="dropdown-toggle" data-toggle="dropdown">Scientifics   <i class="fa fa-caret-right"></i></a>
 									<ul class="nav dropdown-menu">
+                                        {if $allscientifics}
 												<li><a href="{$basedomain}produk/scientifics">All Scientifics</a></li>
+                                        {/if}
 									{if $data3}
                                                 {foreach $data3 as $val3 } 
                                                  {$title3=explode(" ",$val3.title)}
@@ -139,7 +143,9 @@
                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Civil & Geotech <br/>Engineering   <i class="fa fa-caret-right"></i></a>
 									<ul class="nav dropdown-menu">
                                   <!--  <li><a href="#">CONTROLAB</a></li> -->
+                                        {if $allcivil}
 										<li><a href="{$basedomain}produk/civil">All Civil & Geotech</a></li>
+                                        {/if}
 										{if $data4}
                                                 {foreach $data4 as $val4 } 
                                                  {$title4=explode(" ",$val4.title)}

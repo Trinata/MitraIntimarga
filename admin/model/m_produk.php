@@ -478,7 +478,6 @@ class m_produk extends Database {
 	function addscientificchild($upload,$uploaddoc)
 	{
 		global $CONFIG;
-		pr($upload);
 		$create_date=date("Y-m-d H:i:s");
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 			//	pr("isi dua duanya");
@@ -507,7 +506,7 @@ class m_produk extends Database {
 									
 				$result = $this->fetch($query,0);
 									
-				// $result = $this->fetch($query,0);
+				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
 				$query = "INSERT INTO  
@@ -722,7 +721,7 @@ class m_produk extends Database {
 		
 		}
 		else{
-		pr("kosong semua");
+		//pr("kosong semua");
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
@@ -743,6 +742,53 @@ class m_produk extends Database {
 		$result2 = $this->fetch($query2,0);
 		}
 		return $result;
+		}
+		function getShowmenu($menu){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE (n_status = '1' OR n_status='0') AND title='".$menu."'";
+		
+		$result = $this->fetch($query,0);
+		if($result['n_status']==1){
+			$result['color']="success";
+			$result['text']="Hidden";
+			$result['icon']="fa fa-eye";
+		}else{
+			$result['color']="danger";
+			$result['text']="Show";
+			$result['icon']="fa fa-eye-slash";
+		}
+		return $result;
+
+		}
+		function showHidemenu_submit($data,$status_query){
+
+		global $CONFIG;
+
+		$create_date=date("Y-m-d H:i:s");
+		// pr($data);exit;
+		if($status_query=='input'){
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$data['menu']."','".$data['cat']."','".$data['type']."','".$create_date."'
+								,'admin','1')";
+						//pr($query);			
+				$result = $this->fetch($query,0);
+
+		}elseif($status_query=='update'){
+
+				$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '".$data['n_status']."'
+							
+						WHERE
+							id = '".$data['id']."' ";
+							
+				$result = $this->fetch($query,0);
+
+			}
+			return $result;
 		}
 	
 }
