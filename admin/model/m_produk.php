@@ -504,7 +504,7 @@ class m_produk extends Database {
 							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','3','21','".$create_date."'
 								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 									
-				$result = $this->fetch($query,0);
+				
 									
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
