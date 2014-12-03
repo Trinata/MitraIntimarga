@@ -158,7 +158,6 @@ class company extends Controller {
 		
 	}
 	public function company_organization(){
-		$this->view->assign('app_domain',$app_domain);
 
 		$this->view->assign('active','active');
 		$data = $this->models->company_organization();
@@ -215,7 +214,6 @@ class company extends Controller {
 	}
 	public function company_marketing(){
 		///////
-		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->company_marketing();
 		//pr($data);
@@ -271,7 +269,6 @@ class company extends Controller {
 		
 	}
 	public function customer_list(){
-		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->customer_list();
 		//pr($data);
@@ -326,7 +323,6 @@ class company extends Controller {
 	
 	}
 	public function customer_location(){
-		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->customer_location();
 		//pr($data);
