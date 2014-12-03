@@ -54,7 +54,7 @@ class home extends Controller {
 	public function visi(){
 
 		$this->view->assign('active','active');
-			$data = $this->models->View_visi();
+			$data = $this->models->view_visi();
 			//pr($data);
 			if($data != 'tidakadadata' ){
 			//	pr("isi");
@@ -68,9 +68,41 @@ class home extends Controller {
 				
 			}else{
 			//	pr("kosong");
-			return $this->loadView('company/company_none');
+			return $this->loadView('visi_none');
 			}
-		return $this->loadView('company/company_profile');	
+		return $this->loadView('visi');	
+	}
+	public function visiadd_submit(){
+		
+	global $CONFIG;	
+		$this->view->assign('active','active');
+	
+	 if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		 }
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		 $data = $this->models->add_submitVisi($upload,$uploaddoc);
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."home/visi'</script>";
+	}
+	public function visi_submit(){
+		
+		global $CONFIG;	
+		if(isset($_POST['n_status'])){
+				if($_POST['n_status']=='on') $_POST['n_status']=1;
+			} else {
+				$_POST['n_status']=0;
+			}
+		$this->view->assign('active','active');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		$upload = uploadFile('file_image',null, 'image');
+		
+		$data = $this->models->submitVisi($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."home/visi'</script>";
+		// return $this->loadView('produk/addScientific');
 	}
 	public function frame(){
 

@@ -225,10 +225,10 @@ class m_menu extends Database {
 		return $result;
 	}
 	
-	function View_visi()
+	function view_visi()
 	{
 	
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='1' and n_status !='2' " ;
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '10' and articleType='1' and n_status !='2' " ;
 		
 		$result['content'] = $this->fetch($query,0);
 		if($result['content'] !=''){
@@ -250,6 +250,163 @@ class m_menu extends Database {
 		return $result;
 		
 		
+	}
+	function add_submitVisi($upload,$uploaddoc)
+	{	
+	$create_date=date("Y-m-d H:i:s");
+		
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+				//pr("isi dua duanya");
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
+								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+		
+				
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','10','1','".$getID."','".$_POST['n_status']."')";
+				
+				$result2 = $this->fetch($query2,0);
+
+			}else if ($upload['full_name'] !='') {
+			//pr("gambar aja");
+		//	pr($_POST['list_geophysic']);
+
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
+								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+			}else if ($uploaddoc['full_name'] !='') {
+			//pr("doc aja");
+			//pr($_POST['list_geophysic']);
+
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
+								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+									
+				$result = $this->fetch($query,0);
+				$getID = $this->insert_id();
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','10','1','".$getID."','".$_POST['n_status']."')";
+				
+				$result2 = $this->fetch($query2,0);
+			
+			}
+			else{
+			//pr("kosong semua");
+			//pr($_POST['list_geophysic']);
+
+					$query = "INSERT INTO  
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','10','1','".$create_date."'
+								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+						//pr($query);		
+								
+				$result = $this->fetch($query,0);
+			}
+
+			
+		return $result;
+	}
+	function submitVisi($upload,$uploaddoc)
+	{
+		$create_date=date("Y-m-d H:i:s");
+		
+		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
+		// pr($upload['full_name']);
+		// pr("isi dua duanya");
+		// pr($_POST['id']);
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$create_date."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							pr($query);
+							
+		$result = $this->fetch($query,0);
+		//$getID = $this->insert_id();
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							n_status = '".$_POST['n_status']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}else if ($upload['full_name'] !='') {
+		//pr("gambar aja");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							image = '".$upload['full_name']."',
+							file ='".$upload['full_path']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$create_date."'
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+		$result = $this->fetch($query,0);
+		}else if ($uploaddoc['full_name'] !='') {
+		//pr("doc aja");
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							title = '".$_POST['title']."',
+							files = '".$uploaddoc['full_name']."',
+							n_status = '".$_POST['n_status']."',
+							typealbum='2',
+							gallerytype='1'
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		
+		}
+		else{
+		//pr("kosong semua");
+		$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title']."',
+							content = '".$_POST['content']."',
+							n_status = '".$_POST['n_status']."',
+							posted_date='".$create_date."'
+						WHERE
+							id = '".$_POST['id']."' ";
+		
+		$result = $this->fetch($query,0);
+		$query2 = "UPDATE {$this->prefix}_news_content_repo
+						SET 
+							n_status = '".$_POST['n_status']."'
+							
+						WHERE
+							otherid = '".$_POST['id']."' ";
+							
+		$result2 = $this->fetch($query2,0);
+		}
+		
+		return $result;
 	}
 	
 }
