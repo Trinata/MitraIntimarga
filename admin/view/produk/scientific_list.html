@@ -40,7 +40,15 @@
 					<a href="{$basedomain}produk/scientific"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+					{if $showmenu.id}
 					
+					<a href="{$basedomain}produk/showHidemenu/?id={$showmenu.id}&n_status={$showmenu.n_status}&produk=scien"><button type="button" class="btn btn-{$showmenu.color} btn-sm"><i class="{$showmenu.icon}"></i> {$showmenu.text} All Scientifics</button></a>
+
+					{else}
+
+					<a href="{$basedomain}produk/showHidemenu/?menu=scien&produk=scien"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-eye-slash"></i> Show All Geophysics</button></a>
+
+					{/if}
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
 						data-provide="datatable" 

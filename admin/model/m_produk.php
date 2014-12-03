@@ -743,6 +743,53 @@ class m_produk extends Database {
 		}
 		return $result;
 		}
+		function getShowmenu($menu){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE (n_status = '1' OR n_status='0') AND title='".$menu."'";
+		
+		$result = $this->fetch($query,0);
+		if($result['n_status']==1){
+			$result['color']="success";
+			$result['text']="Hidden";
+			$result['icon']="fa fa-eye";
+		}else{
+			$result['color']="danger";
+			$result['text']="Show";
+			$result['icon']="fa fa-eye-slash";
+		}
+		return $result;
+
+		}
+		function showHidemenu_submit($data,$status_query){
+
+		global $CONFIG;
+
+		$create_date=date("Y-m-d H:i:s");
+		// pr($data);exit;
+		if($status_query=='input'){
+				$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$data['menu']."','".$data['cat']."','".$data['type']."','".$create_date."'
+								,'admin','1')";
+						//pr($query);			
+				$result = $this->fetch($query,0);
+
+		}elseif($status_query=='update'){
+
+				$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							n_status = '".$data['n_status']."'
+							
+						WHERE
+							id = '".$data['id']."' ";
+							
+				$result = $this->fetch($query,0);
+
+			}
+			return $result;
+		}
 	
 }
 ?>

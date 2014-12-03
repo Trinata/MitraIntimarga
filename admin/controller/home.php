@@ -21,6 +21,7 @@ class home extends Controller {
 	{
 		
 		$this->models = $this->loadModel('m_menu');
+		
 	}
 	
 	public function index(){
@@ -50,7 +51,27 @@ class home extends Controller {
 		return $this->loadView('home');
 
 	}
+	public function visi(){
 
+		$this->view->assign('active','active');
+			$data = $this->models->View_visi();
+			//pr($data);
+			if($data != 'tidakadadata' ){
+			//	pr("isi");
+				 if($data['content']['n_status'] ){
+					$data['content']['n_status'] = 'checked';
+				} else {
+					$data['content']['n_status'] = '0';
+					}			
+					$this->view->assign('data',$data);
+				$this->view->assign('admin',$this->admin['admin']);
+				
+			}else{
+			//	pr("kosong");
+			return $this->loadView('company/company_none');
+			}
+		return $this->loadView('company/company_profile');	
+	}
 	public function frame(){
 
 		$data = $this->models->get_frameList();

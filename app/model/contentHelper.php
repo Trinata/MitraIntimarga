@@ -119,6 +119,15 @@ class contentHelper extends Database {
 		return $result;
 
 	}
+	function getShowmenu($menu){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND title='".$menu."'";
+		
+		$result = $this->fetch($query,0);
+
+		return $result;
+
+		}
 	
 }
 ?>

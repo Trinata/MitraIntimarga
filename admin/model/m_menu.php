@@ -225,7 +225,32 @@ class m_menu extends Database {
 		return $result;
 	}
 	
+	function View_visi()
+	{
 	
+		$query= "SELECT * FROM mitra_news_content WHERE categoryid= '2' and articleType='1' and n_status !='2' " ;
+		
+		$result['content'] = $this->fetch($query,0);
+		if($result['content'] !=''){
+		// pr($query);
+		// pr($result);
+		if($result['content']['image'] !=''){
+		}else{
+		$result['content']['image']="/icon/noimage.png";
+		}
+		
+		$id=$result['content']['id'];
+		$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
+		$result['repo'] = $this->fetch($query2,0);
+		}else{
+		$result="tidakadadata";
+		
+		}
+		//pr($result);
+		return $result;
+		
+		
+	}
 	
 }
 ?>
