@@ -271,6 +271,7 @@ class produk extends Controller {
 	
 	public function editproduk(){
 	global $CONFIG;	
+        $this->view->assign('app_domain',$app_domain);
 		
 		$id=$_GET['id'];
 		
