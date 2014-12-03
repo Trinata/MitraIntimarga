@@ -23,7 +23,16 @@ class produk_m extends Database {
 		
 		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
-		 //pr($result);
+		$i=0;
+		foreach($result as $val){
+			//pr($val);
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' and n_status='1' and otherid='$val[id]'" ;
+			
+			$result2= $this->fetch($query2,0);
+			$result[$i]['files']=$result2['files'];		
+		$i++;
+		}
+		//pr($result);
 		// exit;
 		return $result;
 	
@@ -76,18 +85,48 @@ class produk_m extends Database {
 	
 	}
 	public function scientifics (){
-		
+		/*
 		$query= "SELECT * FROM mitra_news_content WHERE categoryid='3' and articleType='2' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		 //pr($result);
+		return $result;
+*/
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status = '1' ORDER BY created_date DESC" ;
+		$result= $this->fetch($query,1);
+		$i=0;
+		foreach($result as $val){
+			//pr($val);
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' and n_status='1' and otherid='$val[id]'" ;
+			
+			$result2= $this->fetch($query2,0);
+			$result[$i]['files']=$result2['files'];		
+		$i++;
+		}
+		//pr($result);
+		// exit;
 		return $result;
 	
 	}
 	public function civil (){
 		
-		$query= "SELECT * FROM mitra_news_content WHERE categoryid='3' and articleType='3' and n_status='1' " ;
+		/*$query= "SELECT * FROM mitra_news_content WHERE categoryid='3' and articleType='3' and n_status ='1' " ;
 		$result= $this->fetch($query,1);
 		 //pr($result);
+		return $result;
+*/
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='3' and n_status = '1' ORDER BY created_date DESC" ;
+		$result= $this->fetch($query,1);
+		$i=0;
+		foreach($result as $val){
+			//pr($val);
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' and n_status='1' and otherid='$val[id]'" ;
+			
+			$result2= $this->fetch($query2,0);
+			$result[$i]['files']=$result2['files'];		
+		$i++;
+		}
+		pr($result);
+		// exit;
 		return $result;
 	
 	}
@@ -128,15 +167,15 @@ class produk_m extends Database {
 	}
 	public function geophysicsa(){
 		$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1'  ORDER BY created_date DESC";
-		pr($query);
+	
 		$result = $this->fetch($query,1);	
-pr($result);
+
 		return $result;
 	
 		
 	}
 	public function scientificsa(){
-	$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status != '2'  ORDER BY created_date DESC";
+	$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status = '1'  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 		// pr($result);

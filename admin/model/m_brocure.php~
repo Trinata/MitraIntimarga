@@ -269,9 +269,9 @@ class m_brocure extends Database {
 	{
 	$create_date=date("Y-m-d H:i:s");
 		//$query = "SELECT * FROM {$this->prefix}_news_content WHERE  id='$id'";
-		$query = "SELECT A.title, A.content, A.n_status, A.posted_date , A.image, B.otherid, B.title as titlerepo, B.contentimage, B.files
+		$query = "SELECT A.title, A.content, A.n_status, A.posted_date , A.image, B.otherid, b.title as titlerepo, b.contentimage, b.files
 		FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
-		ON A.id = B.otherid where A.id='$id' ";
+		ON A.id = B.otherid where a.id='$id' ";
 		
 		$result = $this->fetch($query,1);
 		return $result;

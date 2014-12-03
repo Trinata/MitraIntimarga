@@ -1,8 +1,7 @@
-
 <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>Scientifics</h2>
+                <h2>Geophysics</h2>
                 <p class="lead">&nbsp;</p>
             </div>
 
@@ -18,28 +17,27 @@
 							<th bgcolor="#00CC66"  colspan="3">{$val.title}</th>
 							  <tr>
 								<td height="140" width="236" >
-								<a href="{$basedomain}produk/partnerscientifics/?id={$val.id}">
+								<a href="{$basedomain}produk/partnergeophysics/?id={$val.id}">
 								<img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
 								
 								</td>
-							
 								<td>
 									<p>
 									{$val.content}	
 									</p>
 								</td>
-									  	
-							
 								<td>
-							
-									<a href="{$basedomain}public_assets/{$val.files}"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a></td>
+								{if $data1}
+									{foreach $data1 as $val1 } 
+									
+									<a href="{$basedomain}public_assets/{$val1.files}" src="{$basedomain}public_assets/{$val1.files}" class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a>
+									{/foreach}
+								{/if}
+								</td>
 							  </tr>
-									  	{/foreach}
-							{/if}
-								
-							
+							  	{/foreach}
+					{/if}
 					</table>
-					
 				</div>
 			
             </div><!--/.row--> 

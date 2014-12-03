@@ -32,11 +32,11 @@
 							
 								<td>
 							
-									<a href="{$basedomain}public_assets/{$val.files}"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a></td>
-							  </tr>
+									<a href="{$basedomain}public_assets/{$val.files}"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a>
 									  	{/foreach}
 							{/if}
-								
+								</td>
+							  </tr>
 							
 					</table>
 					

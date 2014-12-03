@@ -31,7 +31,7 @@ class produk extends Controller {
 		//pr($result_data);
 		//pr($result_data_file);
 		$this->view->assign('data',$result_data);
-		//$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('data4',$result_data_file5);
