@@ -16,7 +16,7 @@
 					
 							<th bgcolor="#00CC66"  colspan="3">{$val.title}</th>
 							  <tr>
-								<td height="140" width="236" >
+								<td height="200" width="236" >
 								<a href="{$basedomain}produk/partnergeophysics/?id={$val.id}">
 								<img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
 								
@@ -28,9 +28,9 @@
 								</td>
 								<td>
 								
-									
+									{if $val.files}
 									<a href="{$basedomain}public_assets/{$val.files}" class="btn btn-info" target="_blank"><i class="fa fa-download"></i>  Download</a>
-								
+									{/if}
 								</td>
 							  </tr>
 							  	{/foreach}

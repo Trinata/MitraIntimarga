@@ -6,17 +6,23 @@
             </div>
             <div class="row">
                 {if $album}
+
                 {foreach $album as $val}
                <div class="col-xs-12 col-sm-4 col-md-2" >
-                    <div class="recent-work-wrap">
+                    {*}<div class="recent-work-wrap">
                         <img class="img-responsive" src="{$basedomain}assets/images/cover-album-thama-tengah.jpg" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
-                                <p><a href="{$basedomain}public_assets/{$val.files}" target="_blank">{$val.title}</a> </p>
-                                <a class="" href="{$basedomain}assets/music/{$val.files}"  target="_blank"><i class="fa fa-eye"></i> Click to play</a>
+                                <p>&nbsp;</p>
                             </div> 
                         </div>
-                    </div>
+                    </div>{/*}
+                    <p><a href="{$basedomain}public_assets/{$val.files}" target="_blank">{$val.title}</a> </p>
+                               {*} <a class="" href="{$basedomain}assets/music/{$val.files}"  target="_blank"><i class="fa fa-eye"></i> Click to play</a> {/*}
+                                <audio controls>
+                                  <source src="{$basedomain}public_assets/{$val.files}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                                </audio> 
                 </div> 
                 {/foreach}
                 {/if}   
