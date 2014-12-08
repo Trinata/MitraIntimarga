@@ -180,6 +180,29 @@ class gallery extends Controller {
 		// pr($dataAlbum);exit;
 		$this->view->assign('cat',$dataAlbum);
 
+		if(isset($_GET['id']))
+		{
+			$id = $_GET['id'];
+
+			if ($data){
+			
+			
+			// pr($data);
+				// foreach ($data as $key => $val){
+
+					$dataRepo = $this->marticle->getRepo($id=false, $type=1,$cat=0, $id);
+
+				// }
+
+			}
+			// $data = $this->marticle->getContent($id, $type=5,$cat=3);
+			
+
+			$result = $dataRepo[0];
+			($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
+			// pr($result);
+			$this->view->assign('data',$result);
+		}
 		if ($_POST){
 
 			if ($_POST['id']){

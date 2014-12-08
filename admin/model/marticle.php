@@ -74,7 +74,7 @@ class marticle extends Database {
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content_repo",
                 'field'=>"*",
-                'condition' => "typealbum= {$typealbum} AND gallerytype = {$gallerytype} AND n_status = 1 {$filter} ",
+                'condition' => "typealbum= {$typealbum} AND gallerytype = {$gallerytype} AND (n_status = 1 or n_status = 0) {$filter} ",
                 );
 
 		$res = $this->db->lazyQuery($sql,$debug);
