@@ -46,8 +46,21 @@ class album extends Controller {
 	function activity()
 	{
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=3);
-		
-		$this->view->assign('album',$getAlbum);
+		if($_GET['idAlbum']){
+			foreach ($getAlbum as $key => $value) {
+				if($value['parentid']==$_GET['idAlbum']){
+					$dataAlbum[]=$value;
+				}
+			}
+
+		}else{
+			foreach ($getAlbum as $key => $value) {
+				if($value['parentid']==0){
+					$dataAlbum[]=$value;
+				}
+			}
+		}
+			$this->view->assign('album',$dataAlbum);
 		//------------	tambahan maraoks----------//
 			$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();

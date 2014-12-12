@@ -5,19 +5,27 @@
                
             </div>
             <div class="row">
-                <div style="margin-left:25%">
+                <div >
                 {if $album}
                 {foreach $album as $val}
-                <div class="col-xs-12 col-sm-4 " >
+                <div class="col-xs-12 col-sm-3 " >
                     <div class="recent-work-wrap">
                         <img class="img-responsive" src="{$basedomain}public_assets/{$val.image}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
-                                
+                                {if $val.parentid==0}
+                                <a class="preview" href="{$basedomain}album/activity/?idAlbum={$val.id}" rel=""><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                {else}
                                 <a class="preview" href="{$basedomain}album/activityDetail/?id={$val.id}" rel=""><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                 {/if}
                             </div> 
                         </div>
+                        {if $val.parentid==0}
+                        <h3><a href="{$basedomain}album/activity/?idAlbum={$val.id}">{$val.title}</a> </h3>
+                        {else}
                         <h3><a href="{$basedomain}album/activityDetail/?id={$val.id}">{$val.title}</a> </h3>
+                        {/if}
+
                         <p>{$val.content}</p>
                     </div>
                 </div>   

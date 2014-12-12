@@ -30,8 +30,31 @@ class gallery extends Controller {
 		$this->view->assign('active','active');
 		$data = $this->marticle->getContent($id=false, $type=5,$cat=3);
 
+		foreach ($data as $key => $valAlbum){
+
+			if($valAlbum['parentid']==0){
+				$valAlbum['nameAlbum']=$valAlbum['title'];
+				$dataAlbum[]=$valAlbum;
+				// pr($dataAlbum);
+				// echo"=====";
+
+				foreach ($data as $key => $valAlbum2){ 
+
+					if($valAlbum2['parentid']==$valAlbum['id'] ){
+
+
+								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+							
+						$dataAlbum[]=$valAlbum;
+					}
+				}
+
+			}
+
+		}
+		// pr($dataAlbum);
 		if ($data){
-			
+		
 			
 			// pr($data);
 			foreach ($data as $key => $val){
@@ -42,7 +65,8 @@ class gallery extends Controller {
 		}
 		
 		// pr($dataRepo);
-		$this->view->assign('data',$data);
+		$this->view->assign('data',$dataAlbum);
+		// $this->view->assign('data',$data);
 
 		return $this->loadView('news/home-gallery');
 
@@ -68,8 +92,14 @@ class gallery extends Controller {
 
 			$this->view->assign('data',$data);
 		}
-		
-		
+		foreach ($data as $key => $valAlbum){
+			if($valAlbum['parentid']==0){
+				$dataAlbum[]=$valAlbum;
+			}
+
+		}
+		// pr($dataAlbum);
+		$this->view->assign('dataAlbum',$dataAlbum);
 
 		if(isset($_GET['id']))
 		{
@@ -92,10 +122,10 @@ class gallery extends Controller {
 	    	
 	    	if ($_POST['id']){
 	    	
-	    		$saveData = $this->marticle->updateNews($_POST);
+	    		$saveData = $this->marticle->updateNewsAlbum($_POST);
 
 	    	}else{
-	    		$saveData = $this->marticle->saveData($_POST);	
+	    		$saveData = $this->marticle->saveDataAlbum($_POST);	
 	    	}
 	    	
 	    	// pr($saveData);
@@ -134,8 +164,45 @@ class gallery extends Controller {
 		
 		$data = $this->marticle->getContent($id=false, $type=5,$cat=3);
 		// pr($data);
-		$this->view->assign('cat',$data);
+		foreach ($data as $key => $valAlbum){
 
+			if($valAlbum['parentid']!=0){
+				foreach($data as $key => $valAlbum2){
+					if($valAlbum2['id']==$valAlbum['parentid']){
+						$valAlbum['subAlbum']=$valAlbum2['title'].">> ".$valAlbum['title'];
+					}
+
+				}
+				$dataAlbum[]=$valAlbum;
+			}
+
+		}
+		// pr($dataAlbum);exit;
+		$this->view->assign('cat',$dataAlbum);
+
+		if(isset($_GET['id']))
+		{
+			$id = $_GET['id'];
+
+			if ($data){
+			
+			
+			// pr($data);
+				// foreach ($data as $key => $val){
+
+					$dataRepo = $this->marticle->getRepo($id=false, $type=1,$cat=0, $id);
+
+				// }
+
+			}
+			// $data = $this->marticle->getContent($id, $type=5,$cat=3);
+			
+
+			$result = $dataRepo[0];
+			($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
+			// pr($result);
+			$this->view->assign('data',$result);
+		}
 		if ($_POST){
 
 			if ($_POST['id']){

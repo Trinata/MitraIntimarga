@@ -124,7 +124,7 @@ class music extends Controller {
 		// pr($dataRepo);
 		
 		$this->view->assign('music',true);
-		return $this->loadView('news/add-album');
+		return $this->loadView('news/add-album-music');
 
 	}
 
@@ -172,7 +172,7 @@ class music extends Controller {
 
 		$this->view->assign('music',true);
 
-		return $this->loadView('news/add-file');
+		return $this->loadView('news/add-file-music');
 	}
 
 

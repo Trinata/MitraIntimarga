@@ -74,7 +74,7 @@ class marticle extends Database {
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content_repo",
                 'field'=>"*",
-                'condition' => "typealbum= {$typealbum} AND gallerytype = {$gallerytype} AND n_status = 1 {$filter} ",
+                'condition' => "typealbum= {$typealbum} AND gallerytype = {$gallerytype} AND (n_status = 1 or n_status = 0) {$filter} ",
                 );
 
 		$res = $this->db->lazyQuery($sql,$debug);
@@ -90,21 +90,42 @@ class marticle extends Database {
     		$$key = $value;
     	}
 
-    	if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
     	$created_date = date('Y-m-d H:i:s');
     	if ($n_status == 'on') $n_status = 1;
 
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
                 'field'=>"title, brief, content, categoryid, articletype, created_date, posted_date, authorid, n_status",
-                'value' => "'{$title}', '{$brief}', '{$content}', '{$categoryid}', '{$articletype}', '{$created_date}', '{$postdate}', '{$authorid}', '{$n_status}'",
+                'value' => "'{$title}', '{$brief}', '{$content}', '{$categoryid}', '{$articletype}', '{$created_date}', '{$created_date}', '{$authorid}', '{$n_status}'",
                 );
 
 		$res = $this->lazyQuery($sql,$debug,1);
 		if ($res) return true;
 		return false;
 	}
+	function saveDataAlbum($data, $debug=false)
+	{	
 
+		// pr($data);exit;
+    	foreach ($data as $key => $value) {
+    		$$key = $value;
+    	}
+
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	$created_date = date('Y-m-d H:i:s');
+    	if ($n_status == 'on') $n_status = 1;
+
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"parentid, title, brief, content, categoryid, articletype, created_date, posted_date, authorid, n_status",
+                'value' => "'{$parentid}','{$title}', '{$brief}', '{$content}', '{$categoryid}', '{$articletype}', '{$created_date}', '{$created_date}', '{$authorid}', '{$n_status}'",
+                );
+
+		$res = $this->lazyQuery($sql,$debug,1);
+		if ($res) return true;
+		return false;
+	}
 	function saveDataRepo($data, $debug=false)
 	{	
 
@@ -113,7 +134,7 @@ class marticle extends Database {
     		$$key = $value;
     	}
 
-    	if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
     	$created_date = date('Y-m-d H:i:s');
     	if ($n_status == 'on') $n_status = 1;
     	if ($files) $files = $files;
@@ -153,7 +174,7 @@ class marticle extends Database {
     		$$key = $value;
     	}
 
-    	if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
     	$created_date = date('Y-m-d H:i:s');
     	if ($n_status == 'on') $n_status = 1;
     	else $n_status = 0;
@@ -176,7 +197,7 @@ class marticle extends Database {
     		$$key = $value;
     	}
 
-    	if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
     	$created_date = date('Y-m-d H:i:s');
     	if ($n_status == 'on') $n_status = 1;
     	else $n_status = 0;
@@ -184,7 +205,7 @@ class marticle extends Database {
     	$brief = addslashes($brief);
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
-                'field'=>"title = '{$title}', brief = '{$brief}', content = '{$content}', posted_date = '{$postdate}', n_status = {$n_status}",
+                'field'=>"title = '{$title}', brief = '{$brief}', content = '{$content}', posted_date = '{$created_date}', n_status = {$n_status}",
                 'condition' => "id = {$id}",
                 );
 
@@ -192,7 +213,29 @@ class marticle extends Database {
 		if ($res) return true;
 		return false;
 	}
+	function updateNewsAlbum($data, $debug=false)
+	{
+		// pr($data);exit;
+		foreach ($data as $key => $value) {
+    		$$key = $value;
+    	}
 
+    	// if(!empty($postdate)) $postdate = date("Y-m-d",strtotime($postdate)); 
+    	$created_date = date('Y-m-d H:i:s');
+    	if ($n_status == 'on') $n_status = 1;
+    	else $n_status = 0;
+    	$content = addslashes($content);
+    	$brief = addslashes($brief);
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"parentid = '{$parentid}',title = '{$title}', brief = '{$brief}', content = '{$content}', posted_date = '{$created_date}', n_status = {$n_status}",
+                'condition' => "id = {$id}",
+                );
+
+		$res = $this->lazyQuery($sql,$debug,2);
+		if ($res) return true;
+		return false;
+	}
 	function updateData($data, $debug=false)
 	{	
 
