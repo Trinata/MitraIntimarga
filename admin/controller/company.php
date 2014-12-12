@@ -158,8 +158,8 @@ class company extends Controller {
 		
 	}
 	public function company_organization(){
+		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
-
 		$this->view->assign('active','active');
 		$data = $this->models->company_organization();
 		//pr($data);
@@ -215,6 +215,7 @@ class company extends Controller {
 	}
 	public function company_marketing(){
 		///////
+		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->company_marketing();
@@ -271,6 +272,7 @@ class company extends Controller {
 		
 	}
 	public function customer_list(){
+		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->customer_list();
@@ -293,7 +295,7 @@ class company extends Controller {
 		
 	}
 	public function customer_listadd_submit(){
-	global $CONFIG;	
+	global $CONFIG,$app_domain;	
 		$this->view->assign('active','active');
 	
 		 if(isset($_POST['n_status'])){
@@ -326,6 +328,7 @@ class company extends Controller {
 	
 	}
 	public function customer_location(){
+		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
 		$data = $this->models->customer_location();
