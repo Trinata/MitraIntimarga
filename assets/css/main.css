@@ -60,7 +60,28 @@ hr {
   border-bottom: 1px solid #fff;
 }
 
-
+.btn-landing{
+                         /* Safari 4-5, Chrome 1-9 */ 
+                         background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFA00), to(#FF6E02)); /* Safari 5.1, Chrome 10+ */ 
+                         background: -webkit-linear-gradient(top, #FF6E02, #FFFA00); 
+                         /* Firefox 3.6+ */ 
+                         background: -moz-linear-gradient(top, #FF6E02, #FFFA00); 
+                         /* IE 10 */ 
+                         background: -ms-linear-gradient(top, #FF6E02, #FFFA00); 
+                         /* Opera 11.10+ */ 
+                         background: -o-linear-gradient(top, #FF6E02, #FFFA00);
+                    }
+.btn-landing:hover{
+                         /* Safari 4-5, Chrome 1-9 */ 
+                         background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF6E02), to(#FFFA00)); /* Safari 5.1, Chrome 10+ */ 
+                         background: -webkit-linear-gradient(top, #FFFA00, #FF6E02); 
+                         /* Firefox 3.6+ */ 
+                         background: -moz-linear-gradient(top, #FFFA00, #FF6E02); 
+                         /* IE 10 */ 
+                         background: -ms-linear-gradient(top, #FFFA00, #FF6E02); 
+                         /* Opera 11.10+ */ 
+                         background: -o-linear-gradient(top, #FFFA00, #FF6E02);
+                    }
 .btn-primary {
   padding: 8px 20px;
   background: #2A01FF;
