@@ -72,38 +72,42 @@ class produk extends Controller {
 					$data[$key]['status_color'] = 'red'; 
 				}
 			}
+
+
 		}
 		
 
 		foreach ($data as $key => $valAlbum){
 			
 
-			if($valAlbum['authorid']==0){
+			if($valAlbum['parentid']==0){
 				$valAlbum['nameAlbum']=$valAlbum['title'];
 				//pr($valAlbum['nameAlbum']);
 				$dataAlbum[]=$valAlbum;
-				// pr($dataAlbum);
+				
 				// echo"=====";
 
 				foreach ($data as $key => $valAlbum2){ 
 
-					if($valAlbum2['authorid']==$valAlbum['id'] ){
+					if($valAlbum2['parentid']==$valAlbum['id'] ){
 
 
 								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-							
+						$valAlbum['id']=$valAlbum2['id'];	
 						$dataAlbum[]=$valAlbum;
 					}
 				}
 				
 
 			}
-			pr($valAlbum);
+			//pr($dataAlbum);
+			
 			
 		}
-
-		//$this->view->assign('data',$data);
+		// pr($dataAlbum);
+		//pr($data);
+		
 		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/geophysics_list');
@@ -153,7 +157,7 @@ class produk extends Controller {
 
 								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-							
+						$valAlbum['id']=$valAlbum2['id'];	
 						$dataAlbum[]=$valAlbum;
 					}
 				}
@@ -210,7 +214,7 @@ class produk extends Controller {
 
 								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-							
+						$valAlbum['id']=$valAlbum2['id'];	
 						$dataAlbum[]=$valAlbum;
 					}
 				}

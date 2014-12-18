@@ -45,14 +45,16 @@ class gallery extends Controller {
 
 								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							
+						$valAlbum['id']=$valAlbum2['id'];
 						$dataAlbum[]=$valAlbum;
+
 					}
 				}
 
 			}
 
 		}
-		// pr($dataAlbum);
+		//pr($dataAlbum);
 		if ($data){
 		
 			
