@@ -750,5 +750,24 @@ function ImageCreateFromBMP($filename)
 	return $res;
 }
 
-
+function html2specialchars($str){
+    $trans_table = array_flip(get_html_translation_table(HTML_ENTITIES));
+    return strtr($str, $trans_table);
+}
+function hsc($value){
+			if ( get_magic_quotes_gpc() ){
+			$value = htmlspecialchars( stripslashes((string)$value) );
+			//echo"-----<pre>";
+			//echo $value;
+			//echo "</pre>";
+			}
+					else{
+						$value = htmlspecialchars( (string)$value );
+						// $value2 = html2specialchars($value );
+			//echo"====<pre>";
+			//echo $value;
+			//echo "</pre>";
+			}
+			return $value;
+}
 ?>

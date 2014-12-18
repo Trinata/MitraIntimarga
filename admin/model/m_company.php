@@ -252,14 +252,14 @@ class m_company extends Database {
 	function company_profileadd_submit($upload,$uploaddoc)
 	{	
 	$create_date=date("Y-m-d H:i:s");
-		
+	$content=hsc($_POST['content']);
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 				//pr("isi dua duanya");
 					$query = "INSERT INTO  
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_content."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
 								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 		
 				
