@@ -99,7 +99,7 @@ class produk extends Controller {
 				
 
 			}
-			//pr($valAlbum);
+			pr($valAlbum);
 			
 		}
 
