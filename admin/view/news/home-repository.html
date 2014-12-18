@@ -10,6 +10,34 @@
 		}
 	}
 </script>
+<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Initialise the DataTable */
+				var oTable = $('.datatable').dataTable( {
+					"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+					"sPaginationType": "bootstrap",
+					 "aoColumnDefs": [
+									  { "bSearchable": false, "aTargets": [ 4 ] },
+									  { "bSearchable": false, "aTargets": [ 5 ] },     
+									  { "bSortable": false, "aTargets": [ 0 ] },
+									  { "bSortable": false, "aTargets": [ 2 ] },
+									  { "bSortable": false, "aTargets": [ 4 ] },
+									  { "bSortable": false, "aTargets": [ 5 ] }
+									],
+					"oLanguage": {
+						"sSearch": "Search all columns:",
+						"sLengthMenu": "_MENU_ records per page"
+					}
+				} );
+				
+					$('select.filterCat', this).change( function () {
+						oTable.fnFilter( $(this).val(), 2 );
+					} );
+				
+			} );
+			
+			
+		</script>
 <div id="content-header">
 	<h1>Repository</h1>
 </div> <!-- #content-header -->	

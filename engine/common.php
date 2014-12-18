@@ -750,7 +750,7 @@ function ImageCreateFromBMP($filename)
 	return $res;
 }
 
-function html2specialchars($str){
+function unhsc($str){
     $trans_table = array_flip(get_html_translation_table(HTML_ENTITIES));
     return strtr($str, $trans_table);
 }
