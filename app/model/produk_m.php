@@ -146,27 +146,17 @@ class produk_m extends Database {
 	
 	}
 	public function partnergeophysics ($id){
-	/*
-		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
-		$result= $this->fetch($query,1);
-		 //pr($result);
-		
-		return $result;
-		*/
-
-
-		//pr($id);
+	
 		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='11' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
-		//pr("ada");
-		//pr($result);
+	
+
 		foreach($result as $val){
-		//	pr($val);
+
 			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
-			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$id'  and n_status='1'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$val[id]'  and n_status='1'" ;
 			$result2= $this->fetch($query2,0);
-			//pr($result2);
 			$result[$i]['files']=$result2['files'];		
 		$i++;
 		}
@@ -176,17 +166,51 @@ class produk_m extends Database {
 
 	}
 	public function partnerscientifics ($id){
-		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
+		/*$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		
 		$result= $this->fetch($query,1);
 		
 		return $result;
+		*/
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='21' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
+		$result= $this->fetch($query,1);
+		$i=0;
+	
+
+		foreach($result as $val){
+
+			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$val[id]'  and n_status='1'" ;
+			$result2= $this->fetch($query2,0);
+			$result[$i]['files']=$result2['files'];		
+		$i++;
+		}
+		return $result;
 	}
 	public function partnercivil ($id){
+			$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='31' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
+		$result= $this->fetch($query,1);
+		$i=0;
+	
+
+		foreach($result as $val){
+
+			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$val[id]'  and n_status='1'" ;
+			$result2= $this->fetch($query2,0);
+			$result[$i]['files']=$result2['files'];		
+		$i++;
+		}
+		//pr($result);
+		// exit;
+		return $result;
+
+		/*
 		$query= "SELECT * FROM mitra_news_content WHERE authorid=$id  and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		 //pr($result);	
 		return $result;
+		*/
 	}
 	public function geophysicsa(){
 		$query = "SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1'  ORDER BY created_date DESC";

@@ -1,63 +1,4 @@
-{*}
-<section id="feature" class="transparent-bg">
-        <div class="container">
-           <div class="center wow fadeInDown">
-                <h2>Geophisic Division</h2>
-                
-            </div>
 
-            <div class="row">
-				<div class="col-sm-12">
-					<table class="table" border="1">
-					{if $data}
-						{foreach $data as $val } 
-							<th bgcolor="#00CC66"  colspan="2">{$val.title}</th>
-							  <tr>
-								<td height="200" width="236" >
-								<img align="center"  width="212" height="200" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
-								</td>
-								<td>
-									<p>
-										{$val.content}
-									</p>
-								</td>
-							  </tr>
-						{/foreach}
-					{/if}
-					</table>
-					
-				</div>
-			
-            </div><!--/.row--> 
-
-
-
-        </div><!--/.container-->
-    </section><!--/#feature-->
-
-
-	<tr>
-		<hr>
-			<p class="center">
-			{if $data1}
-				{foreach $data1 as $val1 } 
-				<!--
-				<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen coy">
-					<input type="button" value="Download {$val1.title}.pdf " src="{$basedomain}public_assets/{$val1.files}" target="_blank" >
-				</a>
-				-->
-			
-				<a href="{$basedomain}public_assets/{$val1.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
-					Download {$val1.title}
-				</a>
-			
-				{/foreach}
-			{/if}
-			</p>
-		
-	</tr>
-
-  {/*}
   <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
@@ -77,7 +18,7 @@
 							<th bgcolor="#00CC66"  colspan="3">{$val.title}</th>
 							  <tr>
 								<td height="140" width="236" >
-								<a href="{$basedomain}produk/partnergeophysics/?id={$val.id}">
+							<!--	<a href="{$basedomain}produk/partnergeophysics/?id={$val.id}"> -->
 								<img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
 								
 								</td>
