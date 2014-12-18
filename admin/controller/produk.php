@@ -52,8 +52,10 @@ class produk extends Controller {
 	public function geophysics_list(){
 		
 		$this->view->assign('active','active');
-		$data = $this->models->geophysics_list();
 
+		
+		$data = $this->models->geophysics_list();
+		
 		$data_menu = $this->models->getShowmenu('geo');
 		if ($data){
 			foreach ($data as $key => $val){
@@ -71,11 +73,43 @@ class produk extends Controller {
 				}
 			}
 		}
-		$this->view->assign('data',$data);
+		
+
+		foreach ($data as $key => $valAlbum){
+			
+
+			if($valAlbum['authorid']==0){
+				$valAlbum['nameAlbum']=$valAlbum['title'];
+				//pr($valAlbum['nameAlbum']);
+				$dataAlbum[]=$valAlbum;
+				// pr($dataAlbum);
+				// echo"=====";
+
+				foreach ($data as $key => $valAlbum2){ 
+
+					if($valAlbum2['authorid']==$valAlbum['id'] ){
+
+
+								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+							//	pr(	$valAlbum['nameAlbum']);
+							
+						$dataAlbum[]=$valAlbum;
+					}
+				}
+				
+
+			}
+			//pr($valAlbum);
+			
+		}
+
+		//$this->view->assign('data',$data);
+		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/geophysics_list');
 
-	
+
+
 	}
 	
 	public function scientific_list(){
@@ -101,10 +135,39 @@ class produk extends Controller {
 			}
 		}
 		
-		$this->view->assign('data',$data);
 
+		foreach ($data as $key => $valAlbum){
+			
+
+			if($valAlbum['authorid']==0){
+				$valAlbum['nameAlbum']=$valAlbum['title'];
+				//pr($valAlbum['nameAlbum']);
+				$dataAlbum[]=$valAlbum;
+				// pr($dataAlbum);
+				// echo"=====";
+
+				foreach ($data as $key => $valAlbum2){ 
+
+					if($valAlbum2['authorid']==$valAlbum['id'] ){
+
+
+								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+							//	pr(	$valAlbum['nameAlbum']);
+							
+						$dataAlbum[]=$valAlbum;
+					}
+				}
+				
+
+			}
+			//pr($valAlbum);
+		}
+		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/scientific_list');
+
+
+
 	}
 	public function civil_list(){
 		
@@ -129,8 +192,35 @@ class produk extends Controller {
 			}
 		}
 		
-		$this->view->assign('data',$data);
 
+		foreach ($data as $key => $valAlbum){
+			
+
+			if($valAlbum['authorid']==0){
+				$valAlbum['nameAlbum']=$valAlbum['title'];
+				//pr($valAlbum['nameAlbum']);
+				$dataAlbum[]=$valAlbum;
+				// pr($dataAlbum);
+				// echo"=====";
+
+				foreach ($data as $key => $valAlbum2){ 
+
+					if($valAlbum2['authorid']==$valAlbum['id'] ){
+
+
+								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+							//	pr(	$valAlbum['nameAlbum']);
+							
+						$dataAlbum[]=$valAlbum;
+					}
+				}
+				
+
+			}
+			//pr($valAlbum);
+		}
+		$this->view->assign('data',$dataAlbum);
+	
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/civil_list');
 

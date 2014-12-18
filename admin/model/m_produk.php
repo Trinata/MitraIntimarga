@@ -423,7 +423,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 
@@ -453,7 +453,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','11','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -491,7 +491,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -519,7 +519,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$_POST['list_geophysic']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','21','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -559,7 +559,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -585,7 +585,7 @@ class m_produk extends Database {
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$_POST['list_civil']."','".$_POST['n_status']."')";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','3','31','".$getID."','".$_POST['n_status']."')";
 				
 				$result2 = $this->fetch($query2,0);
 			

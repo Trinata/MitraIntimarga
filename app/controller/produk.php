@@ -132,7 +132,7 @@ class produk extends Controller {
 	 //$id=$_GET['id'];
 	// pr($id);
 		$result_data = $this->models->scientifics();
-		$result_data_file = $this->models->scientifics_file();
+		//$result_data_file = $this->models->scientifics_file();
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
 		$result_data_file5 = $this->models->civil();
