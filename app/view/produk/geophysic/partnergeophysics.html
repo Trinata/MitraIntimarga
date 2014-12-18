@@ -2,14 +2,12 @@
   <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-<<<<<<< HEAD
+
            	<img class="img-responsive" src="{$basedomain}public_assets/{$data_detail.image}" alt="">
                 <h2>{$data_detail.title}</h2>
-                
-=======
-                <h2>Geophysics</h2>
                 <p class="lead">&nbsp;</p>
->>>>>>> e42c08933e6963a10c79766c13de5e5330be64ba
+                
+
             </div>
 
             <div class="row">
@@ -17,7 +15,7 @@
 					<ol>
 					{if $data}
 						{foreach $data as $val } 
-						<li><a href="{$val.id}">{$val.title}</a></li>
+						<li><a href="{$basedomain}produk/detailpartnergeophysics/?id={$val.id}">{$val.title}</a></li>
 						{/foreach}
 					{/if}
 					<ol>
@@ -50,10 +48,7 @@
 							  	{/foreach}
 					{/if}
 					</table>
-<<<<<<< HEAD
 					{/*}
-=======
->>>>>>> e42c08933e6963a10c79766c13de5e5330be64ba
 				</div>
 			
             </div><!--/.row--> 

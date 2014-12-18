@@ -259,7 +259,7 @@ class m_company extends Database {
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_content."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
 								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 		
 				
@@ -278,7 +278,7 @@ class m_company extends Database {
 							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$_POST['content']."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
+							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','2','1','".$create_date."'
 								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
 									
 				$result = $this->fetch($query,0);
