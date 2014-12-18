@@ -1,13 +1,21 @@
 <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>Geophisic Division</h2>
+           	<img class="img-responsive" src="{$basedomain}public_assets/{$data_detail.image}" alt="">
+                <h2>{$data_detail.title}</h2>
                 
             </div>
 
             <div class="row">
-				<div class="col-sm-12">
-					<table class="table" border="1">
+				<div class="col-sm-6">
+					<ol>
+					{if $data}
+						{foreach $data as $val } 
+						<li><a href="#">{$val.title}</a></li>
+						{/foreach}
+					{/if}
+					<ol>
+					{*}<table class="table" border="1">
 					{if $data}
 						{foreach $data as $val } 
 							<th bgcolor="#00CC66"  colspan="2">{$val.title}</th>
@@ -24,7 +32,7 @@
 						{/foreach}
 					{/if}
 					</table>
-					
+					{/*}
 				</div>
 			
             </div><!--/.row--> 

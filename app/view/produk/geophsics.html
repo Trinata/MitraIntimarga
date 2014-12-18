@@ -6,7 +6,53 @@
             </div>
 
             <div class="row">
-				<div class="col-sm-12">
+            	 <div >
+                {if $data}
+                {$i=0}
+                {foreach $data as $val}
+                {if $i==0 || $i%4==0}
+           		<div class="row">
+           		{else}
+
+           		{/if}
+                <div class="col-xs-12 col-sm-3 " >
+                    <div class="recent-work-wrap">
+                        <a href="{$basedomain}produk/partnergeophysics/?id={$val.id}">
+								<img align="center" class="img-responsive" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								</a>
+                     {*} 
+                     <div class="overlay">
+                            <div class="recent-work-inner">
+                              {if $val.parentid==0}
+                                <a class="preview" href="{$basedomain}album/activity/?idAlbum={$val.id}" rel=""><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                {else}
+                                <a class="preview" href="{$basedomain}album/activityDetail/?id={$val.id}" rel=""><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                 {/if}
+
+                                
+                            </div> 
+                        </div>
+                       {if $val.parentid==0}
+                        <h3><a href="{$basedomain}album/activity/?idAlbum={$val.id}">{$val.title}</a> </h3>
+                        {else}
+                        <h3><a href="{$basedomain}album/activityDetail/?id={$val.id}">{$val.title}</a> </h3>
+                        {/if}
+
+                        <p>{$val.content}</p>
+                        {/*}
+                    </div>
+                </div>   {$i=$i+1}
+                {if $i%4==0}
+            </div><br/>
+            {else}
+
+            {/if}
+                
+                {/foreach}
+                {/if}
+                </div>
+
+				{*}<div class="col-sm-12">
 					<table class="table" border="1">
 					{if $data}
 							{foreach $data as $val } 
@@ -36,7 +82,7 @@
 							  	{/foreach}
 					{/if}
 					</table>
-				</div>
+				</div>{/*}
 			
             </div><!--/.row--> 
 
