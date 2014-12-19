@@ -393,6 +393,76 @@ class produk extends Controller {
 		 return $this->loadView('produk/editproduk');
 		
 	}
+	public function editproduk_geophysics(){
+	global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		
+		$id=$_GET['id'];
+		
+		
+		$this->view->assign('active','active');
+		
+		 $data = $this->models->editproduk($id);
+		 if($data['n_status'] ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+			}
+		//pr($data);
+		$this->view->assign('data',$data);
+		$this->view->assign('fleg','geophysics');
+		$this->view->assign('admin',$this->admin['admin']);
+	
+		 return $this->loadView('produk/editproduk');
+		
+	}
+	public function editproduk_scientifics(){
+	global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		
+		$id=$_GET['id'];
+		
+		
+		$this->view->assign('active','active');
+		
+		 $data = $this->models->editproduk($id);
+		 if($data['n_status'] ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+			}
+		//pr($data);
+		$this->view->assign('data',$data);
+		$this->view->assign('fleg','scientifics');
+		$this->view->assign('admin',$this->admin['admin']);
+	
+		 return $this->loadView('produk/editproduk');
+		
+	}
+	public function editproduk_civil(){
+	global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		
+		$id=$_GET['id'];
+		
+		
+		$this->view->assign('active','active');
+		
+		 $data = $this->models->editproduk($id);
+		 if($data['n_status'] ){
+				$data['n_status'] = 'checked';
+			} else {
+				$data['n_status'] = '0';
+			}
+		//pr($data);
+		$this->view->assign('data',$data);
+		$this->view->assign('fleg','civil');
+		
+		$this->view->assign('admin',$this->admin['admin']);
+	
+		 return $this->loadView('produk/editproduk');
+		
+	}
 	public function edit_produk_submit(){
 		
 	global $CONFIG;	
@@ -412,6 +482,69 @@ class produk extends Controller {
 		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+		
+	}
+	public function edit_produk_submit_geophysics(){
+		
+	global $CONFIG;	
+	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		 //pr($_POST);
+		 // pr($_FILES);
+		 // pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		// pr($upload);
+		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		
+	}
+	public function edit_produk_submit_scientifics(){
+		
+	global $CONFIG;	
+	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		 //pr($_POST);
+		 // pr($_FILES);
+		 // pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		// pr($upload);
+		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
+		
+	}
+	public function edit_produk_submit_civil(){
+		
+	global $CONFIG;	
+	
+	if(isset($_POST['n_status'])){
+			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		} else {
+			$_POST['n_status']=0;
+		}
+		 //pr($_POST);
+		 // pr($_FILES);
+		 // pr($_FILES['file_image']['name']);
+		$this->view->assign('active','active');
+		$upload = uploadFile('file_image',null, 'image');
+		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		// pr($upload);
+		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
+
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/civil_list'</script>";
 		
 	}
 	public function delete_produk(){	
