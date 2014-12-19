@@ -502,7 +502,8 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		// pr($upload);
+		pr($upload);
+		// pr($uploaddoc);exit;
 		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
@@ -517,13 +518,15 @@ class produk extends Controller {
 		} else {
 			$_POST['n_status']=0;
 		}
-		 //pr($_POST);
+		 // pr($_POST);
 		 // pr($_FILES);
-		 // pr($_FILES['file_image']['name']);
+		 // // pr($_FILES['file_image']['name']);
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
+		// pr($uploaddoc);
+		// exit;
 		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";

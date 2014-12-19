@@ -664,92 +664,93 @@ class m_produk extends Database {
 	
 	function edit_produk_submit($upload,$uploaddoc)
 	{
-	global $CONFIG;
+		global $CONFIG;
 		$create_date=date("Y-m-d H:i:s");
 		$content=hsc($_POST['content']);
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 		
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$content."',
-							image = '".$upload['full_name']."',
-							file ='".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."',
-							posted_date='".$create_date."'
-						WHERE
-							id = '".$_POST['id']."' ";
-							
-		$result = $this->fetch($query,0);
-		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							title = '".$_POST['title']."',
-							files = '".$uploaddoc['full_name']."',
-						WHERE
-							otherid = '".$_POST['id']."' ";
-							
-		$result2 = $this->fetch($query2,0);
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$content."',
+									image = '".$upload['full_name']."',
+									file ='".$upload['full_path']."',
+									n_status = '".$_POST['n_status']."',
+									posted_date='".$create_date."'
+								WHERE
+									id = '".$_POST['id']."' ";
+									
+				$result = $this->fetch($query,0);
+				//$getID = $this->insert_id();
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
+								SET 
+									title = '".$_POST['title']."',
+									files = '".$uploaddoc['full_name']."',
+								WHERE
+									otherid = '".$_POST['id']."' ";
+									
+				$result2 = $this->fetch($query2,0);
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$content."',
-							image = '".$upload['full_name']."',
-							file ='".$upload['full_path']."',
-							n_status = '".$_POST['n_status']."',
-							posted_date='".$create_date."'
-						WHERE
-							id = '".$_POST['id']."' ";
-							// pr($query);
-		$result = $this->fetch($query,0);
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$content."',
+									image = '".$upload['full_name']."',
+									file ='".$upload['full_path']."',
+									n_status = '".$_POST['n_status']."',
+									posted_date='".$create_date."'
+								WHERE
+									id = '".$_POST['id']."' ";
+									// pr($query);
+				$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$content."',
-							n_status = '".$_POST['n_status']."',
-							posted_date='".$create_date."'
-						WHERE
-							id = '".$_POST['id']."' ";
-							
-		$result = $this->fetch($query,0);
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							title = '".$_POST['title']."',
-							files = '".$uploaddoc['full_name']."'
-						WHERE
-							otherid = '".$_POST['id']."' ";
-							
-		$result2 = $this->fetch($query2,0);
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$content."',
+									n_status = '".$_POST['n_status']."',
+									posted_date='".$create_date."'
+								WHERE
+									id = '".$_POST['id']."' ";
+									
+				$result = $this->fetch($query,0);
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
+								SET 
+									title = '".$_POST['title']."',
+									files = '".$uploaddoc['full_name']."'
+								WHERE
+									otherid = '".$_POST['id']."' ";
+									
+				$result2 = $this->fetch($query2,0);
 		
 		}
 		else{
 		//pr("kosong semua");
-		$query = "UPDATE {$this->prefix}_news_content
-						SET 
-							title = '".$_POST['title']."',
-							content = '".$content."',
-							n_status = '".$_POST['n_status']."',
-							posted_date='".$create_date."'
-						WHERE
-							id = '".$_POST['id']."' ";
-	
-		$result = $this->fetch($query,0);
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							n_status = '".$_POST['n_status']."'
-							
-						WHERE
-							otherid = '".$_POST['id']."' ";
-							
-		$result2 = $this->fetch($query2,0);
+				$query = "UPDATE {$this->prefix}_news_content
+								SET 
+									title = '".$_POST['title']."',
+									content = '".$content."',
+									n_status = '".$_POST['n_status']."',
+									posted_date='".$create_date."'
+								WHERE
+									id = '".$_POST['id']."' ";
+			
+				$result = $this->fetch($query,0);
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
+								SET 
+									n_status = '".$_POST['n_status']."'
+									
+								WHERE
+									otherid = '".$_POST['id']."' ";
+									
+				$result2 = $this->fetch($query2,0);
 		}
 		return $result;
-		}
+	}
+	
 		function getShowmenu($menu){
 
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE (n_status = '1' OR n_status='0') AND title='".$menu."'";
