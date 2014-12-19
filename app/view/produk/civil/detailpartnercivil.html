@@ -12,7 +12,7 @@
 										{unhsc($data_detail.content)}
 									</p>
 					<p>
-					<a href="{$basedomain}public_assets/{$data_detail.files}">Download Brochure</a>
+					<a href="{$basedomain}public_assets/{$data1.files}" target="_blank">Download Brochure</a>
 					</p>
 					{*}<table class="table" border="1">
 					{if $data}
@@ -76,7 +76,7 @@
 	{/*}
 	<tr>
 		<hr>
-			<p class="center">
+			<p class="center">{*}
 			{if $data1}
 				{foreach $data1 as $val1 } 
 				<!--
@@ -90,7 +90,7 @@
 				</a>
 			
 				{/foreach}
-			{/if}
+			{/if}{/*}
 			</p>
 		
 	</tr>

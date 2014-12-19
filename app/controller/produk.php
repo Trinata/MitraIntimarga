@@ -97,7 +97,7 @@ class produk extends Controller {
 
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data_detail',$result_data_detail);
-		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data1',$result_data_file[0]);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('data4',$result_data_file5);
@@ -162,7 +162,7 @@ class produk extends Controller {
 
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data_detail',$result_data_detail);
-		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data1',$result_data_file[0]);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('data4',$result_data_file5);
@@ -231,7 +231,7 @@ class produk extends Controller {
 
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data_detail',$result_data_detail);
-		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data1',$result_data_file[0]);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		$this->view->assign('data4',$result_data_file5);
