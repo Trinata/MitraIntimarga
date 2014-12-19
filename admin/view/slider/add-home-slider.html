@@ -35,13 +35,13 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}slider/updslider" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to Change?');">
+					<form action="{$basedomain}slider/addtoslider" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to add Slider?');">
 
-					<a href="{$basedomain}slider/addSlidernews"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Slider</button></a>
+					{*}<a href="{$basedomain}slider/addSlider"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Slider</button></a>
 
+					{/*}
 
-
-					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Change Order</button>
+					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Add Slider</button>
 					
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
@@ -57,7 +57,7 @@
 									</th>
 									<th data-filterable="true" data-sortable="true" >Title</th>
 									<th data-filterable="true" data-sortable="true" >Image</th>
-									<th data-filterable="true" data-sortable="true">Order</th>
+									<th data-filterable="true" data-sortable="true">Status</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -70,7 +70,11 @@
 									<td><a href="{$basedomain}slider/addSlider/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td><img src="{$app_domain}public_assets/{$var.image}" width="200px"/></td>
 									<td style="color:{$var.status_color}">
-										<input type="number" name="order[]" value="{$var.thumbnail_image}"
+										{if $var.slider_image=='1'}
+											Slider
+										{else}
+											Not Slider
+										{/if}
 									</td>
 								</tr>
 								{/foreach}

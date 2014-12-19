@@ -47,7 +47,7 @@ class mslider extends Database {
 		return $result;
 	}
 	
-	function getContent($id=false, $type=1,$cat=1, $debug=false)
+	function getContent($id=false, $type=1,$cat=1,$debug=false)
 	{
 		
 		$filter = "";
@@ -56,7 +56,7 @@ class mslider extends Database {
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
                 'field'=>"*",
-                'condition' => "categoryid= {$type} AND articleType = {$cat} AND (n_status='1' OR n_status='0') {$filter} ",
+                'condition' => "slider_image <>'1' AND categoryid= {$type} AND articleType = {$cat} AND (n_status='1' OR n_status='0') {$filter} ",
                 );
 
 		$res = $this->lazyQuery($sql,$debug);
@@ -64,7 +64,23 @@ class mslider extends Database {
 		return false;
 
 	}
-	
+	function getContentSlider($id=false, $type=1,$cat=1, $debug=false)
+	{
+		
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id} ";
+		
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"*",
+                'condition' => "slider_image='1' AND categoryid= {$type} AND articleType = {$cat} AND (n_status='1' OR n_status='0') {$filter} ORDER BY thumbnail_image asc",
+                );
+
+		$res = $this->lazyQuery($sql,$debug);
+		if ($res) return $res;
+		return false;
+
+	}
 	function getRepo($id=false, $typealbum=1, $gallerytype=1, $otherid=false, $debug=false)
 	{
 
@@ -252,7 +268,33 @@ class mslider extends Database {
 		return true;
 		
 	}
-	
+	function add_to_slider($id)
+	{
+		foreach ($id as $key => $value) {
+			
+			$query = "UPDATE {$this->prefix}_news_content SET slider_image='1', thumbnail_image='0' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
+	function updateslider($id,$order)
+	{
+		$i=0;
+		foreach ($id as $key => $value) {
+			
+			$query = "UPDATE {$this->prefix}_news_content SET thumbnail_image='{$order[$i]}' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		$i++;
+		}
+
+		return true;
+		
+	}
 	function article_delpermanent($id)
 	{
 		$query = "DELETE FROM cdc_news_content WHERE id = '{$id}'";

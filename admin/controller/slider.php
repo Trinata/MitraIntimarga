@@ -28,7 +28,7 @@ class slider extends Controller {
 	public function index(){
        
 		$this->view->assign('active','active');
-		$data = $this->marticle->getContent($id=false, $type=7,$cat=1);
+		$data = $this->marticle->getContentSlider($id=false, $type=5,$cat=2);
 
 		if ($data){
 			
@@ -47,7 +47,28 @@ class slider extends Controller {
 		return $this->loadView('slider/home-slider');
 
 	}
+	public function addSlidernews(){
+       
+		$this->view->assign('active','active');
+		$data = $this->marticle->getContent($id=false, $type=5,$cat=2);
 
+		if ($data){
+			
+			
+			// pr($data);
+			foreach ($data as $key => $val){
+
+				$dataRepo[$key] = $this->marticle->getRepo($id=false, $type=1,$cat=0, $val['id']);
+
+			}
+		}
+		
+		// pr($dataRepo);
+		$this->view->assign('data',$data);
+
+		return $this->loadView('slider/add-home-slider');
+
+	}
 	public function addSlider(){
 
        	global $basedomain;
@@ -139,7 +160,24 @@ class slider extends Controller {
 		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."slider'</script>";
 		
 	}
-	
+	public function addtoslider(){
+
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->marticle->add_to_slider($_POST['ids']);
+		
+		echo "<script>alert('Data has been moved to Slider');window.location.href='".$CONFIG['admin']['base_url']."slider'</script>";
+		
+	}
+	public function updslider(){
+
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->marticle->updateslider($_POST['ids'],$_POST['order']);
+		
+		echo "<script>alert('Data has been moved to Slider');window.location.href='".$CONFIG['admin']['base_url']."slider'</script>";
+		
+	}
 	public function trash(){
        
 		$data = $this->models->get_article_trash();
