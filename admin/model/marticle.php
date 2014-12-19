@@ -85,7 +85,7 @@ class marticle extends Database {
 	function saveData($data, $debug=false)
 	{	
 
-		
+		$content=hsc($_POST['content']);
     	foreach ($data as $key => $value) {
     		$$key = $value;
     	}
@@ -97,7 +97,7 @@ class marticle extends Database {
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
                 'field'=>"title, brief, content, categoryid, articletype, created_date, posted_date, authorid, n_status",
-                'value' => "'{$title}', '{$brief}', '{$content}', '{$categoryid}', '{$articletype}', '{$created_date}', '{$created_date}', '{$authorid}', '{$n_status}'",
+                'value' => "'{$title}', '{$brief}','".$content."', '{$categoryid}', '{$articletype}', '{$created_date}', '{$created_date}', '{$authorid}', '{$n_status}'",
                 );
 
 		$res = $this->lazyQuery($sql,$debug,1);
@@ -193,6 +193,7 @@ class marticle extends Database {
 
 	function updateNews($data, $debug=false)
 	{
+		$content=hsc($_POST['content']);
 		foreach ($data as $key => $value) {
     		$$key = $value;
     	}
@@ -205,7 +206,7 @@ class marticle extends Database {
     	$brief = addslashes($brief);
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
-                'field'=>"title = '{$title}', brief = '{$brief}', content = '{$content}', posted_date = '{$created_date}', n_status = {$n_status}",
+                'field'=>"title = '{$title}', brief = '{$brief}', content = '".$content."', posted_date = '{$created_date}', n_status = {$n_status}",
                 'condition' => "id = {$id}",
                 );
 
