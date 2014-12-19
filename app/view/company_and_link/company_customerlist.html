@@ -9,7 +9,9 @@
 				<div class="col-sm-12">
 					{if $data}
 						{foreach $data as $val } 
-							{$val.content}
+							<p>
+                            {$val.content|html_entity_decode}
+                            </p>    
 						{/foreach}
 					{/if}
 		<!--
