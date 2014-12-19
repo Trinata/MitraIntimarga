@@ -88,14 +88,15 @@ class produk extends Controller {
 				// echo"=====";
 
 				foreach ($data as $key => $valAlbum2){ 
-
+					// pr($valAlbum2);
 					if($valAlbum2['parentid']==$valAlbum['id'] ){
 
+					// pr($valAlbum2);
 
-								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+								$valAlbum2['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-						$valAlbum['id']=$valAlbum2['id'];	
-						$dataAlbum[]=$valAlbum;
+						// $valAlbum['id']=$valAlbum2['id'];	
+						$dataAlbum[]=$valAlbum2;
 					}
 				}
 				
@@ -120,7 +121,7 @@ class produk extends Controller {
 		
 		$this->view->assign('active','active');
 		$data = $this->models->scientific_list();
-
+		// pr($data);
 		$data_menu = $this->models->getShowmenu('scien');
 		if ($data){
 			foreach ($data as $key => $val){
@@ -139,11 +140,11 @@ class produk extends Controller {
 			}
 		}
 		
-
+		// pr($data);
 		foreach ($data as $key => $valAlbum){
 			
 
-			if($valAlbum['authorid']==0){
+			if($valAlbum['parentid']==0){
 				$valAlbum['nameAlbum']=$valAlbum['title'];
 				//pr($valAlbum['nameAlbum']);
 				$dataAlbum[]=$valAlbum;
@@ -151,14 +152,15 @@ class produk extends Controller {
 				// echo"=====";
 
 				foreach ($data as $key => $valAlbum2){ 
+					// pr($valAlbum2);
+					if($valAlbum2['parentid']==$valAlbum['id'] ){
 
-					if($valAlbum2['authorid']==$valAlbum['id'] ){
+					// pr($valAlbum2);
 
-
-								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+								$valAlbum2['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-						$valAlbum['id']=$valAlbum2['id'];	
-						$dataAlbum[]=$valAlbum;
+						// $valAlbum['id']=$valAlbum2['id'];	
+						$dataAlbum[]=$valAlbum2;
 					}
 				}
 				
@@ -166,6 +168,7 @@ class produk extends Controller {
 			}
 			//pr($valAlbum);
 		}
+		// pr($dataAlbum);
 		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/scientific_list');
@@ -198,9 +201,9 @@ class produk extends Controller {
 		
 
 		foreach ($data as $key => $valAlbum){
-			
+	
+			if($valAlbum['parentid']==0){ 
 
-			if($valAlbum['authorid']==0){
 				$valAlbum['nameAlbum']=$valAlbum['title'];
 				//pr($valAlbum['nameAlbum']);
 				$dataAlbum[]=$valAlbum;
@@ -208,21 +211,23 @@ class produk extends Controller {
 				// echo"=====";
 
 				foreach ($data as $key => $valAlbum2){ 
+					// pr($valAlbum2);
+					if($valAlbum2['parentid']==$valAlbum['id'] ){
 
-					if($valAlbum2['authorid']==$valAlbum['id'] ){
+					// pr($valAlbum2);
 
-
-								$valAlbum['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+								$valAlbum2['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
 							//	pr(	$valAlbum['nameAlbum']);
-						$valAlbum['id']=$valAlbum2['id'];	
-						$dataAlbum[]=$valAlbum;
+						// $valAlbum['id']=$valAlbum2['id'];	
+						$dataAlbum[]=$valAlbum2;
 					}
 				}
 				
-
+				// pr($dataAlbum);
 			}
-			
-		}pr($dataAlbum);
+			// $i++;$j++;
+		}
+		// pr($dataAlbum);
 		$this->view->assign('data',$dataAlbum);
 	
 		$this->view->assign('showmenu',$data_menu);
@@ -254,7 +259,7 @@ class produk extends Controller {
 		
 		return $this->loadView('produk/scientific');
 	}
-	public function addScientific(){
+	public function addscientific(){
 		
 	global $CONFIG;	
 		// pr($_POST);
@@ -264,14 +269,14 @@ class produk extends Controller {
 		} else {
 			$_POST['n_status']=0;
 		}
-		If($_POST['list_geophysic'] !=''){
+		If($_POST['list_scientifics'] !=''){
 		// pr("tambah");
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
 		// pr($uploaddoc);
-		$data = $this->models->addScientificchild($upload,$uploaddoc);
+		$data = $this->models->addscientificchild($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 	
@@ -282,7 +287,7 @@ class produk extends Controller {
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		// pr($upload);
-		$data = $this->models->addScientific($upload,$uploaddoc);
+		$data = $this->models->addscientific($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
 		// return $this->loadView('produk/addScientific');
@@ -302,7 +307,7 @@ class produk extends Controller {
 		 // pr($id);
 		// pr($_POST);
 		// pr($_FILES);
-		If($_POST['list_geophysic'] !=''){
+		if($_POST['list_geophysic'] !=''){
 		//pr($_POST['list_geophysic']);
 		
 		 //pr("tambah");
@@ -328,7 +333,7 @@ class produk extends Controller {
 	
 	public function addcivil(){
 	global $CONFIG;	
-		//pr($_POST);
+		// pr($_POST);
 		// pr($_FILES);
 	if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
@@ -341,7 +346,8 @@ class produk extends Controller {
 		// pr($_FILES);
 		If($_POST['list_civil'] !=''){
 		// pr($_POST['list_civil']);
-		
+		// pr($_POST);
+		// exit;
 		 // pr("tambah");
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
@@ -352,6 +358,8 @@ class produk extends Controller {
 	
 		}else{
 		
+		// pr($_POST['list_civil']);
+		// exit;
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
