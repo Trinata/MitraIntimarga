@@ -40,7 +40,7 @@ class home extends Controller {
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
-		$result_data_file6 = $this->models->getContent($id=false, $type=7,$cat=1);
+		$result_data_file6 = $this->models->getContentSlider($id=false, $type=5,$cat=2);
 		$this->view->assign('data4',$result_data_file5);
 		$var = array(1,2,3);
 		// pr($result_data_file6);

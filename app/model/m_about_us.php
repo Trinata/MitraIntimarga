@@ -97,5 +97,22 @@ class m_about_us extends Database {
 		return false;
 
 	}
+	function getContentSlider($id=false, $type=1,$cat=1, $debug=false)
+	{
+		
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id} ";
+		
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"*",
+                'condition' => "slider_image='1' AND categoryid= {$type} AND articleType = {$cat} AND n_status='1' {$filter} ORDER BY thumbnail_image ASC",
+                );
+
+		$res = $this->lazyQuery($sql,$debug);
+		if ($res) return $res;
+		return false;
+
+	}
 }
 ?>
