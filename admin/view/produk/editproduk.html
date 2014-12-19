@@ -19,8 +19,15 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}produk/edit_produk_submit" enctype="multipart/form-data">
-
+	{if $fleg=='civil'}
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}produk/edit_produk_submit_civil" enctype="multipart/form-data">
+	{/if}
+	{if $fleg=='scientifics'}
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}produk/edit_produk_submit_scientifics" enctype="multipart/form-data">
+	{/if}
+	{if $fleg=='geophysics'}
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}produk/edit_produk_submit_geophysics" enctype="multipart/form-data">
+	{/if}
 		<div class="row">
 			<div class="col-md-9">
 				<div class="portlet">

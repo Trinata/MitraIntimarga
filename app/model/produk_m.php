@@ -63,7 +63,7 @@ class produk_m extends Database {
 	}
 	public function geophsicschild_file($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$id'  and n_status='1'" ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' and otherid='$id'  and n_status='1'" ;
 		$result= $this->fetch($query,1);
 	
 		return $result;
@@ -79,7 +79,7 @@ class produk_m extends Database {
 	}
 	public function scientificschild_file ($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$id' and n_status='1' " ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' and otherid='$id' and n_status='1' " ;
 		$result= $this->fetch($query,1);
 		return $result;
 	
@@ -132,7 +132,7 @@ class produk_m extends Database {
 	}
 	public function civilchild_file($id){
 		
-		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$id' and n_status='1'" ;
+		$query= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' and otherid='$id' and n_status='1'" ;
 		$result= $this->fetch($query,1);
 		return $result;
 	
@@ -147,7 +147,7 @@ class produk_m extends Database {
 	}
 	public function partnergeophysics ($id){
 	
-		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='11' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 	
@@ -155,7 +155,7 @@ class produk_m extends Database {
 		foreach($result as $val){
 
 			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
-			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='11' and otherid='$val[id]'  and n_status='1'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='1' and otherid='$val[id]'  and n_status='1'" ;
 			$result2= $this->fetch($query2,0);
 			$result[$i]['files']=$result2['files'];		
 		$i++;
@@ -194,7 +194,7 @@ class produk_m extends Database {
 		
 		return $result;
 		*/
-		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='21' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 	
@@ -202,7 +202,7 @@ class produk_m extends Database {
 		foreach($result as $val){
 
 			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
-			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='21' and otherid='$val[id]'  and n_status='1'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='2' and otherid='$val[id]'  and n_status='1'" ;
 			$result2= $this->fetch($query2,0);
 			$result[$i]['files']=$result2['files'];		
 		$i++;
@@ -210,7 +210,7 @@ class produk_m extends Database {
 		return $result;
 	}
 	public function partnercivil ($id){
-			$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='31' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
+			$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='3' and n_status = '1' and authorid=$id ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 	
@@ -218,7 +218,7 @@ class produk_m extends Database {
 		foreach($result as $val){
 
 			//$query2= "SELECT * FROM mitra_news_content_repo WHERE n_status='1' and otherid='$id'" ;
-			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='31' and otherid='$val[id]'  and n_status='1'" ;
+			$query2= "SELECT * FROM mitra_news_content_repo WHERE typealbum='3' and gallerytype='3' and otherid='$val[id]'  and n_status='1'" ;
 			$result2= $this->fetch($query2,0);
 			$result[$i]['files']=$result2['files'];		
 		$i++;
