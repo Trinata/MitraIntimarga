@@ -425,6 +425,39 @@ class produk extends Controller {
 		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
+	public function delete_produk_civil(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_produk();
+
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk/civil_list'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function delete_produk_geophysics(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_produk();
+
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
+	public function delete_produk_scientifics(){	
+	global $CONFIG;	
+		$this->view->assign('active','active');
+		
+		$upload = uploadFile('file_image',null, 'image');
+		// pr($upload);
+		$data = $this->models->delete_produk();
+
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk/scientific_list'</script>";
+		// return $this->loadView('produk/addScientific');
+	}
 	public function showHidemenu(){	
 	global $CONFIG;	
 		$this->view->assign('active','active');
