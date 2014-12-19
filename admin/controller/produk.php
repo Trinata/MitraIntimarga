@@ -297,6 +297,7 @@ class produk extends Controller {
 	global $CONFIG;	
 		// pr($_POST);
 		// pr($_FILES);
+
 	
 	if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
@@ -314,7 +315,8 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-
+		// pr($uploaddoc);
+		//  pr($upload);exit;
 		$data = $this->models->addgeophysicschild($upload,$uploaddoc);
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
 	exit;
@@ -323,8 +325,9 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
+		 
 		 // pr($upload);
-		 // pr($uploaddoc);
+		 // pr($uploaddoc);exit;
 		$data = $this->models->addgeophysics($upload,$uploaddoc);
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk/geophysics_list'</script>";
