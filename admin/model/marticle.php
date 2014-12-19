@@ -182,7 +182,7 @@ class marticle extends Database {
     	$brief = addslashes($brief);
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content_repo",
-                'field'=>"title = '{$title}', brief = '{$brief}', content = '{$content}', n_status = {$n_status}",
+                'field'=>"title = '{$title}', brief = '{$brief}', content = '{$content}', n_status = {$n_status} ,files = '{$files}'",
                 'condition' => "id = {$id}",
                 );
 

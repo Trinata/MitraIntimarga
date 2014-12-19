@@ -56,7 +56,13 @@ $(function () {
 									<select name="parentid" class="form-control">
 										<option value="0"> - (Album Utama)</option>
 										{foreach $dataAlbum as $valAlbum}
-										<option value="{$valAlbum.id}"> {$valAlbum.title}</option>
+										{if $valAlbum.id==$data.parentid}
+										{$selected='selected'}
+										{else}
+										{$selected=''}
+
+										{/if}
+										<option value="{$valAlbum.id}" {$selected}> {$valAlbum.title}</option>
 										{/foreach}
 									</select>
 							</div>

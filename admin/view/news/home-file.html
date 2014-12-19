@@ -81,7 +81,11 @@
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
+									{if $music}
 									<td><a href="{$basedomain}music/addFile/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									{else}
+									<td><a href="{$basedomain}gallery/addFile/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>	
+									{/if}
 									<td style="color:{$var.status_color}">{if $var.n_status == 1}Publish{else}Unpublish{/if}</td>
 									<td>{$var.created_date}</td>
 									<td><img src="{$app_domain}public_assets/{$var.files}" width="100px"></td>
