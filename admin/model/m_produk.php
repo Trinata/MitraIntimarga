@@ -35,7 +35,7 @@ class m_produk extends Database {
 						WHERE
 							id = '{$data['id']}'";
 		}
-// pr($query);
+// //pr($query);
 		$result = $this->query($query);
 		
 		return $result;
@@ -472,7 +472,7 @@ class m_produk extends Database {
 						VALUES
 							('".$_POST['list_geophysic']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','3','1','".$create_date."'
 								,'".$_POST['list_geophysic']."','".$_POST['n_status']."')";
-						pr($query);		
+						//pr($query);		
 								
 				$result = $this->fetch($query,0);
 			}
