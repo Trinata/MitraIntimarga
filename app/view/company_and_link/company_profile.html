@@ -1,4 +1,4 @@
-
+{if $data}	
  <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
@@ -8,13 +8,11 @@
 
             <div class="row">
 				<div class="col-sm-12">
-					{if $data}
-						{foreach $data as $val } 
+					
 							<p>
-							{$val.content|html_entity_decode}
+							{$data.content.content|html_entity_decode}
 							</p>	
-						{/foreach}
-					{/if}
+						
 					
 				</div>
 			
@@ -28,13 +26,14 @@
 	<tr>
 		<hr>
 			<p class="center">
-			{if $data1}
-				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}public_assets/{$val1.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
+			
+			
+				<a href="{$basedomain}public_assets/{$data.repo.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
 					Download File
 				</a>
-				{/foreach}
-			{/if}
+				
 			</p>
 		
 	</tr>
+	
+			{/if}

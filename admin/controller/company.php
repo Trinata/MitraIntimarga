@@ -50,6 +50,7 @@ class company extends Controller {
 		$this->view->assign('active','active');
 			$data = $this->models->company_profile();
 			//pr($data);
+			//pr($data[repo][files]);
 			if($data != 'tidakadadata' ){
 			//	pr("isi");
 				 if($data['content']['n_status'] ){
@@ -69,6 +70,8 @@ class company extends Controller {
 	public function company_profile_submit(){
 		
 		global $CONFIG;	
+		pr($_POST);
+
 		if(isset($_POST['n_status'])){
 				if($_POST['n_status']=='on') $_POST['n_status']=1;
 			} else {
@@ -77,8 +80,11 @@ class company extends Controller {
 		$this->view->assign('active','active');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		$upload = uploadFile('file_image',null, 'image');
+
 		
-		$data = $this->models->company_profile_submit($upload,$uploaddoc);
+			$data = $this->models->company_profile_submit($upload,$uploaddoc);
+			
+
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 		// return $this->loadView('produk/addScientific');
@@ -135,7 +141,9 @@ class company extends Controller {
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		$upload = uploadFile('file_image',null, 'image');
 		
+		
 		$data = $this->models->company_division_submit($upload,$uploaddoc);
+		
 
 		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
 

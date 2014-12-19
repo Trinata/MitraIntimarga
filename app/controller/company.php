@@ -19,7 +19,7 @@ class company extends Controller {
 	global $basedomain;
 	global $baseheader;
 		$result_data = $this->models->company_profile();
-		$result_data_file = $this->models->company_profile_file();
+		
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
@@ -27,7 +27,7 @@ class company extends Controller {
 		// pr($result_data_file);
 		$var = array(1,2,3);
 		$this->view->assign('data',$result_data);
-		$this->view->assign('data1',$result_data_file);
+
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		//$this->view->assign('coba','coba data smarty');
@@ -40,7 +40,7 @@ class company extends Controller {
 	global $baseheader;
         
 		$result_data = $this->models->company_division();
-		$result_data_file = $this->models->company_division_file();
+		
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
@@ -48,7 +48,7 @@ class company extends Controller {
 		//pr($result_data_file3['0']['id']);
 		//pr($result_data_file4['0']['id']);
 		$this->view->assign('data',$result_data);
-		$this->view->assign('data1',$result_data_file);
+		
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		
@@ -60,13 +60,13 @@ class company extends Controller {
 	global $baseheader;
         
 		$result_data = $this->models->company_organization();
-		$result_data_file = $this->models->company_organization_file();
+		
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
 		$this->view->assign('data4',$result_data_file5);
 		$this->view->assign('data',$result_data);
-		$this->view->assign('data1',$result_data_file);
+	
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		
