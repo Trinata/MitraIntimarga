@@ -41,9 +41,10 @@ class music extends Controller {
 			}
 		}
 		
-		// pr($dataRepo);
+		// pr($data);
 		$this->view->assign('data',$data);
 
+		$this->view->assign('music',true);
 		return $this->loadView('news/home-music');
 
 	}
@@ -54,7 +55,7 @@ class music extends Controller {
 
 
 		$this->view->assign('active','active');
-		$data = $this->marticle->getContent($id=false, $type=5,$cat=3);
+		$data = $this->marticle->getContent($id=false, $type=5,$cat=1);
 
 		if ($data){
 			
@@ -62,7 +63,7 @@ class music extends Controller {
 			// pr($data);
 			foreach ($data as $key => $val){
 
-				$dataRepo[$key] = $this->marticle->getRepo($id=false, $type=1,$cat=0, $val['id']);
+				$dataRepo[$key] = $this->marticle->getRepo($id=false, $type=1,$cat=1, $val['id']);
 
 			}
 
@@ -74,7 +75,7 @@ class music extends Controller {
 		if(isset($_GET['id']))
 		{
 			$id = $_GET['id'];
-			$data = $this->marticle->getContent($id, $type=5,$cat=3);
+			$data = $this->marticle->getContent($id, $type=5,$cat=1);
 			
 
 			$result = $data[0];
@@ -145,7 +146,7 @@ class music extends Controller {
 			// pr($data);
 				// foreach ($data as $key => $val){
 
-					$dataRepo = $this->marticle->getRepo($id=false, $type=1,$cat=1, $id);
+					$dataRepo = $this->marticle->getRepo($id, $type=1,$cat=1);
 
 				// }
 
@@ -218,9 +219,9 @@ class music extends Controller {
 		}
 		
 		// pr($dataRepo);
-		$this->view->assign('data',$dataRepo);
+		$this->view->assign('data',$dataRepo[0]);
 		$this->view->assign('music',true);
-		return $this->loadView('news/home-file');
+		return $this->loadView('news/home-music');
 	}
 
 	function news()
@@ -434,9 +435,9 @@ class music extends Controller {
 
 		global $CONFIG;
 		// pr($_POST);exit;
-		$data = $this->marticle->article_del($_POST['ids']);
+		$data = $this->marticle->article_del_repo($_POST['ids']);
 		
-		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
+		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."music/listFile'</script>";
 		
 	}
 	

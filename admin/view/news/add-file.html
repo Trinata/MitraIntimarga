@@ -136,13 +136,14 @@ $(function () {
 							Upload File
 						</h3>
 
-					</div> <!-- /.portlet-header -->
+					</div> <!-- /.portlet-header -->{if $music}
 					<div class="col-md-12">
 							<div class="form-group">
 							<label for="text-input">Nama File</label>
 									<input type="text" name="files" class="form-control" value="{$data.files}" />
 							</div>
 						</div>
+						{/if}
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{$app_domain}public_assets/{$data.files}" alt="{$data.files}" /></div>
