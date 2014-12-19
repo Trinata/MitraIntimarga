@@ -1,3 +1,5 @@
+ {if $data}
+							
  <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
@@ -9,44 +11,25 @@
 				<div class="col-sm-12" align="center">
 					<!--<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/assets/images/img/compony-division.jpg"/>
 					-->
-					{if $data}
-							{foreach $data as $val } 
-							<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}" target="_blank"/>
-							{/foreach}
-					{/if}
+					
+					
+							
+							<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$data.content.image}" target="_blank"/>
+							
 				</div>
-			
             </div><!--/.row--> 
-
-
-
         </div><!--/.container-->
     </section><!--/#feature-->
-{*}
-<p class="framejudul">
-Customer Location
-</p>
-	{if $data}
-			{foreach $data as $val } 
-			<img align="center"  width="100%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}"/>
-			{/foreach}
-		{/if}
 
-<tr>
-	<p class="footer1">INDONESIA Authorized Agent</p>
-	<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
-	<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
-</tr>
-{/*}
 <tr>
 	<hr>
 		<p class="center">
-		{if $data1}
-				{foreach $data1 as $val1 } 
-				<a href="{$basedomain}public_assets/{$val1.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
+
+				<a href="{$basedomain}public_assets/{$data.repo.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
 					Download File
 				</a>
-				{/foreach}
-			{/if}
+				
 		</p>	
 </tr>
+
+			{/if}

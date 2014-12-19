@@ -319,6 +319,9 @@ class m_company extends Database {
 			
 		return $result;
 	}
+		
+
+
 	function company_profile_submit($upload,$uploaddoc)
 	{
 		$create_date=date("Y-m-d H:i:s");
@@ -337,21 +340,33 @@ class m_company extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-							pr($query);
+							
 							
 		$result = $this->fetch($query,0);
 		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
 							
-		$result2 = $this->fetch($query2,0);
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
+		
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -369,17 +384,28 @@ class m_company extends Database {
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
 							
-		$result2 = $this->fetch($query2,0);
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
 		
 		}
 		else{
@@ -392,7 +418,7 @@ class m_company extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-		
+		//pr($query);
 		$result = $this->fetch($query,0);
 		$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
@@ -400,7 +426,7 @@ class m_company extends Database {
 							
 						WHERE
 							otherid = '".$_POST['id']."' ";
-							
+			//pr($query2);				
 		$result2 = $this->fetch($query2,0);
 		}
 		
@@ -426,17 +452,32 @@ class m_company extends Database {
 						
 		$result = $this->fetch($query,0);
 		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+		
+
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
 							
-		$result2 = $this->fetch($query2,0);
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
+
+		
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -454,17 +495,32 @@ class m_company extends Database {
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+
+
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
-						
-		$result2 = $this->fetch($query2,0);
+							
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
+
+		
 		
 		}
 		else{
@@ -492,6 +548,8 @@ class m_company extends Database {
 		
 		
 	}
+
+	
 	
 	function company_divisionadd_submit($upload,$uploaddoc)
 	{
@@ -601,17 +659,28 @@ class m_company extends Database {
 							
 		$result = $this->fetch($query,0);
 		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
-						
-		$result2 = $this->fetch($query2,0);
+							
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -629,17 +698,28 @@ class m_company extends Database {
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
-						
-		$result2 = $this->fetch($query2,0);
+							
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
 		
 		}
 		else{
@@ -940,18 +1020,28 @@ class m_company extends Database {
 							id = '".$_POST['id']."' ";
 							
 		$result = $this->fetch($query,0);
-		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
 							
-		$result2 = $this->fetch($query2,0);
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -969,17 +1059,28 @@ class m_company extends Database {
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
+			if($_POST['id_repo'] !=''){
+
+				$query2 = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '".$_POST['title']."',
 							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							typealbum='2',
-							gallerytype='1'
+							n_status = '".$_POST['n_status']."'
+							
 						WHERE
 							otherid = '".$_POST['id']."' ";
 							
-		$result2 = $this->fetch($query2,0);
+				$result2 = $this->fetch($query2,0);
+
+
+			}else{
+
+				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','2','2','".$_POST['id']."','".$_POST['n_status']."')";
+			
+				$result2 = $this->fetch($query2,0);
+
+			}
 		
 		}
 		else{
