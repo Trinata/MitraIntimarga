@@ -100,7 +100,10 @@
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
 									<td><img src="{$app_domain}public_assets/{$var.files}" width="200px"/></td>
+<!--
 									<td><a href="{$basedomain}gallery/addAlbum/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+								-->
+								<td> {$var.title}</td>
 									<td>{$app_domain}public_assets/{$var.files}</td>
 									<td>Admin</td>
 								</tr>
