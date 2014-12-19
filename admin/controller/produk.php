@@ -221,8 +221,8 @@ class produk extends Controller {
 				
 
 			}
-			//pr($valAlbum);
-		}
+			
+		}pr($dataAlbum);
 		$this->view->assign('data',$dataAlbum);
 	
 		$this->view->assign('showmenu',$data_menu);

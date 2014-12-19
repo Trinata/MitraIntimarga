@@ -36,7 +36,7 @@ class music extends Controller {
 			// pr($data);
 			foreach ($data as $key => $val){
 
-				$dataRepo[$key] = $this->marticle->getRepo($id=false, $type=1,$cat=0, $val['id']);
+				$dataRepo[$key] = $this->marticle->getRepo($id=false, $type=1,$cat=1, $val['id']);
 
 			}
 		}
@@ -135,7 +135,31 @@ class music extends Controller {
 		$data = $this->marticle->getContent($id=false, $type=5,$cat=1);
 		// pr($data);
 		$this->view->assign('cat',$data);
+		if(isset($_GET['id']))
+		{
+			$id = $_GET['id'];
 
+			if ($data){
+			
+			
+			// pr($data);
+				// foreach ($data as $key => $val){
+
+					$dataRepo = $this->marticle->getRepo($id=false, $type=1,$cat=1, $id);
+
+				// }
+
+			}
+			// $data = $this->marticle->getContent($id, $type=5,$cat=3);
+			
+
+			$result = $dataRepo[0];
+			($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
+			// pr($result);
+			$this->view->assign('data',$result);
+		}
+
+		// pr($result);
 		if ($_POST){
 
 			if ($_POST['id']){

@@ -1,13 +1,25 @@
+
   <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>Scientifics</h2>
+
+           	<img class="img-responsive" src="{$basedomain}public_assets/{$data_detail.image}" alt="">
+                <h2>{$data_detail.title}</h2>
                 <p class="lead">&nbsp;</p>
+                
+
             </div>
 
             <div class="row">
-				<div class="col-sm-12">
-					<table class="table" border="1">
+				<div class="col-sm-6">
+					<ol>
+					{if $data}
+						{foreach $data as $val } 
+						<li><a href="{$basedomain}produk/detailpartnerscientifics/?id={$val.id}">{$val.title}</a></li>
+						{/foreach}
+					{/if}
+					<ol>
+					{*}<table class="table" border="1">
 					{if $data}
 							{foreach $data as $val } 
 							
@@ -36,6 +48,7 @@
 							  	{/foreach}
 					{/if}
 					</table>
+					{/*}
 				</div>
 			
             </div><!--/.row--> 
@@ -44,4 +57,5 @@
 
         </div><!--/.container-->
     </section><!--/#feature-->
+
 

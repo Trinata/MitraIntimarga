@@ -56,7 +56,7 @@ class marticle extends Database {
 		$sql = array(
                 'table'=>"{$this->prefix}_news_content",
                 'field'=>"*",
-                'condition' => "categoryid= {$type} AND articleType = {$cat} {$filter} ",
+                'condition' => "categoryid= {$type} AND articleType = {$cat} AND (n_status='1' or n_status='0') {$filter} ",
                 );
 
 		$res = $this->lazyQuery($sql,$debug);

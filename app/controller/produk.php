@@ -125,6 +125,50 @@ class produk extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('produk/civil/partnercivil');
 	}
+	public function detailcivil(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnercivil($id);
+		$result_data_detail = $this->models->civilDetail($id);
+		$result_data_file = $this->models->civilchild_file($id);
+		$result_data_file3 = $this->models->geophysicsa();
+		$result_data_file4 = $this->models->scientificsa();
+		$result_data_file5 = $this->models->civil();
+		// pr($result_data_detail);
+
+		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/civil/detailcivil');
+	}
+	public function detailpartnercivil(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnercivil($id);
+		$result_data_detail = $this->models->civilDetail($id);
+		$result_data_file = $this->models->civilchild_file($id);
+		$result_data_file3 = $this->models->geophysicsa();
+		$result_data_file4 = $this->models->scientificsa();
+		$result_data_file5 = $this->models->civil();
+		// pr($result_data_detail);
+
+		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/civil/detailpartnercivil');
+	}
 	public function partnerscientifics(){
 	global $basedomain;
 	global $baseheader;
@@ -132,14 +176,17 @@ class produk extends Controller {
 		//pr($id);
 		$result_data = $this->models->partnerscientifics($id);
 		
+		$result_data_detail = $this->models->scientificsDetail($id);
+
 		$result_data_file = $this->models->scientificschild_file($id);
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
 		$result_data_file5 = $this->models->civil();
 		$var = array(1,2,3);
 		// pr($basedomain);
-		//pr($result_data);
+		// pr($result_data);
 		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
@@ -147,7 +194,50 @@ class produk extends Controller {
 		$this->view->assign('coba','coba data smarty');
 		return $this->loadView('produk/scientific/partnerscientifics');
 	}
+	public function detailscientifics(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnerscientifics($id);
+		$result_data_detail = $this->models->scientificsDetail($id);
+		$result_data_file = $this->models->scientificschild_file($id);
+		$result_data_file3 = $this->models->geophysicsa();
+		$result_data_file4 = $this->models->scientificsa();
+		$result_data_file5 = $this->models->civil();
+		// pr($result_data_detail);
 
+		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/scientific/detailscientifics');
+	}
+	public function detailpartnerscientifics(){
+	global $basedomain;
+	global $baseheader;
+        $id=$_GET['id'];
+		//pr($id);
+		$result_data = $this->models->partnerscientifics($id);
+		$result_data_detail = $this->models->scientificsDetail($id);
+		$result_data_file = $this->models->scientificschild_file($id);
+		$result_data_file3 = $this->models->geophysicsa();
+		$result_data_file4 = $this->models->scientificsa();
+		$result_data_file5 = $this->models->civil();
+		// pr($result_data_detail);
+
+		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
+		$this->view->assign('data1',$result_data_file);
+		$this->view->assign('data2',$result_data_file3);
+		$this->view->assign('data3',$result_data_file4);
+		$this->view->assign('data4',$result_data_file5);
+		$this->view->assign('coba','coba data smarty');
+		return $this->loadView('produk/scientific/detailpartnerscientifics');
+	}
 	public function scientifics(){
 	global $basedomain;
 	global $baseheader;   

@@ -67,7 +67,7 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
-									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
+									<textarea name="content" id="editor1"  cols="10" rows="20" class="ckeditor">{$data.content}</textarea>
 							</div>
 							
 							
@@ -139,7 +139,9 @@ $(function () {
 									<input type="text" name="files" class="form-control" value="{$data.files}" />
 							</div>
 						</div>
-					<div class="portlet-content">
+					{if $music}
+
+					{else}<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{$app_domain}public_assets/{$data.image}" alt="{$data.image}" /></div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
@@ -149,6 +151,7 @@ $(function () {
 						  </div>
 						</div>
 					</div>
+					{/if}
 				</div>
 				
 			</div>

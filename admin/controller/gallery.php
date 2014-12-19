@@ -235,10 +235,9 @@ class gallery extends Controller {
 					}
 				}
 
-				echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery/gallery/listFile'</script>";
+				echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain."gallery/listFile'</script>";
 	    	}
 		}
-
 		return $this->loadView('news/add-file');
 	}
 
