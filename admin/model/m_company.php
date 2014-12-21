@@ -694,7 +694,7 @@ class m_company extends Database {
 							posted_date='".$create_date."'
 						WHERE
 							id = '".$_POST['id']."' ";
-							pr($query);
+							//pr($query);
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
 		//pr("doc aja");

@@ -25,15 +25,19 @@
 
 	<tr>
 		<hr>
+
+		{if ($data.repo.files) !='' }
+
 			<p class="center">
-			
 			
 				<a href="{$basedomain}public_assets/{$data.repo.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
 					Download File
 				</a>
 				
 			</p>
+			{/if}
 		
 	</tr>
+
 	
 			{/if}

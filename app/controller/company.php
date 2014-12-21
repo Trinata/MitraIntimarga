@@ -19,7 +19,6 @@ class company extends Controller {
 	global $basedomain;
 	global $baseheader;
 		$result_data = $this->models->company_profile();
-		
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();
@@ -28,6 +27,7 @@ class company extends Controller {
 		$var = array(1,2,3);
 		$this->view->assign('data',$result_data);
 
+		//$this->view->assign('repo',$result_data['repo']);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);
 		//$this->view->assign('coba','coba data smarty');

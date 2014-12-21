@@ -70,7 +70,7 @@ class company extends Controller {
 	public function company_profile_submit(){
 		
 		global $CONFIG;	
-		pr($_POST);
+		//pr($_POST);
 
 		if(isset($_POST['n_status'])){
 				if($_POST['n_status']=='on') $_POST['n_status']=1;
