@@ -61,6 +61,7 @@ class company extends Controller {
         
 		$result_data = $this->models->company_organization();
 		
+		
 		$result_data_file3 = $this->models->geophysics();
 		$result_data_file4 = $this->models->scientifics();
 		$result_data_file5 = $this->models->civil();

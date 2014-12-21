@@ -1,4 +1,4 @@
- {if $data}
+
 							
  <section id="feature" class="transparent-bg">
         <div class="container">
@@ -12,9 +12,11 @@
 					<!--<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/assets/images/img/compony-division.jpg"/>
 					-->
 					
-					
+					 {if $data}
+					 {if ($data.content.image) !='' }
 							
 							<img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$data.content.image}" target="_blank"/>
+							{/if}
 							
 				</div>
             </div><!--/.row--> 
@@ -24,11 +26,11 @@
 <tr>
 	<hr>
 		<p class="center">
-
+			 {if ($data.repo.files) !='' }
 				<a href="{$basedomain}public_assets/{$data.repo.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
 					Download File
 				</a>
-				
+					{/if}
 		</p>	
 </tr>
 

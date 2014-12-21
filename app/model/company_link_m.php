@@ -11,7 +11,7 @@ class company_link_m extends Database {
 				$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
 				$result['repo'] = $this->fetch($query2,0);
 				}else{
-				$result="tidakadadata";
+				$result="";
 				
 				}
 		return $result;
@@ -28,7 +28,7 @@ class company_link_m extends Database {
 				$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
 				$result['repo'] = $this->fetch($query2,0);
 				}else{
-				$result="tidakadadata";
+				$result="";
 				
 				}
 		return $result;
@@ -47,7 +47,7 @@ class company_link_m extends Database {
 				$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
 				$result['repo'] = $this->fetch($query2,0);
 				}else{
-				$result="tidakadadata";
+				$result="";
 				
 				}
 
@@ -72,7 +72,7 @@ class company_link_m extends Database {
 				$query2= "SELECT * FROM mitra_news_content_repo WHERE otherid= $id" ;
 				$result['repo'] = $this->fetch($query2,0);
 				}else{
-				$result="tidakadadata";
+				$result="";
 				
 				}
 				
