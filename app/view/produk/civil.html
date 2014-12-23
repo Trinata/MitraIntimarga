@@ -1,7 +1,7 @@
 <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>Scientifics</h2>
+                <h2>Civil</h2>
                 <p class="lead">&nbsp;</p>
             </div>
 
@@ -18,7 +18,11 @@
                 <div class="col-xs-12 col-sm-3 " >
                     <div class="recent-work-wrap">
                         <a href="{$basedomain}produk/detailcivil/?id={$val.id}">
+								{if $val.image==''}
+								<img align="center" class="img-responsive" border="0" src="{$basedomain}assets/images/no-images.gif"/> 
+								{else}
 								<img align="center" class="img-responsive" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								{/if}
 								</a>
                      {*} 
                      <div class="overlay">

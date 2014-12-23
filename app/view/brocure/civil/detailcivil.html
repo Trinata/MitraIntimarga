@@ -1,0 +1,134 @@
+<section id="feature" class="transparent-bg">
+        <div class="container">
+           <div class="center wow fadeInDown">
+           	<div align="center">
+           {if $data_detail.image==''}
+           	<img class=" center img-responsive" src="{$basedomain}assets/images/no-images.gif" alt="">
+           	{else}
+           		<img class="img-responsive" width="300px"src="{$basedomain}public_assets/{$data_detail.image}" alt="">
+           	{/if}
+           </div><br/>
+                <h2>{$data_detail.title}</h2>
+                
+            </div>
+
+            <div class="row">
+				<div class="col-sm-12">
+					<p>
+										{unhsc($data_detail.content)}
+									</p>
+					{*}<p>
+					<a href="{$basedomain}produk/partnercivil/?id={$data_detail.id}">View Product</a>
+					</p>
+					<table class="table" border="1">
+					{if $data}
+						{foreach $data as $val } 
+							<th bgcolor="#00CC66"  colspan="2">{$val.title}</th>
+							  <tr>
+								<td height="200" width="236" >
+								<img align="center"  width="212" height="200" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+								</td>
+								<td>
+									<p>
+										{$val.content}
+									</p>
+								</td>
+							  </tr>
+						{/foreach}
+					{/if}
+					</table>
+					{/*}
+				</div>
+			
+            </div><!--/.row--> 
+            <div class="row">
+				<div class="col-sm-6">
+					Download Brochure:
+					<ol>
+					{if $data}
+						{foreach $data as $val } 
+						<li>
+							{if $val.files==''}
+							<a href="#" >{$val.title}</a>
+							{else}
+								<a href="{$basedomain}public_assets/{$val.files}">{$val.title}</a>
+							{/if}
+							(<a href="{$basedomain}produk/detailpartnercivil/?id={$val.id}"> View Product</a>)</li>
+						{/foreach}
+					{/if}
+					{if $brocure}
+						{foreach $brocure as $var } 
+						<li>
+							{if $var.files==''}
+							<a href="#">{$var.title}</a>
+							{else}
+								<a href="{$basedomain}public_assets/{$val.files}">{$val.title}</a>
+							{/if}
+							(<a href="{$basedomain}produk/detailpartnercivil/?id={$var.id}"> View Description</a>)</li>
+						{/foreach}
+					{/if}
+					
+				</div>
+			
+            </div><!--/.row--> 
+
+
+
+        </div><!--/.container-->
+    </section><!--/#feature-->
+
+
+{*}
+<br>
+<p class="title1geophisic">
+	2010 product list
+</p>
+<p class="title2geophisic">
+	Geophisic Division
+</p>
+<table class="table">
+{if $data}
+		{foreach $data as $val } 
+	<th bgcolor="#00CC66" colspan="2">{$val.title}</th>
+  <tr>
+    <td height="140" width="40%" >
+	<img align="center"  width="212" height="66" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+	</td width="60%">
+    <td>
+		<p>
+			{$val.content}
+		
+		</p>
+	</td>
+  </tr>
+		{/foreach}
+	{/if}
+ </table> 
+	<tr>
+		<p class="footer1">INDONESIA Authorized Agent</p>
+		<p class="footer2">PT. MITRA INTIMARGA, BEKASI SQUARE - Kanto No. 70, Pekayon Jaya, Bekasi Selatan 17148 </p>
+		<p class="footer3">Phone No. (021) 8243 4829, Fax No. (021) 8243 4831, E-mail : sales@ptmitra.com, Website : http: / / www.ptmitra.com </p> </th>
+	</tr>
+	{/*}
+	<tr>
+	
+			<p class="center">
+			{*}{if $data1}
+				{foreach $data1 as $val1 } 
+				<!--
+				<a href="{$basedomain}public_assets/{$val1.files}" download="dokumen coy">
+					<input type="button" value="Download {$val1.title}.pdf " src="{$basedomain}public_assets/{$val1.files}" target="_blank" >
+				</a>
+				-->
+			
+				<a href="{$basedomain}public_assets/{$val1.files}"  download="dokumen"  class="btn btn-info" target="_blank"><i class="fa fa-download"></i>
+					Download {$val1.title}
+				</a>
+			
+				{/foreach}
+			{/if}{/*}
+			</p>
+		
+	</tr>
+
+  

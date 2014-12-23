@@ -49,7 +49,10 @@ class company extends Controller {
 	public function company_profile(){
 		$this->view->assign('active','active');
 			$data = $this->models->company_profile();
-			//pr($data);
+			// pr($data);
+
+		$this->view->assign('url','company_profile');
+		
 			//pr($data[repo][files]);
 			if($data != 'tidakadadata' ){
 			//	pr("isi");
@@ -86,7 +89,7 @@ class company extends Controller {
 			
 
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 		// return $this->loadView('produk/addScientific');
 	}
 	public function company_profileadd_submit(){
@@ -102,13 +105,14 @@ class company extends Controller {
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		 $data = $this->models->company_profileadd_submit($upload,$uploaddoc);
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 	}
 	public function company_division(){
 	global $CONFIG,$app_domain;	
 		
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
+		$this->view->assign('url','company_division');
 		$data = $this->models->company_division();
 		//pr($data);
 		if($data != 'tidakadadata' ){
@@ -145,7 +149,7 @@ class company extends Controller {
 		$data = $this->models->company_division_submit($upload,$uploaddoc);
 		
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 
 	}
 	
@@ -162,13 +166,14 @@ class company extends Controller {
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		 $data = $this->models->company_divisionadd_submit($upload,$uploaddoc);
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 		
 	}
 	public function company_organization(){
 		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
+		$this->view->assign('url','company_organization');
 		$data = $this->models->company_organization();
 		//pr($data);
 		if($data != 'tidakadadata' ){
@@ -202,7 +207,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->company_organization_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 			
 	}
 	public function company_organizationadd_submit(){
@@ -218,7 +223,7 @@ class company extends Controller {
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
 		 $data = $this->models->company_organizationadd_submit($upload,$uploaddoc);
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 		
 	}
 	public function company_marketing(){
@@ -226,6 +231,7 @@ class company extends Controller {
 		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
+		$this->view->assign('url','company_marketing');
 		$data = $this->models->company_marketing();
 		//pr($data);
 		if($data != 'tidakadadata' ){
@@ -260,7 +266,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->company_marketing_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 			
 	
 	}
@@ -276,13 +282,14 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->company_marketingadd_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 		
 	}
 	public function customer_list(){
 		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
+		$this->view->assign('url','customer_list');
 		$data = $this->models->customer_list();
 		//pr($data);
 		if($data != 'tidakadadata' ){
@@ -314,7 +321,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->customer_listadd_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 	
 	}
 	
@@ -331,7 +338,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->customer_list_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 			
 	
 	}
@@ -339,6 +346,7 @@ class company extends Controller {
 		global $CONFIG,$app_domain;	
 		$this->view->assign('app_domain',$app_domain);
 		$this->view->assign('active','active');
+		$this->view->assign('url','customer_location');
 		$data = $this->models->customer_location();
 		//pr($data);
 		if($data != 'tidakadadata' ){
@@ -371,7 +379,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->customer_location_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 			
 	}
 	public function customer_locationadd_submit(){
@@ -387,7 +395,7 @@ class company extends Controller {
 			$upload = uploadFile('file_image',null, 'image');
 			$uploaddoc = uploadFile('file_pdf',null, 'doc');
 			 $data = $this->models->customer_locationadd_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 	
 	
 	}
@@ -399,7 +407,7 @@ class company extends Controller {
 		// pr($upload);
 		$data = $this->models->delete_company();
 
-		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."company'</script>";
+		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."company/".$_POST['url']."'</script>";
 		
 	}
 	

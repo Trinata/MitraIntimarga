@@ -21,9 +21,46 @@ class brocure extends Controller {
 	}
 	
 	public function index(){
-		$this->view->assign('active','active');
-		$data = $this->models->brocure();
 
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		$this->view->assign('active','active');
+
+		
+		if($_GET['id']){
+			if($_GET['id']==1){
+				$title="Geophysics";
+				$data = $this->models->brocureid($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}elseif ($_GET['id']==2) {
+				$title="Scientifics";
+				$data = $this->models->brocureid($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}elseif($_GET['id']==3){
+				$title="Civil";
+				$data = $this->models->brocureid($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}else{
+				$data = $this->models->brocure();
+
+				$this->view->assign('id',false);
+			}
+		}else{
+			$data = $this->models->brocure();
+
+			$this->view->assign('id',false);
+		}
+		if($title){
+
+			$this->view->assign('title',$title);
+		}else{
+			
+			$this->view->assign('title',false);
+		}
 		if ($data){
 			foreach ($data as $key => $val){
 
@@ -51,9 +88,71 @@ class brocure extends Controller {
 
 		$this->view->assign('active','active');
 		//$data = $this->models->company_division();
-	
-			$this->view->assign('admin',$this->admin['admin']);
+		if($_GET['id']){
+			if($_GET['id']==1){
+				$title="Geophysics";
+				$data = $this->models->brocure_produk($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}elseif ($_GET['id']==2) {
+				$title="Scientifics";
+				$data = $this->models->brocure_produk($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}elseif($_GET['id']==3){
+				$title="Civil";
+				$data = $this->models->brocure_produk($_GET['id']);
+
+				$this->view->assign('id',$_GET['id']);
+			}else{
+				$data = $this->models->brocure();
+
+				$this->view->assign('id',false);
+			}
+		}else{
+			$data = $this->models->brocure();
+
+			$this->view->assign('id',false);
+		}
+		if($title){
+
+			$this->view->assign('title',$title);
+		}else{
 			
+			$this->view->assign('title',false);
+		}
+			$this->view->assign('admin',$this->admin['admin']);
+			foreach ($data as $key => $valAlbum){
+			
+
+			if($valAlbum['parentid']==0){
+				$valAlbum['nameAlbum']=$valAlbum['title'];
+				//pr($valAlbum['nameAlbum']);
+				// $dataAlbum[]=$valAlbum;
+				
+				// echo"=====";
+
+				foreach ($data as $key => $valAlbum2){ 
+					// pr($valAlbum2);
+					if($valAlbum2['parentid']==$valAlbum['id'] ){
+
+					// pr($valAlbum2);
+
+								$valAlbum2['nameAlbum']=$valAlbum['title']." >> ".$valAlbum2['title'];
+							//	pr(	$valAlbum['nameAlbum']);
+						// $valAlbum['id']=$valAlbum2['id'];	
+						$dataAlbum[]=$valAlbum2;
+					}
+				}
+				
+
+			}
+			
+			
+			
+		}
+// pr($dataAlbum);
+			$this->view->assign('list_produk',$dataAlbum);
 
 		return $this->loadView('brocure/brocure_none');
 	
@@ -62,10 +161,13 @@ class brocure extends Controller {
 	}
 	public function editbrocure(){
 
+		global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		$id=$_GET['id'];
+		$idget=$_GET['idget'];
 		$data = $this->models->editbrocure($id);
-	
+		// pr($data);
 			
 			 if($data[0]['n_status'] == 1 ){
 				$data[0]['n_status'] = 'checked';
@@ -74,6 +176,8 @@ class brocure extends Controller {
 				}	
 
 		$this->view->assign('data',$data);
+
+		$this->view->assign('idget',$idget);
 		$this->view->assign('admin',$this->admin['admin']);
 		return $this->loadView('brocure/edit_brocure');
 	
@@ -83,6 +187,7 @@ class brocure extends Controller {
 	public function editbrocure_submit(){
 	
 		global $CONFIG;	
+		pr($_POST);
 		if(isset($_POST['n_status'])){
 				if($_POST['n_status']=='on') $_POST['n_status']=1;
 			} else {
@@ -94,7 +199,7 @@ class brocure extends Controller {
 		
 		$data = $this->models->editbrocure_submit($upload,$uploaddoc);
 
-		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."brocure'</script>";
+		 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."brocure/index/?id=".$_POST['idget']."'</script>";
 
 	}
 
@@ -118,7 +223,7 @@ class brocure extends Controller {
 			
 
 		$data = $this->models->brocure_add_submit($upload,$uploaddoc);
-			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."brocure'</script>";
+			 echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."brocure/index/?id=".$_POST['idget']."'</script>";
 		
 	}
 
@@ -137,20 +242,20 @@ class brocure extends Controller {
 		
 	}
 	
-	public function civil(){	
-	global $CONFIG;	
-		// pr($_POST);
-		// pr($_FILES);
+	// public function civil(){	
+	// global $CONFIG;	
+	// 	// pr($_POST);
+	// 	// pr($_FILES);
 		
-		$this->view->assign('active','active');
+	// 	$this->view->assign('active','active');
 		
-		$upload = uploadFile('file_image',null, 'image');
-		// pr($upload);
-		//$data = $this->models->delete_produk();
+	// 	$upload = uploadFile('file_image',null, 'image');
+	// 	// pr($upload);
+	// 	//$data = $this->models->delete_produk();
 
-		// echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
-		 return $this->loadView('produk/addScientific');
-	}
+	// 	// echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
+	// 	 return $this->loadView('produk/addScientific');
+	// }
 	
 
 }

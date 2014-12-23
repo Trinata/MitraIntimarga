@@ -21,7 +21,7 @@ class produk_m extends Database {
 	}
 	public function geophysics(){
 		
-		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -91,7 +91,7 @@ class produk_m extends Database {
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='2' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and  categoryid='3' and articleType='2' and n_status = '1' ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -114,7 +114,7 @@ class produk_m extends Database {
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE  categoryid='3' and articleType='3' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='3' and n_status = '1' ORDER BY created_date DESC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -125,7 +125,7 @@ class produk_m extends Database {
 			$result[$i]['files']=$result2['files'];		
 		$i++;
 		}
-		//pr($result);
+		// pr($result);
 		// exit;
 		return $result;
 	

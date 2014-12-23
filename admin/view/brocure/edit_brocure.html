@@ -26,7 +26,7 @@ $(function () {
 				<div class="portlet">
 				
 					<div class="portlet-header">
-
+{pr($data)}
 						
 						<h3>
 							<i class="fa fa-tasks"></i>
@@ -59,10 +59,12 @@ $(function () {
 							
 							
 									<!-- hidden -->
-									<input type="hidden" name="id" value="{$data.0.otherid}" />
+									<input type="hidden" name="id" value="{$data.0.id}" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
+
+									<input type="hidden" name="idget" value="{$idget}" />
 									<!-- hidden -->
 							
 						</div>
@@ -118,7 +120,17 @@ $(function () {
 					</div> <!-- /.portlet-header -->
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
-						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://localhost/MitraIntimarga/public_assets/{$data.0.image}" alt="http://localhost/MitraIntimarga/public_assets/{$data.0.image}" /></div>
+						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+						  	{if $data.0.image==''}
+
+						  	<img src="{$app_domain}assets/images/no-images.gif" alt="#" />
+
+						  	{else}
+
+						  	<img src="{$app_domain}public_assets/{$data.0.image}" alt="{$app_domain}public_assets/{$data.0.image}" />
+
+						  	{/if}
+						  </div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 						  <div>
 							<span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>
@@ -140,7 +152,7 @@ $(function () {
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						 <div>
 							<input type="file" name="file_pdf"/>
-							{{$data.0.titlerepo}}
+							{$data.0.title}
 							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
 						  </div>
 						</div>

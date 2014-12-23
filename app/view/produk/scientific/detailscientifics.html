@@ -1,16 +1,22 @@
 <section id="feature" class="transparent-bg">
         <div class="container">
            <div class="center wow fadeInDown">
-           	<img class="img-responsive" src="{$basedomain}public_assets/{$data_detail.image}" alt="">
+         	<div align="center">
+           {if $data_detail.image==''}
+           	<img class=" center img-responsive" src="{$basedomain}assets/images/no-images.gif" alt="">
+           	{else}
+           		<img class="img-responsive" width="300px" src="{$basedomain}public_assets/{$data_detail.image}" alt="">
+           	{/if}
+           </div><br/>
                 <h2>{$data_detail.title}</h2>
                 
             </div>
 
             <div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<p>
 										{unhsc($data_detail.content)}
-									</p>
+					</p>
 					<p>
 					<a href="{$basedomain}produk/partnerscientifics/?id={$data_detail.id}">View Product</a>
 					</p>
@@ -75,7 +81,7 @@
 	</tr>
 	{/*}
 	<tr>
-		<hr>
+		{*}<hr>
 			<p class="center">
 			{if $data1}
 				{foreach $data1 as $val1 } 
@@ -91,7 +97,7 @@
 			
 				{/foreach}
 			{/if}
-			</p>
+			</p>{/*}
 		
 	</tr>
 

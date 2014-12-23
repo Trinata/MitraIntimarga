@@ -3,15 +3,20 @@
         <div class="container">
             <div class="center wow fadeInDown">
                 <h2 align="center" >COMPANY Profile</h2>
-				{if $data}
-					{foreach $data as $val } 
-						<p class="lead" align="justify"> {$val.content}
-					{/foreach}
-				{/if}
+				
 				
             </div>
 
             <div class="row">
+                <div class="col-sm-12">
+                    <p>
+                     {if $data}
+                         {foreach $data as $val } 
+                              <p class="lead" align="justify"> {unhsc($val.content)}</p>
+                         {/foreach}
+                      {/if}
+                    </p>
+               
             </div><!--/.row-->
         </div><!--/.container-->
     </section><!--/#recent-works-->

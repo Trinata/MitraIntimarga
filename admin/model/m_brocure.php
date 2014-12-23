@@ -193,42 +193,42 @@ class m_brocure extends Database {
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 			//	pr("isi dua duanya");
 					$query = "INSERT INTO  
-							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+							('".$_POST['parentid']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','9','".$_POST['idget']."','".$create_date."'
 								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','4','1',$getID)";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','9','1',$getID)";
 				
 				$result2 = $this->fetch($query2,0);
 			
 			}else if ($upload['full_name'] !='') {
 			//pr("gambar aja");
 				$query = "INSERT INTO  
-							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+							('".$_POST['parentid']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','9','".$_POST['idget']."','".$create_date."'
 								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
 			}else if ($uploaddoc['full_name'] !='') {
 			//pr("doc aja");
 				$query = "INSERT INTO  
-							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+							('".$_POST['parentid']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','9','".$_POST['idget']."','".$create_date."'
 								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
 				$getID = $this->insert_id();
 				$query2 = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid)
-								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','4','1',$getID)";
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','9','1',$getID)";
 				
 				$result2 = $this->fetch($query2,0);
 			
@@ -236,10 +236,10 @@ class m_brocure extends Database {
 			else{
 			//pr("kosong semua");
 				$query = "INSERT INTO  
-							{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+							{$this->prefix}_news_content (parentid,title,brief,content,image,file,categoryid,articletype,
 													posted_date,authorid,n_status)
 						VALUES
-							('".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','4','1','".$create_date."'
+							('".$_POST['parentid']."','".$_POST['title']."','','".$content."','".$upload['full_name']."','".$upload['full_path']."','9','".$_POST['idget']."','".$create_date."'
 								,'','".$_POST['n_status']."')";
 								
 				$result = $this->fetch($query,0);
@@ -249,10 +249,51 @@ class m_brocure extends Database {
 
 	}
 	///////////////////
-	
+	// brocure
 	function brocure($type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='4' and articletype='1' and n_status != '2'  ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='9' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+
+	function brocureid($id)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  categoryid='9' and articletype='".$id."' and n_status != '2'  ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		
+		return $result;
+	}
+
+	function brocure_produk($id)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid='3' and articletype='".$id."' and n_status = 1  ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -268,13 +309,18 @@ class m_brocure extends Database {
 	}
 	function editbrocure($id)
 	{
-	$create_date=date("Y-m-d H:i:s");
-		//$query = "SELECT * FROM {$this->prefix}_news_content WHERE  id='$id'";
-		$query = "SELECT A.title, A.content, A.n_status, A.posted_date , A.image, B.otherid, B.title as titlerepo, B.contentimage, B.files
-		FROM mitra_news_content AS A JOIN mitra_news_content_repo AS B
-		ON A.id = B.otherid where A.id='$id' ";
-		
+	
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE  id='".$id."' ORDER BY created_date DESC";
+		// pr($query);
 		$result = $this->fetch($query,1);
+
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
 		return $result;
 	}
 	function editbrocure_submit ($upload,$uploaddoc)
@@ -282,7 +328,7 @@ class m_brocure extends Database {
 		global $CONFIG;
 		$create_date=date("Y-m-d H:i:s");
 		$content=hsc($_POST['content']);
-		pr($create_date);
+		// pr($create_date);
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 		
 		$query = "UPDATE {$this->prefix}_news_content
@@ -298,17 +344,43 @@ class m_brocure extends Database {
 		
 		$result = $this->fetch($query,0);
 		//$getID = $this->insert_id();
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							title = '".$_POST['title']."',
-							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."',
-							n_status = '".$_POST['n_status']."'
+		// $query2 = "UPDATE {$this->prefix}_news_content_repo
+		// 				SET 
+		// 					title = '".$_POST['title']."',
+		// 					files = '".$uploaddoc['full_name']."',
+		// 					n_status = '".$_POST['n_status']."',
+		// 					n_status = '".$_POST['n_status']."'
 						
-						WHERE
-							otherid = '".$_POST['id']."' ";
+		// 				WHERE
+		// 					otherid = '".$_POST['id']."' ";
 						
-		$result2 = $this->fetch($query2,0);
+		// $result2 = $this->fetch($query2,0);
+		$select = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid='".$_POST['id']."' LIMIT 1";
+
+				$select_query = $this->fetch($select,0);
+
+				$select2 = "SELECT * FROM {$this->prefix}_news_content WHERE id='".$_POST['id']."' LIMIT 1";
+
+				$select_query2 = $this->fetch($select2,0);
+				// pr($select_query2);exit;
+				if($select){
+					$query2 = "UPDATE {$this->prefix}_news_content_repo
+									SET 
+										title = '".$_POST['title']."',
+										files = '".$uploaddoc['full_name']."'
+									WHERE
+										otherid = '".$_POST['id']."' ";
+										
+											// pr($query2);
+					$result2 = $this->fetch($query2,0);
+				}else{
+					
+					$insert = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','".$select_query2['categoryid']."','".$select_query2['articleType']."','".$_POST['id']."','".$_POST['n_status']."')";
+				
+					$result3 = $this->fetch($insert,0);
+
+				}
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -326,7 +398,7 @@ class m_brocure extends Database {
 						
 		$result = $this->fetch($query,0);
 		}else if ($uploaddoc['full_name'] !='') {
-		pr("doc aja");
+		// pr("doc aja");
 		$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '".$_POST['title']."',
@@ -336,16 +408,42 @@ class m_brocure extends Database {
 							id = '".$_POST['id']."' ";
 							$result = $this->fetch($query,0);
 				
-		$query2 = "UPDATE {$this->prefix}_news_content_repo
-						SET 
-							title = '".$_POST['title']."',
-							files = '".$uploaddoc['full_name']."',
-							n_status = '".$_POST['n_status']."'
+		// $query2 = "UPDATE {$this->prefix}_news_content_repo
+		// 				SET 
+		// 					title = '".$_POST['title']."',
+		// 					files = '".$uploaddoc['full_name']."',
+		// 					n_status = '".$_POST['n_status']."'
 						
-						WHERE
-							otherid = '".$_POST['id']."' ";
+		// 				WHERE
+		// 					otherid = '".$_POST['id']."' ";
 						
-		$result2 = $this->fetch($query2,0);
+		// $result2 = $this->fetch($query2,0);
+							$select = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid='".$_POST['id']."' LIMIT 1";
+
+				$select_query = $this->fetch($select,0);
+
+				$select2 = "SELECT * FROM {$this->prefix}_news_content WHERE id='".$_POST['id']."' LIMIT 1";
+
+				$select_query2 = $this->fetch($select2,0);
+				// pr($select_query2);exit;
+				if($select){
+					$query2 = "UPDATE {$this->prefix}_news_content_repo
+									SET 
+										title = '".$_POST['title']."',
+										files = '".$uploaddoc['full_name']."'
+									WHERE
+										otherid = '".$_POST['id']."' ";
+										
+											// pr($query2);
+					$result2 = $this->fetch($query2,0);
+				}else{
+					
+					$insert = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','".$select_query2['categoryid']."','".$select_query2['articleType']."','".$_POST['id']."','".$_POST['n_status']."')";
+				
+					$result3 = $this->fetch($insert,0);
+
+				}
 		
 		}
 		else{

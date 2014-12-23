@@ -61,13 +61,13 @@ $(function () {
 							</div>
 						</div>	
 						
-						<div class="col-md-6">
+						{*}<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Brief</label>
 									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
 							</div>
-						</div>
-
+						</div>{/*}
+						<input type="hidden" name="brief" class="form-control" value="addfile" />
 						<div class="col-sm-12">
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
@@ -146,7 +146,13 @@ $(function () {
 						{/if}
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
-						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{$app_domain}public_assets/{$data.files}" alt="{$data.files}" /></div>
+						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+						  	{if $data.files==''}
+						  	<img src="{$app_domain}assets/images/no-images.gif" alt="{$data.files}" />
+						  	{else}
+						  	<img src="{$app_domain}public_assets/{$data.files}" alt="{$data.files}" />
+						  	{/if}
+						  </div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 						  <div>
 							<span class="btn btn-default btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>

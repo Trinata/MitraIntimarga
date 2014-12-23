@@ -10,7 +10,11 @@
                 {foreach $album as $val}
                 <div class="col-xs-12 col-sm-3 " >
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{$basedomain}public_assets/{$val.image}" alt="">
+                        {if $val.image==''}
+                        <img class="img-responsive" style="height:200px" src="{$basedomain}assets/images/no-images.gif" alt="">
+                        {else}
+                        <img class="img-responsive" style="height:200px" src="{$basedomain}public_assets/{$val.image}" alt="">
+                        {/if}
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 {if $val.parentid==0}

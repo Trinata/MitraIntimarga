@@ -265,7 +265,14 @@ class m_produk extends Database {
 
 			$result[$key]['username'] = $username['username'];
 		}
-		
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		// pr($result);
 		return $result;
 	}
 	function scientific_list($type=1)
@@ -281,7 +288,13 @@ class m_produk extends Database {
 
 			$result[$key]['username'] = $username['username'];
 		}
-		
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
 		return $result;
 	}
 	function civil_list($type=1)
@@ -297,7 +310,14 @@ class m_produk extends Database {
 
 			$result[$key]['username'] = $username['username'];
 		}
-		
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		// pr($result);exit;
 		return $result;
 	}
 	
@@ -667,6 +687,9 @@ class m_produk extends Database {
 		global $CONFIG;
 		$create_date=date("Y-m-d H:i:s");
 		$content=hsc($_POST['content']);
+		// pr($_POST);
+		// pr($upload);
+		// pr($uploaddoc);
 		if($upload['full_name'] !='' && $uploaddoc['full_name'] !='') {
 		
 				$query = "UPDATE {$this->prefix}_news_content
@@ -679,17 +702,36 @@ class m_produk extends Database {
 									posted_date='".$create_date."'
 								WHERE
 									id = '".$_POST['id']."' ";
-									
+										// pr($query);
 				$result = $this->fetch($query,0);
 				//$getID = $this->insert_id();
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."',
-								WHERE
-									otherid = '".$_POST['id']."' ";
-									
-				$result2 = $this->fetch($query2,0);
+				
+				$select = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid='".$_POST['id']."' LIMIT 1";
+
+				$select_query = $this->fetch($select,0);
+
+				$select2 = "SELECT * FROM {$this->prefix}_news_content WHERE id='".$_POST['id']."' LIMIT 1";
+
+				$select_query2 = $this->fetch($select2,0);
+				// pr($select_query2);exit;
+				if($select){
+					$query2 = "UPDATE {$this->prefix}_news_content_repo
+									SET 
+										title = '".$_POST['title']."',
+										files = '".$uploaddoc['full_name']."'
+									WHERE
+										otherid = '".$_POST['id']."' ";
+										
+											// pr($query2);
+					$result2 = $this->fetch($query2,0);
+				}else{
+					
+					$insert = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','".$select_query2['categoryid']."','".$select_query2['articleType']."','".$_POST['id']."','".$_POST['n_status']."')";
+				
+					$result3 = $this->fetch($insert,0);
+
+				}
 		
 		}else if ($upload['full_name'] !='') {
 		//pr("gambar aja");
@@ -715,17 +757,35 @@ class m_produk extends Database {
 									posted_date='".$create_date."'
 								WHERE
 									id = '".$_POST['id']."' ";
-									
+							// echo $query;			
 				$result = $this->fetch($query,0);
-				$query2 = "UPDATE {$this->prefix}_news_content_repo
-								SET 
-									title = '".$_POST['title']."',
-									files = '".$uploaddoc['full_name']."'
-								WHERE
-									otherid = '".$_POST['id']."' ";
-									
-				$result2 = $this->fetch($query2,0);
-		
+
+				$select = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid='".$_POST['id']."' LIMIT 1";
+
+				$select_query = $this->fetch($select,0);
+
+				$select2 = "SELECT * FROM {$this->prefix}_news_content WHERE id='".$_POST['id']."' LIMIT 1";
+
+				$select_query2 = $this->fetch($select2,0);
+				// pr($select_query2);exit;
+				if($select_query){
+					$query2 = "UPDATE {$this->prefix}_news_content_repo
+									SET 
+										title = '".$_POST['title']."',
+										files = '".$uploaddoc['full_name']."'
+									WHERE
+										otherid = '".$_POST['id']."' ";
+										
+											// pr($query2);
+					$result2 = $this->fetch($query2,0);
+				}else{
+					
+					$insert = "INSERT INTO  {$this->prefix}_news_content_repo (title,files,typealbum,gallerytype,otherid,n_status)
+								VALUES ('".$_POST['title']."','".$uploaddoc['full_name']."','".$select_query2['categoryid']."','".$select_query2['articleType']."','".$_POST['id']."','".$_POST['n_status']."')";
+					// pr($insert);exit;
+					$result3 = $this->fetch($insert,0);
+
+				}
 		}
 		else{
 		//pr("kosong semua");
@@ -737,7 +797,7 @@ class m_produk extends Database {
 									posted_date='".$create_date."'
 								WHERE
 									id = '".$_POST['id']."' ";
-			
+				// echo $query;
 				$result = $this->fetch($query,0);
 				$query2 = "UPDATE {$this->prefix}_news_content_repo
 								SET 
@@ -745,9 +805,11 @@ class m_produk extends Database {
 									
 								WHERE
 									otherid = '".$_POST['id']."' ";
-									
+								
+										// pr($query2);	
 				$result2 = $this->fetch($query2,0);
 		}
+		// echo $query;
 		return $result;
 	}
 	

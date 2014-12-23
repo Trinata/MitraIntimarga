@@ -110,6 +110,7 @@ class produk extends Controller {
         $id=$_GET['id'];
 		//pr($id);
 		$result_data = $this->models->partnercivil($id);
+		$result_data_detail = $this->models->civilDetail($id);
 		$result_data_file = $this->models->civilchild_file($id);
 		$result_data_file3 = $this->models->geophysicsa();
 		$result_data_file4 = $this->models->scientificsa();
@@ -118,6 +119,7 @@ class produk extends Controller {
 		// pr($basedomain);
 		//pr($result_data);
 		$this->view->assign('data',$result_data);
+		$this->view->assign('data_detail',$result_data_detail);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
 		$this->view->assign('data3',$result_data_file4);

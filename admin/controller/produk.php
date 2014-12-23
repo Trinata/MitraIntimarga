@@ -51,11 +51,14 @@ class produk extends Controller {
 	
 	public function geophysics_list(){
 		
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 
 		
 		$data = $this->models->geophysics_list();
-		
+		// pr($data);
 		$data_menu = $this->models->getShowmenu('geo');
 		if ($data){
 			foreach ($data as $key => $val){
@@ -119,6 +122,9 @@ class produk extends Controller {
 	
 	public function scientific_list(){
 		
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		$data = $this->models->scientific_list();
 		// pr($data);
@@ -178,9 +184,12 @@ class produk extends Controller {
 	}
 	public function civil_list(){
 		
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		$data = $this->models->civil_list();
-
+		// pr($data);
 		$data_menu = $this->models->getShowmenu('civil');
 		if ($data){
 			foreach ($data as $key => $val){
@@ -227,7 +236,7 @@ class produk extends Controller {
 			}
 			// $i++;$j++;
 		}
-		// pr($dataAlbum);
+		// pr($dataAlbum);exit;
 		$this->view->assign('data',$dataAlbum);
 	
 		$this->view->assign('showmenu',$data_menu);
@@ -239,6 +248,7 @@ class produk extends Controller {
 	
 	public function geophysics(){
 		global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		
 	
@@ -250,6 +260,7 @@ class produk extends Controller {
 	}
 	public function scientific(){
 		global $CONFIG;	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		
 	
@@ -458,6 +469,7 @@ class produk extends Controller {
 				$data['n_status'] = '0';
 			}
 		//pr($data);
+
 		$this->view->assign('data',$data);
 		$this->view->assign('fleg','civil');
 		
@@ -502,7 +514,7 @@ class produk extends Controller {
 		$this->view->assign('active','active');
 		$upload = uploadFile('file_image',null, 'image');
 		$uploaddoc = uploadFile('file_pdf',null, 'doc');
-		pr($upload);
+		// pr($upload);
 		// pr($uploaddoc);exit;
 		$data = $this->models->edit_produk_submit($upload,$uploaddoc);
 
@@ -646,6 +658,7 @@ class produk extends Controller {
 	public function civil(){	
 	global $CONFIG;	
 	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		$data = $this->models->list_civil();
 		$this->view->assign('data',$data);
