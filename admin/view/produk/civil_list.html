@@ -12,7 +12,7 @@
 	
 </script>
 <div id="content-header">
-	<h1>Produk</h1>
+	<h1>Produk CIVIL</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -27,7 +27,25 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						Civil & Geotech Engineering
+					
+						{if $titleProd}
+								{$titleProd.title} 
+						<form method="POST" action="{$basedomain}produk/changeTitle">
+
+							<input type="text" class="input-sm col-md-7" name="title_prod" value="{$titleProd.title}" />
+							<input type="hidden" name="type" value="3"/>
+							<input type="hidden" name="id" value="{$titleProd.id}"/>
+							{else}
+								Civil & Geotech Engineering
+						<form method="POST" action="{$basedomain}produk/changeTitle">
+
+							<input type="text" class="input-sm col-md-7" name="title_prod" value="Civil & Geotech Engineering" />
+							<input type="hidden" name="type" value="3"/>
+							<input type="hidden" name="id" value=""/>
+
+							{/if}
+							<input type="submit" class="btn btn-info btn-sm" value="Change Title"/>
+						</form>
 					</h3>
 				</div> <!-- /.portlet-header -->
 
@@ -38,7 +56,7 @@
 					<form action="{$basedomain}produk/delete_produk_civil" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
 					<a href="{$basedomain}produk/civil"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
-
+					<a href="{$basedomain}produk/changeOrderC"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Change Order</button></a>
 					<!--<button type="submit" class="btn btn-default btn-sm" > Add New</button> -->
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					<!--   tambahan dropdown  -->

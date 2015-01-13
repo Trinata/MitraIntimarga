@@ -56,19 +56,23 @@ $(function () {
 									<input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
 							</div>
 						</div>	
-						
+						<input type="hidden" name="brief" class="form-control" value="addfile" />
+						<input type="hidden" name="content" class="form-control" value="addfile" />
+						{*}
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Brief</label>
 									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
 							</div>
 						</div>
-
+						{/*}
 						<div class="col-sm-12">
+							{*}
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
 									<textarea name="content" id="editor1"  cols="10" rows="20" class="ckeditor">{$data.content}</textarea>
 							</div>
+							{/*}
 							
 							
 									<!-- hidden -->

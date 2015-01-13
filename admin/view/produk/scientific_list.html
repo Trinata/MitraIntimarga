@@ -11,7 +11,7 @@
 	}
 </script>
 <div id="content-header">
-	<h1>PRODUK</h1>
+	<h1>PRODUK Scientifics</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -26,7 +26,24 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						Scientifics List
+						{if $titleProd}
+								{$titleProd.title} 
+						<form method="POST" action="{$basedomain}produk/changeTitle">
+
+							<input type="text" class="input-sm col-md-7" name="title_prod" value="{$titleProd.title}" />
+							<input type="hidden" name="type" value="2"/>
+							<input type="hidden" name="id" value="{$titleProd.id}"/>
+							{else}
+							Scientifics List
+						<form method="POST" action="{$basedomain}produk/changeTitle">
+
+							<input type="text" class="input-sm col-md-7" name="title_prod" value="Scientifics List" />
+							<input type="hidden" name="type" value="2"/>
+							<input type="hidden" name="id" value=""/>
+
+							{/if}
+							<input type="submit" class="btn btn-info btn-sm" value="Change Title"/>
+						</form>
 					</h3>
 
 				</div> <!-- /.portlet-header -->
@@ -39,6 +56,7 @@
 
 					<a href="{$basedomain}produk/scientific"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
 
+					<a href="{$basedomain}produk/changeOrderS"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Change Order</button></a>
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					{*}{if $showmenu.id}
 					

@@ -29,8 +29,12 @@
                         {else}
                         <h3><a href="{$basedomain}album/activityDetail/?id={$val.id}">{$val.title}</a> </h3>
                         {/if}
-
+                        {if $typeAlbum}
                         <p>{$val.content}</p>
+
+                        {else}
+                        <p>&nbsp;</p>
+                        {/if}
                     </div>
                 </div>   
                 {/foreach}

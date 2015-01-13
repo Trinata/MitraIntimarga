@@ -481,7 +481,41 @@ class m_brocure extends Database {
 		$result = $this->fetch($query,0);
 		return $result;
 	}
-	
+	function updateTitle(){
+
+	global $CONFIG;
+		$create_date=date("Y-m-d H:i:s");
+
+		if($_POST[id]==""){
+			$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title_prod']."','12','".$_POST['type']."','".$create_date."'
+								,'admin','1')";
+						//pr($query);			
+				$result = $this->fetch($query,0);
+		}else{
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title_prod']."'
+							
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+				$result = $this->fetch($query,0);
+		}
+	}
+
+	function getTitleprod($type){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=12 AND articletype='".$type."' LIMIT 1";
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+
+		}
 	
 	
 	

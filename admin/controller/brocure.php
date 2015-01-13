@@ -33,16 +33,23 @@ class brocure extends Controller {
 				$title="Geophysics";
 				$data = $this->models->brocureid($_GET['id']);
 
+				$titleProd= $this->models->getTitleprod(1);
+				$this->view->assign('titleProd',$titleProd);
+
 				$this->view->assign('id',$_GET['id']);
 			}elseif ($_GET['id']==2) {
 				$title="Scientifics";
 				$data = $this->models->brocureid($_GET['id']);
 
+				$titleProd= $this->models->getTitleprod(2);
+				$this->view->assign('titleProd',$titleProd);
 				$this->view->assign('id',$_GET['id']);
 			}elseif($_GET['id']==3){
 				$title="Civil";
 				$data = $this->models->brocureid($_GET['id']);
 
+				$titleProd= $this->models->getTitleprod(3);
+				$this->view->assign('titleProd',$titleProd);
 				$this->view->assign('id',$_GET['id']);
 			}else{
 				$data = $this->models->brocure();
@@ -241,7 +248,21 @@ class brocure extends Controller {
 		 echo "<script>alert('Data berhasil di Hapus');window.location.href='".$CONFIG['admin']['base_url']."produk'</script>";
 		
 	}
+	public function changeTitle(){
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->models->updateTitle();
+		if($_POST['type']==1){
+			$url="1";
+		}elseif($_POST['type']==2){
+			$url="2";
+		}elseif($_POST['type']==3){
+			$url="3";
+		}
+		echo "<script>alert('Data has been Changed');window.location.href='".$CONFIG['admin']['base_url']."brocure/index/?id=".$url."'</script>";
+		
 	
+	}
 	// public function civil(){	
 	// global $CONFIG;	
 	// 	// pr($_POST);

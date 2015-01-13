@@ -22,6 +22,8 @@ class login extends Controller {
 	public function index()
 	{
 		global $CONFIG;
+
+// pr($_SERVER['DOCUMENT_ROOT']);
 		// pr($_SESSION);
 		return $this->loadView('login');
 	}

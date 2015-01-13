@@ -320,7 +320,89 @@ class m_produk extends Database {
 		// pr($result);exit;
 		return $result;
 	}
+	function listOrderG($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE parentid=0 and categoryid='3' and articleType='1'  and n_status != '2'  ORDER BY lid ASC";
 	
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		// pr($result);exit;
+		return $result;
+	}
+	function listOrderS($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE parentid=0 and categoryid='3' and articleType='2'  and n_status != '2'  ORDER BY lid ASC";
+	
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		// pr($result);exit;
+		return $result;
+	}
+	function listOrderC($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE parentid=0 and categoryid='3' and articleType='3'  and n_status != '2'  ORDER BY lid ASC";
+	
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		foreach ($result as $key2 => $value2) {
+			$query2 = "SELECT files FROM {$this->prefix}_news_content_repo WHERE otherid={$value2['id']} LIMIT 1";
+
+			$files = $this->fetch($query2,0);
+
+			$result[$key2]['files'] = $files['files'];
+		}
+		// pr($result);exit;
+		return $result;
+	}
+	function updateOrder($id,$order)
+	{
+		$i=0;
+		foreach ($id as $key => $value) {
+			
+			$query = "UPDATE {$this->prefix}_news_content SET lid='{$order[$i]}' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		$i++;
+		}
+
+		return true;
+		
+	}
 	function addScientific($upload,$uploaddoc)
 	{
 	
@@ -859,6 +941,42 @@ class m_produk extends Database {
 
 			}
 			return $result;
+		}
+
+	function updateTitle(){
+
+	global $CONFIG;
+		$create_date=date("Y-m-d H:i:s");
+
+		if($_POST[id]==""){
+			$query = "INSERT INTO  
+							{$this->prefix}_news_content (title,categoryid,articletype,
+													posted_date,authorid,n_status)
+						VALUES
+							('".$_POST['title_prod']."','11','".$_POST['type']."','".$create_date."'
+								,'admin','1')";
+						//pr($query);			
+				$result = $this->fetch($query,0);
+		}else{
+			$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '".$_POST['title_prod']."'
+							
+						WHERE
+							id = '".$_POST['id']."' ";
+							
+				$result = $this->fetch($query,0);
+		}
+	}
+
+	function getTitleprod($type){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=11 AND articletype='".$type."' LIMIT 1";
+		
+		$result = $this->fetch($query,0);
+		
+		return $result;
+
 		}
 	
 }

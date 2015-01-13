@@ -30,6 +30,10 @@ class produk extends Controller {
 		// pr($basedomain);
 		//pr($result_data);
 		//pr($result_data_file);
+
+		$titleProd= $this->models->getTitleprod(1);
+		$this->view->assign('titleProd',$titleProd[0]);
+
 		$this->view->assign('data',$result_data);
 		//$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
@@ -254,6 +258,8 @@ class produk extends Controller {
 		$var = array(1,2,3);
 		// pr($basedomain);
 
+		$titleProd= $this->models->getTitleprod(2);
+		$this->view->assign('titleProd',$titleProd[0]);
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);
 		$this->view->assign('data2',$result_data_file3);
@@ -273,6 +279,9 @@ class produk extends Controller {
 		// pr($result_data);
 		$var = array(1,2,3);
 		// pr($basedomain);
+
+		$titleProd= $this->models->getTitleprod(3);
+		$this->view->assign('titleProd',$titleProd[0]);
 
 		$this->view->assign('data',$result_data);
 		$this->view->assign('data1',$result_data_file);

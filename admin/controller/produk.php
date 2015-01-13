@@ -112,6 +112,9 @@ class produk extends Controller {
 		// pr($dataAlbum);
 		//pr($data);
 		
+		$titleProd= $this->models->getTitleprod(1);
+		$this->view->assign('titleProd',$titleProd);
+		
 		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/geophysics_list');
@@ -127,7 +130,7 @@ class produk extends Controller {
         $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
 		$this->view->assign('active','active');
 		$data = $this->models->scientific_list();
-		// pr($data);
+
 		$data_menu = $this->models->getShowmenu('scien');
 		if ($data){
 			foreach ($data as $key => $val){
@@ -175,6 +178,10 @@ class produk extends Controller {
 			//pr($valAlbum);
 		}
 		// pr($dataAlbum);
+
+		$titleProd= $this->models->getTitleprod(2);
+		$this->view->assign('titleProd',$titleProd);
+
 		$this->view->assign('data',$dataAlbum);
 		$this->view->assign('showmenu',$data_menu);
 		return $this->loadView('produk/scientific_list');
@@ -237,6 +244,9 @@ class produk extends Controller {
 			// $i++;$j++;
 		}
 		// pr($dataAlbum);exit;
+		$titleProd= $this->models->getTitleprod(3);
+		$this->view->assign('titleProd',$titleProd);
+		
 		$this->view->assign('data',$dataAlbum);
 	
 		$this->view->assign('showmenu',$data_menu);
@@ -667,7 +677,93 @@ class produk extends Controller {
 		return $this->loadView('produk/civil');
 	
 	}
+	public function changeOrderC(){
+       
+	global $CONFIG;	
 	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		$this->view->assign('active','active');
+		$data = $this->models->listOrderC();
+
+	
+		$this->view->assign('data',$data);
+		$this->view->assign('url','C');
+
+		return $this->loadView('produk/add-change-order');
+
+	}
+	public function changeOrderG(){
+       
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		$this->view->assign('active','active');
+		$data = $this->models->listOrderG();
+
+	
+		$this->view->assign('data',$data);
+		$this->view->assign('url','G');
+
+		return $this->loadView('produk/add-change-order');
+
+	}
+	public function changeOrderS(){
+       
+	global $CONFIG;	
+	
+        $this->view->assign('app_domain',$CONFIG['admin']['app_url']);
+		$this->view->assign('active','active');
+		$data = $this->models->listOrderS();
+
+	
+		$this->view->assign('data',$data);
+		$this->view->assign('url','S');
+
+		return $this->loadView('produk/add-change-order');
+
+	}
+	public function updOrderprodukG(){
+
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->models->updateOrder($_POST['ids'],$_POST['order']);
+		
+		echo "<script>alert('Data has been Change to Order');window.location.href='".$CONFIG['admin']['base_url']."produk/changeOrderG'</script>";
+		
+	}
+	public function updOrderprodukS(){
+
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->models->updateOrder($_POST['ids'],$_POST['order']);
+		
+		echo "<script>alert('Data has been Change to Order');window.location.href='".$CONFIG['admin']['base_url']."produk/changeOrderS'</script>";
+		
+	}
+	public function updOrderprodukC(){
+
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->models->updateOrder($_POST['ids'],$_POST['order']);
+		
+		echo "<script>alert('Data has been Change to Order');window.location.href='".$CONFIG['admin']['base_url']."produk/changeOrderC'</script>";
+		
+	}
+	public function changeTitle(){
+		global $CONFIG;
+		// pr($_POST);exit;
+		$data = $this->models->updateTitle();
+		if($_POST['type']==1){
+			$url="geophysics_list";
+		}elseif($_POST['type']==2){
+			$url="scientific_list";
+		}elseif($_POST['type']==3){
+			$url="civil_list";
+		}
+		echo "<script>alert('Data has been Changed');window.location.href='".$CONFIG['admin']['base_url']."produk/".$url."'</script>";
+		
+	
+	}
 
 }
 

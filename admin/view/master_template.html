@@ -30,5 +30,27 @@
 	
 	</div>
 
+	<script type="text/javascript">
+			//<![CDATA[
+
+				// This call can be placed at any point after the
+				// <textarea>, or inside a <head><script> in a
+				// window.onload event handler.
+
+				// Replace the <textarea id="editor"> with an CKEditor
+				// instance, using default configurations.
+				CKEDITOR.replace( 'editor1',
+                {
+                    filebrowserBrowseUrl :'{$basedomain}js/ckeditor/filemanager/browser/default/browser.html?Connector={$basedomain}js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserImageBrowseUrl : '{$basedomain}js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector={$basedomain}js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserFlashBrowseUrl :'{$basedomain}js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector={$basedomain}js/ckeditor/filemanager/connectors/php/connector.php',
+					filebrowserUploadUrl  :'{$basedomain}js/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+					filebrowserImageUploadUrl : '{$basedomain}js/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+					filebrowserFlashUploadUrl : '{$basedomain}js/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'
+				});
+
+			//]]>
+			</script>
+
 </body> 
 </html>

@@ -14,7 +14,7 @@ $(function () {
 </script>
 
 <div id="content-header">
-	<h1>Add New Article</h1>
+	<h1>Add New File</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -55,10 +55,12 @@ $(function () {
 						</div>	
 						
 						<div class="col-sm-12">
+							{*}
 							<div class="form-group">
 							<label for="text-input">Title</label>
 									<input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
 							</div>
+							{/*}
 						</div>	
 						
 						{*}<div class="col-md-6">
@@ -67,13 +69,16 @@ $(function () {
 									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
 							</div>
 						</div>{/*}
+						<input type="hidden" name="title" class="form-control" value="addfile" />
 						<input type="hidden" name="brief" class="form-control" value="addfile" />
+						<input type="hidden" name="content" class="form-control" value="addfile" />
+
 						<div class="col-sm-12">
+							{*}
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
 									<textarea name="content" id="editor1"  cols="10" rows="20" class="ckeditor">{$data.content}</textarea>
-							</div>
-							
+							</div>{/*}
 							
 									<!-- hidden -->
 									<input type="hidden" name="id" value="{$data.id}" />

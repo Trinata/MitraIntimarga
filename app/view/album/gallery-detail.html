@@ -10,14 +10,21 @@
                 {foreach $album as $key => $val}
                <div class="col-xs-11 col-sm-4 col-md-3" style="{if $key==4}clear:both{/if}">
                     <div class="recent-work-wrap">
+                       {if $val.files}
                         <img class="img-responsive" src="{$basedomain}public_assets/{$val.files}" alt="">
+                        {else}
+                        <img class="img-responsive" src="{$basedomain}assets/images/no-images.gif" alt="">
+                        {/if}
                         <div class="overlay">
                             <div class="recent-work-inner">
-                                
+                                 {if $val.files}
                                 <a class="preview" href="{$basedomain}public_assets/{$val.files}" rel="prettyPhoto"><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                {else}
+                                      <a class="preview" href="#"><img src="{$basedomain}assets/images/loop.png"/> </a>
+                                {/if}
                             </div> 
                         </div>
-                        <p><a href="{$basedomain}public_assets/{$val.files}" target="_blank">{$val.title}</a> </p>
+                        <p>{*}<a href="{$basedomain}public_assets/{$val.files}" target="_blank">{$val.title}</a> {/*}</p>
                     </div>
                 </div>
 

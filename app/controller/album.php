@@ -47,6 +47,8 @@ class album extends Controller {
 	{
 		$getAlbum = $this->contentHelper->getContent($id=false, $type=5,$cat=3);
 		if($_GET['idAlbum']){
+
+		$this->view->assign('typeAlbum',true);
 			foreach ($getAlbum as $key => $value) {
 				if($value['parentid']==$_GET['idAlbum']){
 					$dataAlbum[]=$value;
@@ -54,6 +56,8 @@ class album extends Controller {
 			}
 
 		}else{
+
+		$this->view->assign('typeAlbum',false);
 			foreach ($getAlbum as $key => $value) {
 				if($value['parentid']==0){
 					$dataAlbum[]=$value;

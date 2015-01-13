@@ -1,6 +1,6 @@
 <?php
 class m_brocure extends Database {
-
+var $prefix = "mitra";
 	public function brocure(){
 		//	$query = "SELECT * FROM mitra_news_content_repo WHERE typealbum='4' and gallerytype='1' ";
 		/*
@@ -74,7 +74,7 @@ ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
 	}
 	public function geophysics(){
 		
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='1' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -144,7 +144,7 @@ ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and  categoryid='3' and articleType='2' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and  categoryid='3' and articleType='2' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -167,7 +167,7 @@ ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='3' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='3' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -326,5 +326,14 @@ ON A.id = B.otherid and b.typealbum='4' and b.gallerytype='1' ";
 	
 		
 	}
+	function getTitleprod($type){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=12 AND articletype='".$type."' LIMIT 1";
+		
+		$result = $this->fetch($query,0);
+		// pr($result);
+		return $result;
+
+		}
 }
 ?>

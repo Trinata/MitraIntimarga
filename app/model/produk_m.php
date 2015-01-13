@@ -1,5 +1,6 @@
 <?php
 class produk_m extends Database {
+	var $prefix = "mitra";
 	public function getDataDesc(){
 		$query = "SELECT * FROM tests ORDER BY ID DESC";
 		 $result = $this->fetch($query,1);
@@ -21,7 +22,7 @@ class produk_m extends Database {
 	}
 	public function geophysics(){
 		
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='1' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='1' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -91,7 +92,7 @@ class produk_m extends Database {
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and  categoryid='3' and articleType='2' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and  categoryid='3' and articleType='2' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -114,7 +115,7 @@ class produk_m extends Database {
 		 //pr($result);
 		return $result;
 */
-		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='3' and n_status = '1' ORDER BY created_date DESC" ;
+		$query= " SELECT * FROM mitra_news_content WHERE parentid = '0' and categoryid='3' and articleType='3' and n_status = '1' ORDER BY lid ASC" ;
 		$result= $this->fetch($query,1);
 		$i=0;
 		foreach($result as $val){
@@ -252,7 +253,16 @@ class produk_m extends Database {
 	
 		
 	}
-	
+	function getTitleprod($type){
+
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=11 AND articletype='".$type."' LIMIT 1";
+		
+		$result = $this->fetch($query,1);
+		
+		// pr($result);
+		return $result;
+
+		}
 }
 ?>
 
